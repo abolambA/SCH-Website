@@ -1,0 +1,398 @@
+<section class="hero hero-slider" data-section="{{ section.id }}">
+  <div class="hero-particles"></div>
+
+  <div class="carousel-container">
+    <div class="carousel-track">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign prod = block.settings.product -%}
+          <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            <div class="slide-bg-tint bg-tint-{{ forloop.index }}"></div>
+            <div class="container hero__content-wrapper">
+              <div class="hero__content">
+                {%- if prod != blank -%}
+                  <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
+                    {{ block.settings.tagline }}
+                  </p>
+                  <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
+                    {{ prod.title }}
+                  </h1>
+                  <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
+                    <a href="{{ prod.url }}" class="btn btn-info">Discover More</a>
+                  </div>
+                {%- else -%}
+                  <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
+                    {{ block.settings.tagline | default: 'Editor"s Choice' }}
+                  </p>
+                  <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
+                    {% if forloop.index == 1 %}GAN 14 MagLev
+                    {% elsif forloop.index == 2 %}MoYu WeiLong WRM
+                    {% else %}YJ MGC 4x4{% endif %}
+                  </h1>
+                  <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
+                    <a href="#" class="btn btn-info">Discover More</a>
+                  </div>
+                {%- endif -%}
+              </div>
+              
+              <div class="hero__image-col">
+                <div class="hero__image-wrapper tilt-enabled">
+                  {%- if prod != blank and prod.featured_image -%}
+                    <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img">
+                  {%- else -%}
+                    {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'hero-cube-img placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback mock blocks if section is empty -->
+        {%- for i in (1..3) -%}
+          <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            <div class="slide-bg-tint bg-tint-{{ forloop.index }}"></div>
+            <div class="container hero__content-wrapper">
+              <div class="hero__content">
+                <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
+                  {% if i == 1 %}The New Meta{% elsif i == 2 %}Budget King{% else %}Top Choice{% endif %}
+                </p>
+                <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
+                  {% if i == 1 %}GAN 14 MagLev{% elsif i == 2 %}MoYu WeiLong WRM{% else %}YJ MGC 4x4{% endif %}
+                </h1>
+                <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
+                  <a href="/collections/all" class="btn btn-info">Discover More</a>
+                </div>
+              </div>
+              <div class="hero__image-col">
+                <div class="hero__image-wrapper tilt-enabled">
+                  {{ 'product-' | append: i | placeholder_svg_tag: 'hero-cube-img placeholder-svg' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <!-- Controls -->
+    {%- assign dot_count = section.blocks.size -%}
+    {%- if dot_count == 0 -%}{%- assign dot_count = 3 -%}{%- endif -%}
+    
+    {%- if dot_count > 1 -%}
+      <div class="carousel-controls container">
+        <button class="carousel-btn prev" aria-label="Previous Slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="carousel-dots">
+          {%- for i in (1..dot_count) -%}
+            <button class="carousel-dot {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+          {%- endfor -%}
+        </div>
+        <button class="carousel-btn next" aria-label="Next Slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .hero-slider {
+    position: relative;
+    height: calc(100vh - 80px);
+    min-height: 500px;
+    background-color: var(--color-bg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .carousel-container {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .slide-bg-tint {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .bg-tint-1 { background: radial-gradient(ellipse at center, rgba(26,159,224,0.1) 0%, transparent 60%); }
+  .bg-tint-2 { background: radial-gradient(ellipse at center, rgba(255,208,0,0.1) 0%, transparent 60%); }
+  .bg-tint-3 { background: radial-gradient(ellipse at center, rgba(255,107,26,0.1) 0%, transparent 60%); }
+
+  .carousel-slide.is-active {
+    opacity: 1;
+  }
+
+  .hero__content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 4rem;
+  }
+
+  .hero__content {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .hero__highlight {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .hero__title {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .hero__image-col {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+  }
+
+  .hero__image-wrapper {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+    position: relative;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+    transition: transform 0.1s ease-out, filter 0.3s ease;
+  }
+
+  .hero__image-wrapper:hover {
+    filter: drop-shadow(0 30px 60px var(--color-glow));
+  }
+
+  .hero-cube-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .placeholder-svg {
+    background: var(--color-surface);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    fill: var(--color-text-muted);
+  }
+
+  .carousel-controls {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    z-index: 10;
+  }
+
+  .carousel-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .carousel-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-bg);
+    border-color: var(--color-primary);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .carousel-dot.is-active {
+    background: var(--color-primary);
+    transform: scale(1.3);
+  }
+
+  @media (max-width: 768px) {
+    .hero__content-wrapper {
+      flex-direction: column-reverse;
+      text-align: center;
+      gap: 2rem;
+      padding-top: 2rem;
+    }
+    .hero__title {
+      font-size: 2.5rem;
+    }
+    .hero__image-wrapper {
+      max-width: 300px;
+    }
+    .hero__buttons {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    if(!track || slides.length === 0) return;
+
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    function goToSlide(index) {
+      if(index < 0) index = slides.length - 1;
+      if(index >= slides.length) index = 0;
+      
+      currentIndex = index;
+      const offset = currentIndex * -100;
+      track.style.transform = `translateX(${offset}%)`;
+      
+      slides.forEach(s => s.classList.remove('is-active'));
+      slides[currentIndex].classList.add('is-active');
+      
+      dots.forEach(d => d.classList.remove('is-active'));
+      if(dots[currentIndex]) dots[currentIndex].classList.add('is-active');
+    }
+
+    if(nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        goToSlide(currentIndex + 1);
+        resetInterval();
+      });
+    }
+
+    if(prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        goToSlide(currentIndex - 1);
+        resetInterval();
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        resetInterval();
+      });
+    });
+
+    function startInterval() {
+      autoSlideInterval = setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 5000); // 5 seconds per slide
+    }
+
+    function resetInterval() {
+      clearInterval(autoSlideInterval);
+      startInterval();
+    }
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      clearInterval(autoSlideInterval);
+    });
+
+    track.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startInterval();
+    });
+
+    function handleSwipe() {
+      if(touchEndX < touchStartX - 50) goToSlide(currentIndex + 1);
+      if(touchEndX > touchStartX + 50) goToSlide(currentIndex - 1);
+    }
+
+    startInterval();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slider",
+  "max_blocks": 3,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Product Slide",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "The New Meta"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slider",
+      "blocks": [
+        { "type": "slide", "settings": { "tagline": "The New Meta" } },
+        { "type": "slide", "settings": { "tagline": "Budget King" } },
+        { "type": "slide", "settings": { "tagline": "Top Choice" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

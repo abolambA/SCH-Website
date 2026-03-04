@@ -1,0 +1,95 @@
+<section class="section product-recommendations container" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4">
+  <h2 class="section-title text-center reveal">You Might Also Like</h2>
+  
+  <div class="product-recommendations__scroller mt-4">
+    <div class="product-recommendations__grid">
+      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+        {%- for recommendation in recommendations.products -%}
+          <div class="product-recommendations__item reveal">
+            {% render 'product-card', product: recommendation %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback/Placeholder until JS loads it -->
+        {%- for i in (1..4) -%}
+          <div class="product-recommendations__item reveal">
+            {% render 'product-card' %}
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  const handleIntersection = (entries, observer) => {
+    if (!entries[0].isIntersecting) return;
+    observer.unobserve(productRecommendationsSection);
+
+    fetch(productRecommendationsSection.dataset.url)
+      .then(response => response.text())
+      .then(text => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const recommendations = html.querySelector('.product-recommendations');
+        if (recommendations && recommendations.innerHTML.trim().length) {
+          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+          // Re-init generic listeners if needed
+          if(typeof initProductCardTilt === 'function') initProductCardTilt();
+          if(typeof initScrollReveal === 'function') initScrollReveal();
+        }
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  };
+
+  const productRecommendationsSection = document.querySelector('.product-recommendations');
+  if(productRecommendationsSection) {
+    const observer = new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 400px 0px'});
+    observer.observe(productRecommendationsSection);
+  }
+</script>
+
+<style>
+  .product-recommendations {
+    overflow: hidden;
+  }
+
+  .product-recommendations__scroller {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2rem;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .product-recommendations__scroller::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Webkit */
+  }
+
+  .product-recommendations__grid {
+    display: flex;
+    gap: 1.5rem;
+    /* Native scrolling */
+    min-width: max-content;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .product-recommendations__item {
+    width: 280px;
+    flex-shrink: 0;
+  }
+  
+  /* Reset margin on card within scroller */
+  .product-recommendations__item .product-card {
+    margin-bottom: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "settings": []
+}
+{% endschema %}

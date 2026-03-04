@@ -1,0 +1,79 @@
+<div class="collection-brand-header {{ section.settings.bg_tint }}">
+  <div class="container text-center">
+    {%- if collection.metafields.custom.brand_logo != blank -%}
+      <img src="{{ collection.metafields.custom.brand_logo | image_url: width: 300 }}" alt="{{ collection.title }}" class="collection-brand-logo mb-4">
+    {%- elsif section.settings.brand_logo != blank -%}
+      <img src="{{ section.settings.brand_logo | image_url: width: 300 }}" alt="{{ collection.title }}" class="collection-brand-logo mb-4">
+    {%- endif -%}
+    
+    <h1 class="font-display" style="font-size: 3.5rem; margin-bottom: 1rem;">{{ collection.title }}</h1>
+    
+    {%- if section.settings.brand_desc != blank -%}
+      <p class="font-body text-muted mx-auto" style="max-width: 600px; font-size: 1.1rem;">
+        {{ section.settings.brand_desc }}
+      </p>
+    {%- elsif collection.description != blank -%}
+      <div class="font-body text-muted mx-auto" style="max-width: 600px; font-size: 1.1rem;">
+        {{ collection.description }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .collection-brand-header {
+    background-color: var(--color-surface);
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .collection-brand-logo {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Background Tints */
+  .tint-gan { background: radial-gradient(ellipse at center, rgba(26,159,224,0.1) 0%, var(--color-bg) 70%); border-bottom: 1px solid rgba(26,159,224,0.3); }
+  .tint-moyu { background: radial-gradient(ellipse at center, rgba(255,208,0,0.1) 0%, var(--color-bg) 70%); border-bottom: 1px solid rgba(255,208,0,0.3); }
+  .tint-yj { background: radial-gradient(ellipse at center, rgba(255,107,26,0.1) 0%, var(--color-bg) 70%); border-bottom: 1px solid rgba(255,107,26,0.3); }
+  .tint-qiyi { background: radial-gradient(ellipse at center, rgba(167,139,250,0.1) 0%, var(--color-bg) 70%); border-bottom: 1px solid rgba(167,139,250,0.3); }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Brand Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Brand Logo (Fallback)"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_desc",
+      "label": "Brand Description (Fallback)"
+    },
+    {
+      "type": "select",
+      "id": "bg_tint",
+      "label": "Background Tint",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "tint-gan", "label": "GAN (Blue)" },
+        { "value": "tint-moyu", "label": "MoYu (Yellow)" },
+        { "value": "tint-yj", "label": "YJ (Orange)" },
+        { "value": "tint-qiyi", "label": "QiYi (Purple)" }
+      ],
+      "default": "none"
+    }
+  ],
+  "presets": [
+    { "name": "Collection Brand Header" }
+  ]
+}
+{% endschema %}

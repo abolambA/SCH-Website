@@ -1,0 +1,144 @@
+<section class="section category-grid container">
+  <h2 class="section-title text-center reveal font-display" style="font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-primary);">COLLECTIONS</h2>
+  
+  <div class="category-grid-minimal mt-4">
+    {%- for block in section.blocks -%}
+      <div class="reveal">
+        <a href="{{ block.settings.tile_link | default: '#' }}" class="category-tile-minimal">
+          <div class="category-tile-minimal__img-box">
+            {%- if block.settings.tile_image != blank -%}
+              <img src="{{ block.settings.tile_image | image_url: width: 400 }}" alt="{{ block.settings.tile_label | escape }}" loading="lazy">
+            {%- else -%}
+              {%- assign idx = forloop.index | modulo: 6 | plus: 1 -%}
+              {{ 'product-' | append: idx | placeholder_svg_tag: 'category-svg-custom' }}
+            {%- endif -%}
+          </div>
+          <h3 class="category-tile-minimal__label font-body">{{ block.settings.tile_label }}</h3>
+        </a>
+      </div>
+    {%- else -%}
+      <!-- Fallbacks for exactly matching what the user wants: Combo Deals, 2x2, 3x3, 4x4, Irregulars, Lubes, Accessories, Monster Go, Mega Sale, New Products -->
+      {%- assign default_labels = "Combo Deals,2x2,3x3,4x4,Irregulars,Lubes,Accessories,Monster Go - Trainer Cubes,Mega Sale,New Products" | split: "," -%}
+      {%- for label in default_labels -%}
+        <div class="reveal">
+          <a href="/collections/all" class="category-tile-minimal">
+            <div class="category-tile-minimal__img-box">
+              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'category-svg-custom' }}
+            </div>
+            <h3 class="category-tile-minimal__label font-body">{{ label }}</h3>
+          </a>
+        </div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<style>
+  .category-grid { padding-top: 3rem; padding-bottom: 3rem; }
+  .category-grid-minimal {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 3rem;
+    column-gap: 1.5rem;
+    padding-top: 2rem;
+  }
+  @media (max-width: 1024px) { .category-grid-minimal { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .category-grid-minimal { grid-template-columns: repeat(2, 1fr); gap: 1rem; row-gap: 2rem; } }
+
+  .category-tile-minimal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    transition: transform var(--transition-fast);
+  }
+
+  .category-tile-minimal:hover {
+    transform: translateY(-5px);
+  }
+
+  .category-tile-minimal__img-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-surface); /* Keep it dark theme compliant */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .category-tile-minimal:hover .category-tile-minimal__img-box {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .category-tile-minimal__img-box img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transition: transform var(--transition-fast);
+  }
+
+  .category-tile-minimal:hover .category-tile-minimal__img-box img {
+    transform: scale(1.08);
+  }
+
+  .category-svg-custom {
+    width: 50%;
+    height: 50%;
+    fill: var(--color-text-muted);
+    opacity: 0.5;
+  }
+
+  .category-tile-minimal__label {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0;
+    transition: color var(--transition-fast);
+  }
+
+  .category-tile-minimal:hover .category-tile-minimal__label {
+    color: var(--color-primary);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Category Grid (Minimal)",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "text", "id": "tile_label", "label": "Category Name" },
+        { "type": "image_picker", "id": "tile_image", "label": "Category Image" },
+        { "type": "url", "id": "tile_link", "label": "Collection URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Grid (Minimal)",
+      "blocks": [
+        { "type": "category", "settings": { "tile_label": "Combo Deals" } },
+        { "type": "category", "settings": { "tile_label": "2x2" } },
+        { "type": "category", "settings": { "tile_label": "3x3" } },
+        { "type": "category", "settings": { "tile_label": "4x4" } },
+        { "type": "category", "settings": { "tile_label": "Irregulars" } },
+        { "type": "category", "settings": { "tile_label": "Lubes" } },
+        { "type": "category", "settings": { "tile_label": "Accessories" } },
+        { "type": "category", "settings": { "tile_label": "Monster Go" } },
+        { "type": "category", "settings": { "tile_label": "Mega Sale" } },
+        { "type": "category", "settings": { "tile_label": "New Products" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

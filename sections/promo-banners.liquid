@@ -1,0 +1,77 @@
+<section class="section container price-range-section">
+  <div class="price-boxes-grid">
+    <a href="/collections/all?filter.p.m.global.max_price=15&sort_by=price-ascending" class="price-box price-box-1">
+      <span class="price-label">Under $15</span>
+      <span class="price-cta">Shop this range →</span>
+    </a>
+    <a href="/collections/all?filter.p.m.global.max_price=30&sort_by=price-ascending" class="price-box price-box-2">
+      <span class="price-label">Under $30</span>
+      <span class="price-cta">Shop this range →</span>
+    </a>
+    <a href="/collections/all?filter.p.m.global.max_price=60&sort_by=price-ascending" class="price-box price-box-3">
+      <span class="price-label">Under $60</span>
+      <span class="price-cta">Shop this range →</span>
+    </a>
+    <a href="/collections/all?filter.p.m.global.min_price=60&sort_by=price-ascending" class="price-box price-box-4">
+      <span class="price-label">$60+</span>
+      <span class="price-cta">Shop this range →</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .price-range-section { padding-top: 2rem; padding-bottom: 4rem; }
+  .price-boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .price-box { 
+    border-radius: 14px; 
+    padding: 32px 24px; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-end; 
+    min-height: 180px; 
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s; 
+    position: relative; 
+    overflow: hidden; 
+  }
+  .price-box:hover { 
+    transform: scale(1.03); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+  }
+  
+  .price-box-1 { background: linear-gradient(135deg, #0a4a6e, #1A9FE0); }
+  .price-box-2 { background: linear-gradient(135deg, #5a4500, #FFD000); }
+  .price-box-3 { background: linear-gradient(135deg, #6a2800, #FF6B1A); }
+  .price-box-4 { background: linear-gradient(135deg, #0a3d24, #10b981); }
+
+  .price-label { 
+    font-family: 'Rajdhani', sans-serif; 
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.8rem); 
+    color: white; 
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+  }
+  .price-cta { 
+    font-size: 0.85rem; 
+    color: rgba(255,255,255,0.8); 
+    margin-top: 6px; 
+    font-weight: 600;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Price Boxes",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Price Boxes"
+    }
+  ]
+}
+{% endschema %}

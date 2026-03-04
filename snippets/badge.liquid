@@ -1,0 +1,38 @@
+{% comment %}
+  Usage:
+  {% render 'badge', type: 'sale', text: 'SALE -20%' %}
+  {% render 'badge', type: 'new', text: 'NEW' %}
+{% endcomment %}
+
+{% assign badge_class = 'badge--default' %}
+{% if type == 'sale' %}
+  {% assign badge_class = 'badge--sale' %}
+{% elsif type == 'new' %}
+  {% assign badge_class = 'badge--new' %}
+{% endif %}
+
+<span class="badge {{ badge_class }}">
+  {{ text }}
+</span>
+
+<style>
+  .badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    font-family: var(--font-display);
+    line-height: 1;
+  }
+  .badge--sale {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+  }
+  .badge--new {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+  }
+</style>

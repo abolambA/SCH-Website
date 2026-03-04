@@ -1,0 +1,38 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero"
+        },
+        "promo_banners": {
+            "type": "promo-banners"
+        },
+        "featured_products": {
+            "type": "featured-products"
+        },
+        "category_grid": {
+            "type": "category-grid"
+        },
+        "authorized_dealers": {
+            "type": "authorized-dealers"
+        },
+        "trust_bar": {
+            "type": "trust-bar"
+        },
+        "community": {
+            "type": "community-section"
+        },
+        "newsletter": {
+            "type": "newsletter"
+        }
+    },
+    "order": [
+        "hero",
+        "promo_banners",
+        "category_grid",
+        "featured_products",
+        "authorized_dealers",
+        "trust_bar",
+        "community",
+        "newsletter"
+    ]
+}

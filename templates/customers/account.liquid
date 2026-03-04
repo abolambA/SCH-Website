@@ -1,0 +1,73 @@
+<div class="customer-account container section" style="margin: 4rem auto;">
+  <div class="text-center mb-4">
+    <h1 class="font-display">Welcome back, <span class="color-primary">{{ customer.first_name }}</span></h1>
+  </div>
+  
+  <div class="grid grid--3-col" style="gap: 3rem;">
+    <!-- Sidebar -->
+    <div class="grid__item account-sidebar" style="flex: 0 0 250px;">
+      <h2 class="font-display color-accent mb-4" style="font-size: 1.5rem;">Account Details</h2>
+      <div style="background-color: var(--color-surface); padding: 1.5rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); margin-bottom: 1.5rem;">
+        <p class="font-body text-muted mb-2" style="font-weight: 700; color: var(--color-text);">{{ customer.name }}</p>
+        <p class="font-body text-muted mb-2">{{ customer.email }}</p>
+        {%- if customer.default_address != blank -%}
+          <p class="font-body text-muted mt-2" style="border-top: 1px solid var(--color-border); padding-top: 1rem;">
+            {{ customer.default_address.address1 }}<br>
+            {% if customer.default_address.address2 != blank %}{{ customer.default_address.address2 }}<br>{% endif %}
+            {{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}<br>
+            {{ customer.default_address.country }}
+          </p>
+        {%- endif -%}
+      </div>
+      <a href="{{ routes.account_addresses_url }}" class="btn btn-ghost btn--full mb-4">View Addresses ({{ customer.addresses_count }})</a>
+      <a href="{{ routes.account_logout_url }}" class="btn btn-danger btn--full">Log Out</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="grid__item account-main" style="flex: 1;">
+      <h2 class="font-display color-primary mb-4" style="font-size: 1.8rem;">Order History</h2>
+      {%- if customer.orders.size > 0 -%}
+        <div class="table-wrapper" style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--color-border);">
+                <th class="font-body color-text-muted" style="padding: 1rem 0.5rem; font-weight: 600;">Order</th>
+                <th class="font-body color-text-muted" style="padding: 1rem 0.5rem; font-weight: 600;">Date</th>
+                <th class="font-body color-text-muted" style="padding: 1rem 0.5rem; font-weight: 600;">Payment Status</th>
+                <th class="font-body color-text-muted" style="padding: 1rem 0.5rem; font-weight: 600;">Fulfillment Status</th>
+                <th class="font-body color-text-muted text-right" style="padding: 1rem 0.5rem; font-weight: 600;">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+                  <td style="padding: 1rem 0.5rem;">
+                    <a href="{{ order.customer_url }}" class="color-accent" style="font-weight: 700;">{{ order.name }}</a>
+                  </td>
+                  <td style="padding: 1rem 0.5rem;" class="text-muted">{{ order.created_at | date: "%B %d, %Y" }}</td>
+                  <td style="padding: 1rem 0.5rem;" class="text-muted">{{ order.financial_status_label }}</td>
+                  <td style="padding: 1rem 0.5rem;" class="text-muted">{{ order.fulfillment_status_label }}</td>
+                  <td style="padding: 1rem 0.5rem;" class="text-right color-primary font-display" style="font-weight: 700; font-size: 1.1rem;">{{ order.total_price | money }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      {%- else -%}
+        <div style="background-color: var(--color-surface); padding: 3rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); text-align: center;">
+          <h3 class="font-display mb-2">No orders yet</h3>
+          <p class="font-body text-muted mx-auto mb-4" style="max-width: 400px;">You haven't placed any orders yet. Start shopping to build your speedcube collection.</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-purchase">Start Shopping</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .customer-account .grid { flex-direction: column; }
+    .account-sidebar { flex: 1 1 100% !important; order: 2; margin-top: 2rem; }
+    .account-main { order: 1; }
+  }
+</style>

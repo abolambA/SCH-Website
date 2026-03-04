@@ -1,0 +1,120 @@
+<section class="section authorized-dealers container">
+  <div class="section-header text-center reveal">
+    <h2 class="section-title font-display" style="font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase;">
+      {{ section.settings.title | default: 'Authorized Dealers of Famous Brands' }}
+    </h2>
+  </div>
+
+  <div class="dealer-grid">
+    {%- for block in section.blocks -%}
+      <div class="dealer-card reveal">
+        <a href="{{ block.settings.brand_link | default: '#' }}" class="dealer-card__link">
+          <div class="dealer-card__image-box">
+            {%- if block.settings.brand_image != blank -%}
+              <img src="{{ block.settings.brand_image | image_url: width: 300 }}" alt="{{ block.settings.brand_name | escape }}" loading="lazy">
+            {%- else -%}
+              <span class="font-display color-primary" style="font-size: 1.5rem; font-weight: 700;">{{ block.settings.brand_name }}</span>
+            {%- endif -%}
+          </div>
+          <p class="dealer-card__name font-body">{{ block.settings.brand_name }}</p>
+        </a>
+      </div>
+    {%- else -%}
+      <!-- Fallbacks -->
+      {%- assign default_brands = "GAN Cube,MoYu Cube,QiYi,YJ,Speed Stacks" | split: "," -%}
+      {%- for brand in default_brands -%}
+        <div class="dealer-card reveal">
+          <a href="/collections/all" class="dealer-card__link">
+            <div class="dealer-card__image-box">
+              <span class="font-display color-primary" style="font-size: 1.5rem; font-weight: 700;">{{ brand }}</span>
+            </div>
+            <p class="dealer-card__name font-body">{{ brand }}</p>
+          </a>
+        </div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<style>
+  .authorized-dealers { padding-top: 4rem; padding-bottom: 4rem; }
+  .dealer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 1024px) { .dealer-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .dealer-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+
+  .dealer-card__link { display: block; text-align: center; text-decoration: none; }
+  
+  .dealer-card__image-box {
+    background: #ffffff; /* White bg for logos */
+    border: 3px solid rgba(255, 208, 0, 0.8); /* Yellow border matching screenshot */
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .dealer-card__link:hover .dealer-card__image-box {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 208, 0, 0.2);
+  }
+
+  .dealer-card__image-box img {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+  }
+
+  .dealer-card__name {
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+  
+  .dealer-card__link:hover .dealer-card__name {
+    color: var(--color-primary);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Authorized Dealers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Authorized Dealers of Famous Brands"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        { "type": "text", "id": "brand_name", "label": "Brand Name" },
+        { "type": "image_picker", "id": "brand_image", "label": "Brand Logo (Image)" },
+        { "type": "url", "id": "brand_link", "label": "Brand Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Authorized Dealers",
+      "blocks": [
+        { "type": "brand", "settings": { "brand_name": "GAN Cube" } },
+        { "type": "brand", "settings": { "brand_name": "MoYu Cube" } },
+        { "type": "brand", "settings": { "brand_name": "QiYi" } },
+        { "type": "brand", "settings": { "brand_name": "YJ" } },
+        { "type": "brand", "settings": { "brand_name": "Speed Stacks" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

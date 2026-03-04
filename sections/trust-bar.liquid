@@ -1,0 +1,68 @@
+<section class="section trust-bar">
+  <div class="container grid grid--4-col">
+    {%- assign features = "Fast Shipping|UAE & regional delivery,Curated by Cubers|Every product tested,Expert Support|Real advice from ranked competitors,Secure Checkout|Fully encrypted" | split: "," -%}
+    
+    {%- for feature in features -%}
+      {%- assign parts = feature | split: "|" -%}
+      <div class="grid__item trust-card reveal">
+        <div class="trust-card__icon color-primary">
+          {%- if forloop.index == 1 -%}
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          {%- elsif forloop.index == 2 -%}
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          {%- elsif forloop.index == 3 -%}
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          {%- else -%}
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          {%- endif -%}
+        </div>
+        <h3 class="trust-card__title font-display">{{ parts[0] }}</h3>
+        <p class="trust-card__desc font-body text-muted">{{ parts[1] }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+<style>
+  .trust-bar {
+    background-color: var(--color-surface);
+    padding: 3rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .trust-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background-color: var(--color-bg);
+    border-radius: var(--border-radius);
+    border-top: 3px solid transparent;
+    transition: all var(--transition-fast);
+  }
+
+  .trust-card:hover {
+    border-top-color: var(--color-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  }
+
+  .trust-card__icon {
+    margin-bottom: 1rem;
+  }
+
+  .trust-card__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .trust-card__desc {
+    font-size: 0.9rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+<div class="container section">
+  <div class="text-center">
+    <h1 class="font-display">Your Cart</h1>
+    
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <table class="w-100 mt-4 text-left">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr>
+                <td>{{ item.product.title }}</td>
+                <td>{{ item.price | money }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        
+        <div class="mt-4 text-right">
+          <p class="font-display" style="font-size: 2rem;">Total: <span class="color-primary">{{ cart.total_price | money }}</span></p>
+          <button type="submit" name="checkout" class="btn btn-purchase mt-4">Checkout</button>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="text-center" style="padding: 4rem 0;">
+        <h2 class="font-display mb-4">Your cart is empty</h2>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-ghost mt-4">Continue Shopping</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

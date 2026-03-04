@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_bg }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- else -%}
+      <link rel="icon" type="image/png" href="{{ 'Logo removed BG.png' | asset_url }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600&family=Rajdhani:wght@600;700;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.theme = {
+        strings: {
+          addToCart: "Add to Cart",
+          added: "Added to Cart ✓",
+          soldOut: "Sold Out",
+          unavailable: "Unavailable"
+        },
+        moneyFormat: {{ shop.money_format | json }}
+      };
+    </script>
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">Skip to content</a>
+
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {% render 'cart-drawer' %}
+
+    <!-- Theme JS -->
+    <script src="{{ 'i18n.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+    {% if template.name == 'index' %}
+      <script src="{{ 'cube-animation.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+
+    <div class="search-dialog" id="searchDialog" role="dialog" aria-modal="true" aria-label="Search">
+      <div class="search-backdrop" onclick="closeSearch()"></div>
+      <div class="search-modal">
+        <div class="search-input-row">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="searchInput" placeholder="Search cubes, brands, types..."
+                 data-i18n-placeholder="search.placeholder" autocomplete="off"
+                 oninput="handleSearch(this.value)">
+          <button class="search-close" onclick="closeSearch()" style="background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;">✕</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+        <div class="search-footer" style="display:flex; justify-content:space-between; align-items:center; margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 0.85rem;">
+          <span>Press <kbd>ESC</kbd> to close</span>
+          <a href="/search?q=" id="viewAllSearch" style="display:none; color:var(--color-primary);text-decoration:none;font-weight:bold;">View all results →</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </body>
+</html>

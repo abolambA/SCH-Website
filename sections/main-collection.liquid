@@ -1,0 +1,179 @@
+<div class="collection-page">
+  <div class="collection-banner text-center" style="padding: 6rem 0; background-color: var(--color-surface); margin-bottom: 3rem;">
+    <h1 class="font-display reveal">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class="collection-desc font-body text-muted mt-4 reveal">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="container pb-6">
+    <div class="collection-layout">
+      
+      <!-- Filters Sidebar (Desktop) -->
+      <aside class="collection-filters hide-on-mobile reveal">
+        <h3 class="font-display mb-4">Filters</h3>
+        <div class="filter-group mb-4">
+          <h4 class="font-body color-primary">Brand</h4>
+          <label class="filter-label"><input type="checkbox"> MoYu</label>
+          <label class="filter-label"><input type="checkbox"> GAN</label>
+          <label class="filter-label"><input type="checkbox"> QiYi</label>
+          <label class="filter-label"><input type="checkbox"> YJ</label>
+        </div>
+        <div class="filter-group mb-4">
+          <h4 class="font-body color-primary">Price</h4>
+          <label class="filter-label"><input type="checkbox"> Under 50 USD</label>
+          <label class="filter-label"><input type="checkbox"> 50 - 100 USD</label>
+          <label class="filter-label"><input type="checkbox"> 100+ USD</label>
+        </div>
+      </aside>
+
+      <!-- Main Products Area -->
+      <div class="collection-main">
+        <div class="collection-toolbar reveal">
+          <p class="collection-count font-body text-muted">{{ collection.products_count }} products</p>
+          <div class="collection-sort">
+            <label for="SortBy" class="font-body text-muted">Sort by:</label>
+            <select name="sort_by" id="SortBy" class="font-body">
+              <option value="manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Featured</option>
+              <option value="price-ascending">Price Low to High</option>
+              <option value="price-descending">Price High to Low</option>
+              <option value="created-descending">Newest</option>
+              <option value="best-selling">Best Selling</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="active-filters reveal mb-4">
+          <!-- Dummy active filters chips -->
+          <span class="filter-chip">GAN <button>×</button></span>
+          <span class="filter-chip">Clear All</span>
+        </div>
+
+        <div class="grid grid--4-col">
+          {% paginate collection.products by 12 %}
+            {% assign sorted_products = collection.products | sort: 'tags' %}
+            {%- for product in sorted_products -%}
+              <div class="grid__item reveal">
+                {% render 'product-card', product: product %}
+              </div>
+            {%- else -%}
+              <!-- Dev placeholder products -->
+              {%- for i in (1..8) -%}
+                <div class="grid__item reveal">
+                  {% render 'product-card' %}
+                </div>
+              {%- endfor -%}
+            {%- endfor -%}
+            
+            {%- if paginate.pages > 1 -%}
+              <div class="collection-pagination mt-4 text-center basis-full">
+                {{ paginate | default_pagination }}
+              </div>
+            {%- endif -%}
+          {% endpaginate %}
+        </div>
+        
+        <!-- Infinite Scroll Trigger -->
+        <div class="infinite-scroll-trigger text-center mt-4">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .collection-layout {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .collection-filters {
+    width: 250px;
+    flex-shrink: 0;
+  }
+
+  .collection-main {
+    flex-grow: 1;
+  }
+
+  .filter-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .filter-label:hover {
+    color: var(--color-text);
+  }
+
+  .filter-label input {
+    margin-right: 8px;
+    width: auto;
+  }
+
+  .collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .collection-sort select {
+    width: auto;
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .active-filters {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-surface-2);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .filter-chip button {
+    background: none;
+    border: none;
+    color: inherit;
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .pb-6 { padding-bottom: 6rem; }
+  .basis-full { flex-basis: 100%; }
+
+  @media (max-width: 1023px) {
+    .collection-layout {
+      flex-direction: column;
+    }
+    .collection-filters {
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+<div class="container section">
+  <div class="search-page">
+    <div class="search-page-header" style="text-align: center; margin-bottom: 40px;">
+      <h1 class="font-display">{{ search.results_count }} results for "{{ search.terms }}"</h1>
+    </div>
+    {% if search.results.size > 0 %}
+      <div class="product-grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            {% assign product = item %}
+            <div class="grid__item">
+              {% render 'product-card', product: product %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="search-empty" style="text-align: center; padding: 60px 20px;">
+        <p style="font-size: 1.2rem; color: var(--color-text-muted); margin-bottom: 12px;">No results for "{{ search.terms }}"</p>
+        <p style="font-size: 1.1rem; margin-bottom: 30px;">Try: GAN, MoYu, 3x3, Pyraminx, Megaminx</p>
+        <a href="/collections/all" class="btn btn-purchase">Browse All Products</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
