@@ -1,7 +1,61 @@
 <div class="container section">
-  <div class="page-content" style="max-width: 800px; margin: 0 auto; text-align: left;">
-    <h1 class="font-display text-center" style="margin-bottom: 2rem;">{{ page.title }}</h1>
-    {{ page.content }}
+  <div class="page-content" style="max-width: 800px; margin: 0 auto;">
+    <h1 class="font-display text-center" style="margin-bottom: 2rem; font-size: 3rem;">
+      {{ page.title | default: 'Contact Us' }}
+    </h1>
+    
+    {%- if page.content != blank -%}
+      <div style="margin-bottom: 3rem;">
+        {{ page.content }}
+      </div>
+    {%- else -%}
+      <p class="text-center" style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 3rem;">
+        Have a question about a cube, your order, or just want to chat algorithms? Send us a message below!
+      </p>
+    {%- endif -%}
+
+    {%- form 'contact' -%}
+      {%- if form.posted_successfully? -%}
+        <div style="padding: 1rem; background: rgba(82, 196, 26, 0.1); border: 1px solid var(--color-success); border-radius: 8px; color: var(--color-success); margin-bottom: 2rem; text-align: center;">
+          Thanks for contacting us. We'll get back to you as soon as possible.
+        </div>
+      {%- elsif form.errors -%}
+        <div style="padding: 1rem; background: rgba(255, 77, 79, 0.1); border: 1px solid var(--color-error); border-radius: 8px; color: var(--color-error); margin-bottom: 2rem;">
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+        <div>
+          <label for="ContactFormName" style="display: block; margin-bottom: 0.5rem; color: var(--color-text-muted);">Name</label>
+          <input type="text" id="ContactFormName" name="contact[name]" style="width: 100%; padding: 0.8rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; color: white;">
+        </div>
+        <div>
+          <label for="ContactFormEmail" style="display: block; margin-bottom: 0.5rem; color: var(--color-text-muted);">Email</label>
+          <input type="email" id="ContactFormEmail" name="contact[email]" required style="width: 100%; padding: 0.8rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; color: white;">
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="ContactFormMessage" style="display: block; margin-bottom: 0.5rem; color: var(--color-text-muted);">Message</label>
+        <textarea rows="5" id="ContactFormMessage" name="contact[body]" required style="width: 100%; padding: 0.8rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; color: white; resize: vertical;"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-purchase" style="width: 100%; font-size: 1.1rem; padding: 14px;">Send Message</button>
+    {%- endform -%}
+    
+    <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
+      <div style="text-align: center;">
+        <div style="color: var(--color-primary); font-size: 1.5rem; margin-bottom: 0.5rem;">📍</div>
+        <h4 class="font-display">Store Location</h4>
+        <p style="color: var(--color-text-muted); font-size: 0.9rem;">123 SpeedCube Ave,<br>Dubai, UAE</p>
+      </div>
+      <div style="text-align: center;">
+        <div style="color: var(--color-primary); font-size: 1.5rem; margin-bottom: 0.5rem;">💌</div>
+        <h4 class="font-display">Email Us</h4>
+        <p style="color: var(--color-text-muted); font-size: 0.9rem;">support@speedcubehub.com</p>
+      </div>
+    </div>
   </div>
 </div>
 
