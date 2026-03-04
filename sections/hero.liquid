@@ -40,7 +40,12 @@
                   {%- if prod != blank and prod.featured_image -%}
                     <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img">
                   {%- else -%}
-                    {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'hero-cube-img placeholder-svg' }}
+                    <div class="hero-cube-placeholder">
+                      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                        <path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/>
+                        <path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/>
+                      </svg>
+                    </div>
                   {%- endif -%}
                 </div>
               </div>
@@ -66,7 +71,12 @@
               </div>
               <div class="hero__image-col">
                 <div class="hero__image-wrapper tilt-enabled">
-                  {{ 'product-' | append: i | placeholder_svg_tag: 'hero-cube-img placeholder-svg' }}
+                  <div class="hero-cube-placeholder">
+                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                      <path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/>
+                      <path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -105,17 +115,21 @@
     background-color: var(--color-bg);
     overflow: hidden;
     display: flex;
-    align-items: center;
+    flex-direction: column;
   }
 
   .carousel-container {
     width: 100%;
+    flex: 1;
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
   }
 
   .carousel-track {
     display: flex;
+    flex: 1;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     width: 100%;
   }
@@ -207,54 +221,43 @@
   }
 
   .carousel-controls {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 0 32px;
+    position: relative;
     z-index: 10;
   }
 
   .carousel-btn {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all var(--transition-fast);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,208,0,0.1);
+    border: 1px solid rgba(255,208,0,0.3);
+    color: #FFD000; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
   }
 
   .carousel-btn:hover {
-    background: var(--color-primary);
-    color: var(--color-bg);
-    border-color: var(--color-primary);
+    background: rgba(255,208,0,0.22);
   }
 
   .carousel-dots {
     display: flex;
-    gap: 0.8rem;
+    gap: 8px;
   }
 
   .carousel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
+    width: 8px; height: 8px; border-radius: 4px;
+    background: rgba(255,255,255,0.25);
     border: none;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all 0.3s;
   }
 
   .carousel-dot.is-active {
-    background: var(--color-primary);
-    transform: scale(1.3);
+    width: 20px; background: #FFD000; transform: none;
   }
 
   @media (max-width: 768px) {

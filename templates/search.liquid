@@ -8,9 +8,7 @@
         {% for item in search.results %}
           {% if item.object_type == 'product' %}
             {% assign product = item %}
-            <div class="grid__item">
-              {% render 'product-card', product: product %}
-            </div>
+            {% render 'product-card', product: product %}
           {% endif %}
         {% endfor %}
       </div>
@@ -23,3 +21,19 @@
     {% endif %}
   </div>
 </div>
+
+<style>
+  .search-page { margin-top: 20px; }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 768px) {
+    /* Mobile breakpoint applied globally in theme.css will handle this */
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+</style>

@@ -1,5 +1,6 @@
-<section class="section authorized-dealers container">
+<section class="section section-3 authorized-dealers container">
   <div class="section-header text-center reveal">
+    <span class="section-eyebrow font-display text-uppercase" style="display:block; font-weight:700; font-size:1rem; letter-spacing:2px; margin-bottom:8px;">Our Partners</span>
     <h2 class="section-title font-display" style="font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase;">
       {{ section.settings.title | default: 'Authorized Dealers of Famous Brands' }}
     </h2>
@@ -7,28 +8,22 @@
 
   <div class="dealer-grid">
     {%- for block in section.blocks -%}
-      <div class="dealer-card reveal">
-        <a href="{{ block.settings.brand_link | default: '#' }}" class="dealer-card__link">
-          <div class="dealer-card__image-box">
-            {%- if block.settings.brand_image != blank -%}
-              <img src="{{ block.settings.brand_image | image_url: width: 300 }}" alt="{{ block.settings.brand_name | escape }}" loading="lazy">
-            {%- else -%}
-              <span class="font-display color-primary" style="font-size: 1.5rem; font-weight: 700;">{{ block.settings.brand_name }}</span>
-            {%- endif -%}
-          </div>
-          <p class="dealer-card__name font-body">{{ block.settings.brand_name }}</p>
+      <div class="reveal">
+        <a href="{{ block.settings.brand_link | default: '#' }}" class="brand-card">
+          {%- if block.settings.brand_image != blank -%}
+            <img src="{{ block.settings.brand_image | image_url: width: 300 }}" alt="{{ block.settings.brand_name | escape }}" class="brand-logo" loading="lazy">
+          {%- else -%}
+            <span class="brand-name-fallback">{{ block.settings.brand_name }}</span>
+          {%- endif -%}
         </a>
       </div>
     {%- else -%}
       <!-- Fallbacks -->
       {%- assign default_brands = "GAN Cube,MoYu Cube,QiYi,YJ,Speed Stacks" | split: "," -%}
       {%- for brand in default_brands -%}
-        <div class="dealer-card reveal">
-          <a href="/collections/all" class="dealer-card__link">
-            <div class="dealer-card__image-box">
-              <span class="font-display color-primary" style="font-size: 1.5rem; font-weight: 700;">{{ brand }}</span>
-            </div>
-            <p class="dealer-card__name font-body">{{ brand }}</p>
+        <div class="reveal">
+          <a href="/collections/all" class="brand-card">
+            <span class="brand-name-fallback">{{ brand }}</span>
           </a>
         </div>
       {%- endfor -%}
@@ -47,38 +42,29 @@
   @media (max-width: 1024px) { .dealer-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 600px) { .dealer-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
 
-  .dealer-card__link { display: block; text-align: center; text-decoration: none; }
-  
-  .dealer-card__image-box {
-    background: #ffffff; /* White bg for logos */
-    border: 3px solid rgba(255, 208, 0, 0.8); /* Yellow border matching screenshot */
-    border-radius: 12px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  .brand-card {
+    background: #0D1E2E; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 28px 20px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 120px; text-decoration: none;
+    transition: all 0.25s;
+    height: 100%;
   }
-
-  .dealer-card__link:hover .dealer-card__image-box {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 208, 0, 0.2);
+  .brand-card:hover {
+    border-color: rgba(255,208,0,0.4);
+    box-shadow: 0 8px 24px rgba(255,208,0,0.12);
+    transform: translateY(-4px);
   }
-
-  .dealer-card__image-box img {
-    max-width: 100%; max-height: 100%; object-fit: contain;
+  .brand-logo {
+    max-height: 70px; max-width: 140px;
+    width: auto; height: auto; object-fit: contain;
+    filter: brightness(0.9);
+    transition: filter 0.2s, transform 0.2s;
   }
-
-  .dealer-card__name {
-    margin-top: 1rem;
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    transition: color var(--transition-fast);
-  }
-  
-  .dealer-card__link:hover .dealer-card__name {
-    color: var(--color-primary);
+  .brand-card:hover .brand-logo { filter: brightness(1.1); transform: scale(1.05); }
+  .brand-name-fallback {
+    font-family: var(--font-display, 'Rajdhani', sans-serif); font-weight: 700;
+    font-size: 1.2rem; color: #FFD000; text-align: center;
   }
 </style>
 

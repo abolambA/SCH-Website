@@ -1,5 +1,8 @@
-<section class="section category-grid container">
-  <h2 class="section-title text-center reveal font-display" style="font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-primary);">COLLECTIONS</h2>
+<section class="section section-1 category-grid container">
+  <div class="section-header text-center">
+    <span class="section-eyebrow font-display text-uppercase" style="display:block; font-weight:700; font-size:1rem; letter-spacing:2px; margin-bottom:8px;">Browse Categories</span>
+    <h2 class="section-title text-center reveal font-display" style="font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-primary);">COLLECTIONS</h2>
+  </div>
   
   <div class="category-grid-minimal mt-4">
     {%- for block in section.blocks -%}
@@ -7,10 +10,21 @@
         <a href="{{ block.settings.tile_link | default: '#' }}" class="category-tile-minimal">
           <div class="category-tile-minimal__img-box">
             {%- if block.settings.tile_image != blank -%}
-              <img src="{{ block.settings.tile_image | image_url: width: 400 }}" alt="{{ block.settings.tile_label | escape }}" loading="lazy">
+              <img src="{{ block.settings.tile_image | image_url: width: 600 }}" alt="{{ block.settings.tile_label | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             {%- else -%}
-              {%- assign idx = forloop.index | modulo: 6 | plus: 1 -%}
-              {{ 'product-' | append: idx | placeholder_svg_tag: 'category-svg-custom' }}
+              <div class="collection-icon-fallback">
+                <svg viewBox="0 0 80 80" fill="none" width="60" height="60">
+                  <rect x="10" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.3)" stroke="#FFD000" stroke-width="1.5"/>
+                  <rect x="30" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.2)" stroke="#FFD000" stroke-width="1.5"/>
+                  <rect x="50" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.1)" stroke="#FFD000" stroke-width="1.5"/>
+                  <rect x="10" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.2)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  <rect x="30" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.3)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  <rect x="50" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.15)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  <rect x="10" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.15)" stroke="#FF6B1A" stroke-width="1.5"/>
+                  <rect x="30" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.2)" stroke="#FF6B1A" stroke-width="1.5"/>
+                  <rect x="50" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.3)" stroke="#FF6B1A" stroke-width="1.5"/>
+                </svg>
+              </div>
             {%- endif -%}
           </div>
           <h3 class="category-tile-minimal__label font-body">{{ block.settings.tile_label }}</h3>
@@ -23,7 +37,19 @@
         <div class="reveal">
           <a href="/collections/all" class="category-tile-minimal">
             <div class="category-tile-minimal__img-box">
-              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'category-svg-custom' }}
+              <div class="collection-icon-fallback">
+                <svg viewBox="0 0 80 80" fill="none" width="60" height="60">
+                  <rect x="10" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.3)" stroke="#FFD000" stroke-width="1.5"/>
+                  <rect x="30" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.2)" stroke="#FFD000" stroke-width="1.5"/>
+                  <rect x="50" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.1)" stroke="#FFD000" stroke-width="1.5"/>
+                  <rect x="10" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.2)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  <rect x="30" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.3)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  <rect x="50" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.15)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  <rect x="10" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.15)" stroke="#FF6B1A" stroke-width="1.5"/>
+                  <rect x="30" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.2)" stroke="#FF6B1A" stroke-width="1.5"/>
+                  <rect x="50" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.3)" stroke="#FF6B1A" stroke-width="1.5"/>
+                </svg>
+              </div>
             </div>
             <h3 class="category-tile-minimal__label font-body">{{ label }}</h3>
           </a>
@@ -37,13 +63,29 @@
   .category-grid { padding-top: 3rem; padding-bottom: 3rem; }
   .category-grid-minimal {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     row-gap: 3rem;
     column-gap: 1.5rem;
     padding-top: 2rem;
   }
-  @media (max-width: 1024px) { .category-grid-minimal { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 600px) { .category-grid-minimal { grid-template-columns: repeat(2, 1fr); gap: 1rem; row-gap: 2rem; } }
+  @media (max-width: 900px) { .category-grid-minimal { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .category-grid-minimal { grid-template-columns: 1fr; } }
+  
+  /* Fallback icon styling */
+  .collection-icon-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+  }
+  
+  .collection-icon-fallback svg {
+    max-width: 60px;
+    max-height: 60px;
+    opacity: 0.8;
+  }
 
   .category-tile-minimal {
     display: flex;

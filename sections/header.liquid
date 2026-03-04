@@ -1,14 +1,13 @@
 <header class="header sticky-header">
   <div class="container header__inner">
-    
     <!-- Logo -->
-    <a href="{{ routes.root_url }}" class="header__logo">
+    <a href="{{ routes.root_url }}" class="nav-logo-wrap">
       {%- if settings.logo != blank -%}
-        <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name | escape }}" class="header__logo-image" style="max-height: 40px; width: auto;" loading="eager">
+        <img src="{{ settings.logo | image_url: width: 160 }}" alt="{{ shop.name | escape }}" class="nav-logo-img" loading="eager">
       {%- else -%}
-        <img src="{{ 'Logo removed BG.png' | asset_url }}" alt="SpeedCubeHub Logo" class="header__logo-image" style="max-height: 40px; width: auto;" loading="eager">
-        <span class="header__logo-text font-display">SpeedCubeHub</span>
+        <img src="{{ 'Logo removed BG.png' | asset_url }}" alt="SpeedCubeHub Logo" class="nav-logo-img" loading="eager">
       {%- endif -%}
+      <span class="nav-logo-text">{{ shop.name | default: 'SpeedCubeHub' }}</span>
     </a>
 
     <!-- Desktop Nav -->
@@ -115,7 +114,7 @@
     <!-- Icons -->
     <div class="header__icons">
       <!-- Language Switcher -->
-      <div class="header__language-switcher" style="position: relative;">
+      <div class="header__language-switcher hide-on-mobile" style="position: relative;">
         <button class="header__icon-btn" aria-label="Change Language" id="lang-toggle" onclick="toggleLanguage()" style="display: flex; align-items: center; gap: 4px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
           <span class="font-display hide-on-mobile lang-current" style="font-size: 0.9rem;">EN</span>
@@ -221,20 +220,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 64px;
   }
 
-  .header__logo {
+  .nav-logo-wrap {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    font-size: 1.5rem;
+    gap: 10px;
+    text-decoration: none;
+    line-height: 1;
   }
   
-  .header__logo-text {
-    font-weight: 900;
-    letter-spacing: 0.5px;
+  .nav-logo-img {
+    height: 36px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .nav-logo-text {
+    font-family: var(--font-display, 'Rajdhani', sans-serif);
+    font-weight: 700;
+    font-size: 1.15rem;
     color: var(--color-text);
+    white-space: nowrap;
+    line-height: 1;
   }
 
   .header__nav {
