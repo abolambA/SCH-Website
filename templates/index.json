@@ -10,7 +10,10 @@
             "type": "promo-banners"
         },
         "featured_products": {
-            "type": "featured-products"
+            "type": "featured-products",
+            "settings": {
+                "collection": "speedcubes"
+            }
         },
         "category_grid": {
             "type": "category-grid"
