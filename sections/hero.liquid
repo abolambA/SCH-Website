@@ -56,8 +56,8 @@
         <!-- Real products fallback from speedcubes collection -->
         {%- assign hero_collection = collections['speedcubes'] -%}
         {%- assign hero_products = hero_collection.products | default: collections['all'].products -%}
-        {%- for prod in hero_products limit: 3 -%}
-          {%- assign taglines = 'Top Rated,Best Seller,New Arrival' | split: ',' -%}
+        {%- for prod in hero_products limit: 6 -%}
+          {%- assign taglines = 'Top Rated,Best Seller,New Arrival,Trending,Fan Favorite,Competition Pick' | split: ',' -%}
           <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             <div class="slide-bg-tint bg-tint-{{ forloop.index }}"></div>
             <div class="container hero__content-wrapper">
@@ -76,7 +76,6 @@
                     Shop Now
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                   </a>
-                  <a href="/collections/speedcubes" class="btn btn-ghost">View All</a>
                 </div>
                 <div class="hero__price-tag reveal visible" style="transition-delay: 250ms; margin-top: 1.5rem;">
                   {%- if prod.compare_at_price > prod.price -%}
@@ -88,7 +87,20 @@
               <div class="hero__image-col">
                 <div class="hero__image-wrapper tilt-enabled">
                   {%- if prod.featured_image -%}
-                    <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="eager">
+                    {%- assign prod_handle = prod.handle | default: forloop.index -%}
+                    <div class="cube-gallery-container" style="position: relative; width: 100%; height: 100%;">
+                      <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img active" loading="eager" id="hero-img-{{ prod_handle }}" data-index="0">
+                      
+                      {%- if prod.images.size > 1 -%}
+                        <div style="display: none;" id="hero-data-{{ prod_handle }}">
+                          {%- for img in prod.images -%}
+                            <span data-src="{{ img | image_url: width: 800 }}"></span>
+                          {%- endfor -%}
+                        </div>
+                        <button class="mini-gallery-btn prev" aria-label="Previous Image" onclick="changeHeroImage('{{ prod_handle }}', -1, event)" style="position: absolute; top: 50%; left: -30px; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                        <button class="mini-gallery-btn next" aria-label="Next Image" onclick="changeHeroImage('{{ prod_handle }}', 1, event)" style="position: absolute; top: 50%; right: -30px; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+                      {%- endif -%}
+                    </div>
                   {%- else -%}
                     <div class="hero-cube-placeholder">
                       <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
@@ -159,6 +171,7 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px;
   }
 
   .carousel-track {
@@ -316,6 +329,25 @@
 </style>
 
 <script>
+  function changeHeroImage(handle, dir, e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    const imgEl = document.getElementById('hero-img-' + handle);
+    const dataContainer = document.getElementById('hero-data-' + handle);
+    if (!imgEl || !dataContainer) return;
+    
+    const spans = dataContainer.querySelectorAll('span');
+    if (spans.length === 0) return;
+    
+    let currentIndex = parseInt(imgEl.getAttribute('data-index') || '0', 10);
+    currentIndex += dir;
+    if (currentIndex < 0) currentIndex = spans.length - 1;
+    if (currentIndex >= spans.length) currentIndex = 0;
+    
+    const newSrc = spans[currentIndex].getAttribute('data-src');
+    imgEl.src = newSrc;
+    imgEl.setAttribute('data-index', currentIndex);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.carousel-track');
     const slides = document.querySelectorAll('.carousel-slide');
