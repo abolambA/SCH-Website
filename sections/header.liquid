@@ -282,11 +282,21 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(7, 23, 38, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* Note: backdrop-filter creates stacking context, trapping fixed children.
+       Use a pseudo-element for the blur so .mobile-menu (position:fixed) isn't trapped. */
+    background: rgba(7, 23, 38, 0.95);
     border-bottom: 1px solid var(--color-border);
     transition: transform 0.3s ease;
+  }
+
+  /* Glassmorphism blur via pseudo-element to avoid stacking context trapping */
+  .sticky-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: -1;
   }
   
   /* Search Overlay CSS */
