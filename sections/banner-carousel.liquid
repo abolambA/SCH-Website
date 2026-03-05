@@ -29,16 +29,20 @@
           </div>
         </div>
       {%- else -%}
-        <!-- Placeholder Slides if no blocks -->
+        <!-- Placeholder Slides if no blocks - Full-bleed gradient banners -->
         <div class="carousel-slide" data-index="0">
           <div class="slide-background">
-             <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); width: 100%; height: 100%;"></div>
+            <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0d2137 70%, #071022 100%); width: 100%; height: 100%;"></div>
+            <!-- Animated accent shapes for depth -->
+            <div style="position:absolute;top:-20%;right:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle, rgba(255,208,0,0.12) 0%, transparent 65%);pointer-events:none;"></div>
+            <div style="position:absolute;bottom:-30%;left:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, rgba(26,159,224,0.1) 0%, transparent 65%);pointer-events:none;"></div>
           </div>
+          <div class="slide-overlay" style="opacity:0.2; background:linear-gradient(to right, #000 0%, transparent 60%);"></div>
           <div class="container slide-content-wrap">
             <div class="slide-content text-left">
               <span class="slide-subheading font-display" style="color: #FFD000;">SUMMER SALE 2024</span>
-              <h2 class="slide-heading font-display" style="color: #FFFFFF;">UP TO 50% OFF BIG CUBES</h2>
-              <a href="/collections/all" class="btn btn-primary slide-btn">
+              <h2 class="slide-heading font-display" style="color: #FFFFFF;">UP TO 50% OFF<br>BIG CUBES</h2>
+              <a href="/collections/speedcubes" class="btn btn-primary slide-btn">
                 Shop the Sale
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="btn-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
@@ -47,13 +51,15 @@
         </div>
         <div class="carousel-slide" data-index="1">
           <div class="slide-background">
-             <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #141E30, #243B55); width: 100%; height: 100%;"></div>
+            <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #0a1628 0%, #1c2c40 40%, #293a1a 70%, #0a1628 100%); width: 100%; height: 100%;"></div>
+            <div style="position:absolute;top:-20%;right:-5%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle, rgba(255,107,26,0.15) 0%, transparent 65%);pointer-events:none;"></div>
           </div>
+          <div class="slide-overlay" style="opacity:0.25; background:linear-gradient(to right, #000 0%, transparent 60%);"></div>
           <div class="container slide-content-wrap">
             <div class="slide-content text-left">
               <span class="slide-subheading font-display" style="color: #FF6B1A;">NEW ARRIVALS</span>
-              <h2 class="slide-heading font-display" style="color: #FFFFFF;">GAN 14 MAGLEV IS HERE</h2>
-              <a href="/collections/all" class="btn btn-primary slide-btn">
+              <h2 class="slide-heading font-display" style="color: #FFFFFF;">GAN 14 MAGLEV<br>IS HERE</h2>
+              <a href="/collections/new-arrivals" class="btn btn-primary slide-btn">
                 Discover Maglev
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="btn-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
@@ -145,11 +151,20 @@
   }
 
   .slide-content-wrap {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 3;
-    height: 100%;
     display: flex;
     align-items: center;
+    padding: 0 5%;
+    /* No container width restriction - full slide width */
+    max-width: 100%;
+  }
+
+  /* Override container width inside the banner so it's left-aligned */
+  .banner-carousel-section .container {
+    max-width: 100%;
+    padding: 0 5%;
   }
 
   .slide-content {
