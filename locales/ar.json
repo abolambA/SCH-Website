@@ -8,137 +8,378 @@
  * ------------------------------------------------------------
  */
 {
-    "general": {
-        "password_page": {
-            "login_form_heading": "أدخل كلمة مرور المتجر"
-        }
-    },
-    "header": {
-        "home": "الرئيسية",
-        "shop": "المتجر",
-        "about": "من نحن",
-        "contact": "اتصل بنا",
-        "search_placeholder": "ابحث عن مكعبات أو ماركات...",
-        "cart": "السلة",
-        "account": "حسابي",
-        "signin": "تسجيل الدخول",
-        "menu": "القائمة"
-    },
-    "nav": {
-        "brands": "الماركات",
-        "shop_by_type": "تسوق حسب النوع",
-        "all_products": "جميع المنتجات",
-        "new_arrivals": "وصل حديثاً",
-        "accessories": "إكسسوارات",
-        "smart_cubes": "المكعبات الذكية",
-        "big_cubes": "المكعبات الكبيرة"
-    },
-    "home": {
-        "hero_eyebrow": "سرعة. دقة. أداء.",
-        "hero_heading_line1": "المكعبات",
-        "hero_heading_line2": "الاحترافية",
-        "hero_subtext": "اختارها المحترفون، معتمدة من أبطال العالم",
-        "hero_cta_primary": "تسوق الآن",
-        "hero_cta_secondary": "شاهد الماركات",
-        "promo_heading": "تسوق حسب الميزانية",
-        "featured_eyebrow": "الأعلى تقييماً",
-        "featured_heading": "الأكثر مبيعاً",
-        "featured_cta": "عرض جميع المنتجات",
-        "category_heading": "تسوق حسب الفئة",
-        "brands_heading": "تجار معتمدون",
-        "community_heading": "انضم إلى مجتمع SCH",
-        "community_subtext": "ضم أكثر من 10,000 مكعباتي من الشرق الأوسط",
-        "newsletter_heading": "اشترك في نشرتنا",
-        "newsletter_placeholder": "أدخل بريدك الإلكتروني",
-        "newsletter_btn": "اشترك"
-    },
-    "trust": {
-        "shipping": "شحن سريع",
-        "curated": "اختيار من المحترفين",
-        "support": "دعم متخصص",
-        "secure": "دفع آمن"
-    },
-    "collection": {
-        "products_count": "منتج",
-        "sort_by": "ترتيب حسب",
-        "sort_featured": "مميز",
-        "sort_price_asc": "السعر: من الأقل للأعلى",
-        "sort_price_desc": "السعر: من الأعلى للأقل",
-        "sort_newest": "الأحدث",
-        "sort_best_selling": "الأكثر مبيعاً",
-        "filter_brand": "الماركة",
-        "filter_type": "النوع",
-        "filter_price": "السعر",
-        "no_products": "لم يتم العثور على منتجات",
-        "no_products_cta": "تصفح جميع المكعبات",
-        "browse_all": "تصفح الكل",
-        "filters": "فلتر"
-    },
-    "product": {
-        "add_to_cart": "أضف إلى السلة",
-        "buy_now": "اشتر الآن",
-        "sold_out": "نفذت الكمية",
-        "sale": "عرض",
-        "new": "جديد",
-        "description": "الوصف",
-        "shipping_returns": "الشحن والإرجاع",
-        "shipping_returns_text": "شحن مجاني على الطلبات التي تتجاوز 100 د.إ. إرجاع مجاني خلال 30 يوماً.",
-        "related_heading": "قد يعجبك أيضاً",
-        "quantity": "الكمية",
-        "share": "مشاركة"
-    },
-    "cart": {
-        "title": "سلتك",
-        "empty": "سلتك فارغة",
-        "continue_shopping": "تابع التسوق",
-        "checkout": "إتمام الشراء",
-        "subtotal": "المجموع الفرعي",
-        "shipping_note": "الشحن والضرائب تحسب عند الدفع",
-        "remove": "إزالة",
-        "quantity": "الكمية"
-    },
-    "footer": {
-        "brand_desc": "بيت مجتمع المكعبات في الشرق الأوسط. مُختار ومُعتمد من المحترفين.",
-        "shop_heading": "المتجر",
-        "brands_heading": "الماركات",
-        "help_heading": "المساعدة",
-        "newsletter_heading": "ابقَ على اطلاع",
-        "newsletter_btn": "اشترك",
-        "copyright": "جميع الحقوق محفوظة",
-        "faq": "الأسئلة الشائعة",
-        "shipping": "سياسة الشحن",
-        "returns": "الإرجاع",
-        "contact": "اتصل بنا",
-        "about": "من نحن",
-        "track_order": "تتبع الطلب"
-    },
-    "search": {
-        "heading": "نتائج البحث",
-        "no_results": "لم نجد نتائج لـ",
-        "placeholder": "ابحث عن مكعبات، ماركات، إكسسوارات...",
-        "submit": "بحث"
-    },
-    "about": {
-        "heading": "من نحن",
-        "mission_heading": "مهمتنا",
-        "team_heading": "فريقنا",
-        "values_heading": "قيمنا"
-    },
-    "contact": {
-        "heading": "اتصل بنا",
-        "name": "الاسم",
-        "email": "البريد الإلكتروني",
-        "message": "الرسالة",
-        "submit": "إرسال",
-        "whatsapp": "تواصل معنا عبر واتساب"
-    },
-    "errors": {
-        "404_heading": "الصفحة غير موجودة",
-        "404_body": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
-        "404_cta": "العودة للرئيسية"
-    },
-    "pagination": {
-        "next": "التالي",
-        "previous": "السابق"
+  "general": {
+    "password_page": {
+      "login_form_heading": "أدخل كلمة مرور المتجر"
     }
+  },
+  "header": {
+    "home": "الرئيسية",
+    "shop": "المتجر",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "search_placeholder": "ابحث عن مكعبات أو ماركات...",
+    "cart": "السلة",
+    "account": "حسابي",
+    "signin": "تسجيل الدخول",
+    "menu": "القائمة"
+  },
+  "nav": {
+    "brands": "الماركات",
+    "shop_by_type": "تسوق حسب النوع",
+    "all_products": "جميع المنتجات",
+    "new_arrivals": "وصل حديثاً",
+    "accessories": "إكسسوارات",
+    "smart_cubes": "المكعبات الذكية",
+    "big_cubes": "المكعبات الكبيرة"
+  },
+  "home": {
+    "hero_eyebrow": "سرعة. دقة. أداء.",
+    "hero_heading_line1": "المكعبات",
+    "hero_heading_line2": "الاحترافية",
+    "hero_subtext": "اختارها المحترفون، معتمدة من أبطال العالم",
+    "hero_cta_primary": "تسوق الآن",
+    "hero_cta_secondary": "شاهد الماركات",
+    "promo_heading": "تسوق حسب الميزانية",
+    "featured_eyebrow": "الأعلى تقييماً",
+    "featured_heading": "الأكثر مبيعاً",
+    "featured_cta": "عرض جميع المنتجات",
+    "category_heading": "تسوق حسب الفئة",
+    "brands_heading": "تجار معتمدون",
+    "community_heading": "انضم إلى مجتمع SCH",
+    "community_subtext": "ضم أكثر من 10,000 مكعباتي من الشرق الأوسط",
+    "newsletter_heading": "اشترك في نشرتنا",
+    "newsletter_placeholder": "أدخل بريدك الإلكتروني",
+    "newsletter_btn": "اشترك"
+  },
+  "trust": {
+    "shipping": "شحن سريع",
+    "curated": "اختيار من المحترفين",
+    "support": "دعم متخصص",
+    "secure": "دفع آمن"
+  },
+  "collection": {
+    "products_count": "منتج",
+    "sort_by": "ترتيب حسب",
+    "sort_featured": "مميز",
+    "sort_price_asc": "السعر: من الأقل للأعلى",
+    "sort_price_desc": "السعر: من الأعلى للأقل",
+    "sort_newest": "الأحدث",
+    "sort_best_selling": "الأكثر مبيعاً",
+    "filter_brand": "الماركة",
+    "filter_type": "النوع",
+    "filter_price": "السعر",
+    "no_products": "لم يتم العثور على منتجات",
+    "no_products_cta": "تصفح جميع المكعبات",
+    "browse_all": "تصفح الكل",
+    "filters": "فلتر"
+  },
+  "product": {
+    "add_to_cart": "أضف إلى السلة",
+    "buy_now": "اشتر الآن",
+    "sold_out": "نفذت الكمية",
+    "sale": "عرض",
+    "new": "جديد",
+    "description": "الوصف",
+    "shipping_returns": "الشحن والإرجاع",
+    "shipping_returns_text": "شحن مجاني على الطلبات التي تتجاوز 100 د.إ. إرجاع مجاني خلال 30 يوماً.",
+    "related_heading": "قد يعجبك أيضاً",
+    "quantity": "الكمية",
+    "share": "مشاركة"
+  },
+  "cart": {
+    "title": "سلتك",
+    "empty": "سلتك فارغة",
+    "continue_shopping": "تابع التسوق",
+    "checkout": "إتمام الشراء",
+    "subtotal": "المجموع الفرعي",
+    "shipping_note": "الشحن والضرائب تحسب عند الدفع",
+    "remove": "إزالة",
+    "quantity": "الكمية"
+  },
+  "footer": {
+    "brand_desc": "بيت مجتمع المكعبات في الشرق الأوسط. مُختار ومُعتمد من المحترفين.",
+    "shop_heading": "المتجر",
+    "brands_heading": "الماركات",
+    "help_heading": "المساعدة",
+    "newsletter_heading": "ابقَ على اطلاع",
+    "newsletter_btn": "اشترك",
+    "copyright": "جميع الحقوق محفوظة",
+    "faq": "الأسئلة الشائعة",
+    "shipping": "سياسة الشحن",
+    "returns": "الإرجاع",
+    "contact": "اتصل بنا",
+    "about": "من نحن",
+    "track_order": "تتبع الطلب"
+  },
+  "search": {
+    "heading": "نتائج البحث",
+    "no_results": "لم نجد نتائج لـ",
+    "placeholder": "ابحث عن مكعبات، ماركات، إكسسوارات...",
+    "submit": "بحث"
+  },
+  "about": {
+    "heading": "من نحن",
+    "mission_heading": "مهمتنا",
+    "team_heading": "فريقنا",
+    "values_heading": "قيمنا"
+  },
+  "contact": {
+    "heading": "اتصل بنا",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "message": "الرسالة",
+    "submit": "إرسال",
+    "whatsapp": "تواصل معنا عبر واتساب"
+  },
+  "errors": {
+    "404_heading": "الصفحة غير موجودة",
+    "404_body": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+    "404_cta": "العودة للرئيسية"
+  },
+  "pagination": {
+    "next": "التالي",
+    "previous": "السابق"
+  },
+  "shopify": {
+    "checkout": {
+      "contact": {
+        "optional_phone_label": "الهاتف (اختياري)",
+        "phone_placeholder": "هاتف",
+        "phone_tooltip": "في حال احتجنا إلى الاتصال بك بخصوص طلبك",
+        "zip_code_label": "الرمز البريدي",
+        "optional_zip_code_label": "الرمز البريدي (اختياري)",
+        "zip_code_placeholder": "الرمز البريدي",
+        "postal_code_label": "رمز بريدي",
+        "optional_postal_code_label": "الرمز البريدي (اختياري)",
+        "postal_code_placeholder": "رمز بريدي",
+        "postcode_label": "شفرة البريد",
+        "optional_postcode_label": "الرمز البريدي (اختياري)",
+        "postcode_placeholder": "شفرة البريد",
+        "pincode_label": "رمز التعريف الشخصي (PIN)",
+        "optional_pincode_label": "رمز التعريف الشخصي (اختياري)",
+        "pincode_placeholder": "رمز التعريف الشخصي (PIN)",
+        "civic_number_warning": "أضف رقم المنزل إن وجد",
+        "optional_last_name_label": "اسم العائلة (اختياري)",
+        "different_shipping_address_label": "الشحن إلى عنوان مختلف",
+        "different_shipping_address_text": "استخدم عنوانًا لمرة واحدة لهذا الطلب",
+        "change_company_location_link_label": "تغيير موقع الشركة",
+        "change_location_link_label": "تغيير الموقع",
+        "ship_to_company": "الشحن إلى {{companyName}}"
+      },
+      "delivery_options": {
+        "free_total_label": "حر",
+        "ship": "سفينة",
+        "ship_to_address": "عنوان الشحن",
+        "shipping_address": "عنوان الشحن",
+        "pick_up": "يلتقط",
+        "pick_up_from_store": "الاستلام من المتجر",
+        "pick_up_locations": "مواقع الاستلام",
+        "pickup_point_map_title": "خريطة نقاط الاستلام",
+        "pick_up_in_one_hour": "جاهز عادةً خلال ساعة واحدة",
+        "pick_up_in_two_hours": "جاهز عادةً خلال ساعتين",
+        "pick_up_in_four_hours": "جاهز عادةً خلال 4 ساعات",
+        "pick_up_in_twenty_four_hours": "جاهز عادةً خلال 24 ساعة",
+        "pick_up_in_two_to_four_days": "جاهز عادةً خلال 2-4 أيام",
+        "pick_up_in_five_or_more_days": "جاهز عادةً خلال 5 أيام أو أكثر",
+        "pick_up_in_zero_to_two_hours": "جاهز للاستلام خلال ساعتين",
+        "pick_up_in_two_to_four_hours": "جاهز للاستلام خلال 4 ساعات",
+        "pick_up_immediately": "جاهز للاستلام الآن",
+        "pick_up_next_day": "جاهز للاستلام في اليوم التالي",
+        "pickup_point_method_definition": "الشحن إلى نقطة الاستلام",
+        "retail_method_definition": "الشحن بالتجزئة",
+        "company_location_no_address_banner": "سيتم تقديم الطلبات التي يتم شحنها إلى مواقع بدون عنوان للمراجعة.",
+        "none_method_definition": "لا يوجد شحن",
+        "subscription_pickup_information": "سيتم تطبيق طريقة التوصيل هذه على جميع العناصر في هذا الطلب وعلى جميع الطلبات المستقبلية لهذا الاشتراك."
+      },
+      "customer_account": {
+        "not_user_label": "ليس %{first_name}؟",
+        "have_an_account_label": "هل لديك حساب؟",
+        "sign_in_link_label": "تسجيل الدخول",
+        "sign_out_link_label": "تسجيل الخروج",
+        "save_my_information_label": "احفظ هذه المعلومات لاستخدامها في المرة القادمة",
+        "invalid_address": "العنوان المُختار غير صالح. %{update_address_link} أو اختر عنوانًا مختلفًا.",
+        "incomplete_address": "العنوان المحدد غير مكتمل. %{update_address_link} أو اختر عنوانًا مختلفًا.",
+        "rollup_label": "حساب",
+        "rollup_accessibility_label": "خيارات الحساب",
+        "invalid_shipping_method_summary": "اختر عنوان شحن صالحًا لعرض طرق الشحن المتاحة",
+        "saved_address_option_description": {
+          "one": "لديك {{count}} عنوان محفوظ.",
+          "other": "لديك {{count}} عنوانًا محفوظًا."
+        },
+        "saved_address_option_link": "استخدم عنوانًا محفوظًا",
+        "saved_address_modal_title": "استخدم عنواني المحفوظ"
+      },
+      "remote_merchandise_only": {
+        "title": "أكمل عملية الشراء",
+        "remote_only_notice": "تُباع هذه المنتجات وتُشحن من متاجر أخرى. يُرجى إتمام عملية الشراء من كل متجر على حدة.",
+        "return_to_store_label": "العودة إلى المتجر",
+        "detail_item_label": {
+          "one": "{{count}} عنصرًا",
+          "other": "{{count}} عنصرًا"
+        },
+        "checkout_on_shop_label": "قم بإتمام عملية الشراء على %{shop_name}",
+        "single_shop_transition": "سيتم تحويلك إلى %{advertiser} لإتمام عملية الشراء."
+      },
+      "stock": {
+        "page_title": "مشاكل المخزون",
+        "title": "إنتهى من المخزن",
+        "items_unavailable_notice": "بعض المنتجات لم تعد متوفرة.",
+        "product_column_header": "منتجات",
+        "quantity_column_header": "كمية",
+        "price_column_header": "سعر",
+        "status_column_header": "حالة",
+        "removed_from_cart_notice": "تمت إزالته من سلة التسوق",
+        "sold_out_label": "نفذ",
+        "reduced_label": "مخفض",
+        "reduced_with_quantity_label": "الكمية المتبقية %{quantITY_available} فقط",
+        "remove_from_cart_button_label": "إزالة من سلة التسوق",
+        "continue_shopping_button_label": "يكمل",
+        "go_back_to_cart_button_label": "العودة إلى سلة التسوق",
+        "remove": "يزيل",
+        "return_to_store_label": "العودة إلى المتجر",
+        "continue_cta_label": "تابع عملية الدفع",
+        "item_label": {
+          "one": "{{count}} عنصرًا",
+          "other": "{{count}} عنصرًا"
+        },
+        "empty_cart_label": "سلة التسوق الخاصة بك فارغة",
+        "quantity_update": {
+          "page_title": "تحديث الكمية",
+          "title": "تحديث الكمية",
+          "description": "لقد تغيرت الكميات المتاحة لهذه المنتجات وتم تحديثها في سلة التسوق الخاصة بك."
+        },
+        "unpurchasable_product": {
+          "title": "منتج غير قابل للشراء",
+          "header": "تمت إزالة بعض العناصر من سلة التسوق الخاصة بك",
+          "message": "هذه المنتجات غير متاحة لطلبات الشركات (B2B).",
+          "status_column_header": "غير متوفر"
+        },
+        "unpurchasable_product_generic": {
+          "title": "منتج غير قابل للشراء",
+          "header": "تمت إزالة بعض العناصر من سلة التسوق الخاصة بك",
+          "message": "هذه المنتجات غير متوفرة.",
+          "status_column_header": "غير متوفر"
+        },
+        "unfulfillable_product": {
+          "title": "خدمة التوصيل غير متوفرة",
+          "message": {
+            "one": "لم يعد خيار %{delivery_method} متاحًا لهذا المنتج.",
+            "other": "لم يعد خيار %{delivery_method} متاحًا لهذه المنتجات."
+          }
+        }
+      },
+      "payment": {
+        "card_start_label": "تاريخ الإصدار (شهر / سنة)",
+        "card_start_placeholder": "تاريخ الإصدار (شهر / سنة)",
+        "card_issue_number_label": "رقم الإصدار",
+        "card_issue_number_placeholder": "رقم الإصدار",
+        "card_change_label": "يتغير",
+        "card_update_label": "تحديث البطاقة",
+        "paypal_disconnect": "قطع الاتصال",
+        "ends_with_label": "ينتهي بـ %{last_digits}",
+        "payment_method_saved": "تم حفظ طريقة الدفع",
+        "card_vaulted_company_location": "تم حفظ البطاقة لهذا الموقع",
+        "bank_account_vaulted_company_location": "تم حفظ الحساب البنكي لهذا الموقع",
+        "expiry_long": "(ينتهي في %{الشهر}/%{السنة})",
+        "expiry_short": "(تاريخ انتهاء الصلاحية %{شهر}/%{سنة})",
+        "crypto_payment_method": {
+          "description": "اتصل بمحفظتك بشكل آمن على شبكة Base",
+          "tooltip": "لن يتم مشاركة رصيد محفظتك وعنوانك، وسيتم خصم المبلغ المطلوب فقط."
+        },
+        "crypto_modal": {
+          "header": "ادفع %{shop_name} %{total_price} دولار أمريكي",
+          "error": {
+            "refresh": "ينعش",
+            "close": "يغلق",
+            "sandbox_error": "حدث خطأ ما",
+            "web_component_error": "حدثت مشكلة أثناء تحميل هذه الصفحة"
+          }
+        },
+        "saved_by_payment_method": "تم الحفظ بواسطة %{payment_method}",
+        "pay_with_payment_method": "ادفع باستخدام %{payment_method}",
+        "different_credit_card_label": "استخدم بطاقة ائتمان مختلفة",
+        "same_billing_address_label": "نفس عنوان الشحن",
+        "different_billing_address_label": "استخدم عنوان فوترة مختلفًا",
+        "billing_address_associated_with_mandate": "استخدم العنوان المرتبط بطريقة الدفع",
+        "billing_address_associated_with_mandate_info": "إذا كنت ترغب في تغيير عنوان الفواتير الخاص بك، فقم بإزالة بيانات بطاقة الائتمان الخاصة بك وإعادة إدخالها",
+        "free_order_notice_html": "طلبك <strong>مجاني</strong> . لا يلزم الدفع.",
+        "express_checkout_free_order": "لن يتم تحصيل أي رسوم منك مقابل الطلب المجاني",
+        "order_covered_by_gift_cards_notice": {
+          "one": "طلبك مغطى ببطاقة الهدية الخاصة بك.",
+          "other": "طلبك مغطى ببطاقات الهدايا الخاصة بك."
+        },
+        "offsite_gateway_redirect_hint": "سيتم إعادة توجيهك إلى %{gateway_label} لإتمام عملية الشراء.",
+        "offsite_gateway_review_page_redirect_hint": "بعد مراجعة طلبك، سيتم إعادة توجيهك إلى %{gateway_label} لإتمام عملية الشراء.",
+        "offsite_gateway_redirect_hint_multi_currency_html": "%{gateway_label} إجمالي %{total_shop_price}",
+        "offsite_gateway_redirect_hint_no_button_label": "سيتم إعادة توجيهك إلى %{gateway_label} لإتمام عملية الشراء.",
+        "receiver_payment_experience_hint": "بعد إتمام طلبك، ستتلقى تفاصيل الدفع. يُرجى إتمام الدفع عبر Multibanco أو عبر الإنترنت خلال %{due_days} يومًا.",
+        "billing_address_title": "عنوان الفواتير",
+        "billing_address_rollup_accessibility_label": "خيارات عنوان الفوترة",
+        "billing_address_description": "اختر العنوان الذي يتطابق مع بطاقتك أو طريقة الدفع الخاصة بك.",
+        "billing_address_description_no_shipping_address": "أدخل العنوان الذي يتطابق مع بطاقتك أو طريقة الدفع الخاصة بك.",
+        "no_js_credit_card_fields_redirect_hint": "سيتم تحويلك لإضافة معلومات الدفع الخاصة بك.",
+        "card_fields_container_prefix": "حاوية حقل لـ:",
+        "card_fields_unavailable_html": {
+          "one": "الدفع ببطاقات الائتمان والخصم غير متاح حاليًا.<br> <a href=\"%{current_url}\">قم بتحديث هذه الصفحة</a> أو حاول مرة أخرى لاحقًا.",
+          "other": "الدفع ببطاقات الائتمان والخصم غير متاح حاليًا.<br> <a href=\"%{current_url}\">قم بتحديث هذه الصفحة</a> أو جرب طريقة دفع مختلفة."
+        },
+        "card_fields_processing_error": "حدثت مشكلة أثناء معالجة الدفع. حاول تحديث هذه الصفحة أو تحقق من اتصالك بالإنترنت.",
+        "technical_error": "لا يمكن معالجة المدفوعات الآن بسبب مشكلة فنية. حاول مرة أخرى بعد بضع دقائق.",
+        "no_method_error": "لا يمكن لهذا المتجر قبول المدفوعات في الوقت الحالي.",
+        "not_configured_error": "لا يمكن لهذا المتجر قبول المدفوعات في الوقت الحالي.",
+        "missing_credit_card_error": "أدخل بيانات بطاقتك لإتمام عملية الدفع",
+        "shop_pay_ideal_unavailable_error": "خدمة iDEAL | Wero غير متاحة لهذا الطلب. اختر طريقة دفع أخرى.",
+        "payment_method_not_available_for_shipping_address_error": "طريقة الدفع غير متاحة لعنوان الشحن المحدد. اختر طريقة دفع أخرى.",
+        "billing_address_not_supported_for_payment_method_error": "هذه الطريقة للدفع غير متاحة لعنوان الفواتير والعملة الخاصة بك. جرب طريقة دفع أخرى.",
+        "generic_incorrect_card_info": "لم يتم التحقق من تفاصيل الدفع الخاصة بك. يرجى مراجعة تفاصيل بطاقتك والمحاولة مرة أخرى.",
+        "sofort_label": "تحويل بنكي فوري",
+        "paypal_label": "باي بال",
+        "paypal_wallet_label": "محفظة باي بال",
+        "shop_pay_installments_label": "تسوق وادفع بالتقسيط",
+        "default": "تقصير",
+        "continue_to_guest_checkout": "تابع عملية الدفع كضيف",
+        "paypal_modal": {
+          "order_contains_subscriptions": "الاشتراك",
+          "order_contains_fixed_selling_plans": "قد لا يشمل الإجمالي الضرائب، ورسوم الشحن، والرسوم المؤجلة، وبعض الخصومات. تابع عملية الدفع لمعرفة المبلغ المستحق اليوم."
+        },
+        "klarna_label": "كلارنا",
+        "klarna_pay_later_label": "ادفع لاحقًا مع كلارنا",
+        "klarna_pay_now_label": "ادفع الآن مع كلارنا",
+        "bancontact_label": "الاتصال بالبنك",
+        "giropay_label": "جيروباي",
+        "multibanco_label": "مولتيبانكو",
+        "eps_label": "تحويل إلكتروني عبر EPS",
+        "klarna_slice_it_label": "التمويل مع كلارنا",
+        "ideal_label": "آيديل | ويرو",
+        "bank_picker_label": "بنك",
+        "afterpay_label": "خدمة الدفع الآجل",
+        "cashapppay_label": "دفع عبر تطبيق كاش آب",
+        "blik_label": "بليك",
+        "twint_label": "توأم",
+        "mobilepay_label": "موبايل باي",
+        "swish_label": "حفيف",
+        "vipps_label": "فيبس",
+        "kcp_creditcard_label": "بطاقة ائتمان KCP",
+        "usdc_label": "مقاطعة الولايات المتحدة",
+        "usdc_cashback_title": "استرداد نقدي بنسبة 1%",
+        "usdc_cashback_additional_info": "استرد 1% من قيمة حسابك الأساسي بالدولار الأمريكي (USDC) خلال 30 يومًا.",
+        "usdc_cashback_terms": "تطبق الشروط والأحكام",
+        "purchase_options_card_update_agreement_label_html": "بتحديث طريقة الدفع الخاصة بك، فإنك تفوض عمليات الدفع لأي عملية شراء متكررة أو مؤجلة وفقًا <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{cancellation_policy}\" href=\"%{policy_href}\">لسياسة الإلغاء</a> الخاصة بهذا المتجر.",
+        "subscription_card_update_agreement_label": "سيؤدي تغيير طريقة الدفع إلى تحديث اشتراكك والمدفوعات المتكررة المستقبلية.",
+        "subscription_agreement_label": "يُعدّ عنصر واحد أو أكثر في سلة التسوق الخاصة بك عملية شراء مؤجلة أو اشتراك. بمتابعة عملية الدفع، فإنك توافق على خصم المبلغ تلقائيًا من وسيلة الدفع الخاصة بك بالسعر والوتيرة الموضحة في هذه الصفحة حتى انتهاء مدة الاشتراك أو قيامك بإلغائه. تخضع جميع عمليات الإلغاء لشروط وأحكام %{cancelled}.",
+        "subscription_agreement_cancelled": "سياسة الإلغاء",
+        "subscription_heading": "اتفاقية الاشتراك",
+        "subscription_agreement_label_html": "أفهم أنني أوافق على الاشتراك. سيتم تجديده بالسعر والوتيرة المحددين حتى ينتهي أو يتم...\n <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{subscription_policy}\" href=\"%{policy_href}\">تم الإلغاء</a> .\n",
+        "purchase_options_agreement_label": "يُعتبر عنصر واحد أو أكثر في سلة التسوق الخاصة بك عملية شراء مؤجلة أو متكررة. بمتابعة عملية الدفع، فإنك توافق على خصم المبلغ تلقائيًا من وسيلة الدفع الخاصة بك بالسعر والتكرار المذكورين في هذه الصفحة حتى انتهاء العملية أو قيامك بالإلغاء. تخضع جميع عمليات الإلغاء لسياسة الإلغاء.",
+        "purchase_options_agreement_label_html": "أُدرك أن أحد المنتجات أو أكثر في سلة التسوق الخاصة بي هي عملية شراء مؤجلة أو متكررة. بمتابعتي، أوافق على\n <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{subscription_policy}\" href=\"%{policy_href}\">سياسة الإلغاء</a>\n وأُصرِّح لكم بخصم المبلغ من وسيلة الدفع الخاصة بي بالأسعار والتكرار والتواريخ المذكورة في هذه الصفحة حتى تاريخ...\n يتم تنفيذ الطلب أو أقوم بإلغائه، إذا كان ذلك مسموحًا به.\n",
+        "purchase_options_agreement_label_wallets": "بمتابعة عملية الدفع، فإنك توافق على الرسوم المستقبلية المدرجة في هذه الصفحة وعلى سياسة الإلغاء.",
+        "change_currency_section_description": "اختر خيار العملة",
+        "no_real_orders_dev_store": "لا يقبل هذا المتجر الطلبات الحقيقية أو المدفوعات الحقيقية.",
+        "waiting_on_payment_methods": "جارٍ البحث عن طرق الدفع المتاحة...",
+        "apple_pay_payment_error": "لم يتم إتمام عملية الدفع. حاول مرة أخرى أو استخدم طريقة دفع مختلفة.",
+        "taxes_not_included": "الضرائب غير مشمولة"
+      }
+    }
+  }
 }
