@@ -9,8 +9,13 @@
       <div class="reveal">
         <a href="{{ block.settings.tile_link | default: '#' }}" class="category-tile-minimal">
           <div class="category-tile-minimal__img-box">
-            {%- if block.settings.tile_image != blank -%}
-              <img src="{{ block.settings.tile_image | image_url: width: 600 }}" alt="{{ block.settings.tile_label | escape }}" loading="lazy" style="width:80%;height:80%;object-fit:contain;">
+            {%- assign expected_handle = block.settings.tile_label | handleize -%}
+            {%- assign matched_coll = collections[expected_handle] -%}
+            {%- assign auto_img = matched_coll.image | default: matched_coll.products.first.featured_image -%}
+            {%- assign final_img = block.settings.tile_image | default: auto_img -%}
+            
+            {%- if final_img != blank -%}
+              <img src="{{ final_img | image_url: width: 600 }}" alt="{{ block.settings.tile_label | escape }}" loading="lazy" style="width:80%;height:80%;object-fit:contain;">
             {%- else -%}
               <div class="collection-icon-fallback">
                 <svg viewBox="0 0 80 80" fill="none" width="60" height="60">
@@ -18,11 +23,6 @@
                   <rect x="30" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.2)" stroke="#FFD000" stroke-width="1.5"/>
                   <rect x="50" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.1)" stroke="#FFD000" stroke-width="1.5"/>
                   <rect x="10" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.2)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  <rect x="30" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.3)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  <rect x="50" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.15)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  <rect x="10" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.15)" stroke="#FF6B1A" stroke-width="1.5"/>
-                  <rect x="30" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.2)" stroke="#FF6B1A" stroke-width="1.5"/>
-                  <rect x="50" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.3)" stroke="#FF6B1A" stroke-width="1.5"/>
                 </svg>
               </div>
             {%- endif -%}
@@ -31,25 +31,26 @@
         </a>
       </div>
     {%- else -%}
-      <!-- Fallbacks for exactly matching what the user wants: Combo Deals, 2x2, 3x3, 4x4, Irregulars, Lubes, Accessories, Monster Go, Mega Sale, New Products -->
-      {%- assign default_labels = "Combo Deals,2x2,3x3,4x4,Irregulars,Lubes,Accessories,Monster Go - Trainer Cubes,Mega Sale,New Products" | split: "," -%}
+      <!-- Fallbacks that map to popular categories grabbing real product images -->
+      {%- assign default_labels = "3x3,2x2,4x4,Pyraminx,Megaminx,Accessories" | split: "," -%}
       {%- for label in default_labels -%}
+        {%- assign expected_handle = label | handleize -%}
+        {%- assign matched_coll = collections[expected_handle] -%}
+        {%- assign auto_img = matched_coll.image | default: matched_coll.products.first.featured_image -%}
         <div class="reveal">
-          <a href="/collections/all" class="category-tile-minimal">
+          <a href="{{ matched_coll.url | default: '/collections/all' }}" class="category-tile-minimal">
             <div class="category-tile-minimal__img-box">
-              <div class="collection-icon-fallback">
-                <svg viewBox="0 0 80 80" fill="none" width="60" height="60">
-                  <rect x="10" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.3)" stroke="#FFD000" stroke-width="1.5"/>
-                  <rect x="30" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.2)" stroke="#FFD000" stroke-width="1.5"/>
-                  <rect x="50" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.1)" stroke="#FFD000" stroke-width="1.5"/>
-                  <rect x="10" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.2)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  <rect x="30" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.3)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  <rect x="50" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.15)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  <rect x="10" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.15)" stroke="#FF6B1A" stroke-width="1.5"/>
-                  <rect x="30" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.2)" stroke="#FF6B1A" stroke-width="1.5"/>
-                  <rect x="50" y="50" width="20" height="20" rx="2" fill="rgba(255,107,26,0.3)" stroke="#FF6B1A" stroke-width="1.5"/>
-                </svg>
-              </div>
+              {%- if auto_img != blank -%}
+                <img src="{{ auto_img | image_url: width: 600 }}" alt="{{ label | escape }}" loading="lazy" style="width:80%;height:80%;object-fit:contain;">
+              {%- else -%}
+                <div class="collection-icon-fallback">
+                  <svg viewBox="0 0 80 80" fill="none" width="60" height="60">
+                    <rect x="10" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.3)" stroke="#FFD000" stroke-width="1.5"/>
+                    <rect x="30" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.2)" stroke="#FFD000" stroke-width="1.5"/>
+                    <rect x="10" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.2)" stroke="#1A9FE0" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              {%- endif -%}
             </div>
             <h3 class="category-tile-minimal__label font-body">{{ label }}</h3>
           </a>

@@ -7,7 +7,6 @@
         {%- for block in section.blocks -%}
           {%- assign prod = block.settings.product -%}
           <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
-            <div class="slide-bg-tint bg-tint-{{ forloop.index }}"></div>
             <div class="container hero__content-wrapper">
               <div class="hero__content">
                 {%- if prod != blank -%}
@@ -59,7 +58,6 @@
         {%- for prod in hero_products limit: 6 -%}
           {%- assign taglines = 'Top Rated,Best Seller,New Arrival,Trending,Fan Favorite,Competition Pick' | split: ',' -%}
           <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
-            <div class="slide-bg-tint bg-tint-{{ forloop.index }}"></div>
             <div class="container hero__content-wrapper">
               <div class="hero__content">
                 <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
@@ -97,8 +95,6 @@
                             <span data-src="{{ img | image_url: width: 800 }}"></span>
                           {%- endfor -%}
                         </div>
-                        <button class="mini-gallery-btn prev" aria-label="Previous Image" onclick="changeHeroImage('{{ prod_handle }}', -1, event)" style="position: absolute; top: 50%; left: -30px; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
-                        <button class="mini-gallery-btn next" aria-label="Next Image" onclick="changeHeroImage('{{ prod_handle }}', 1, event)" style="position: absolute; top: 50%; right: -30px; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
                       {%- endif -%}
                     </div>
                   {%- else -%}
@@ -116,7 +112,6 @@
         {%- else -%}
           <!-- Last resort: brand name slides if collection is empty -->
           <div class="carousel-slide is-active" data-index="0">
-            <div class="slide-bg-tint bg-tint-1"></div>
             <div class="container hero__content-wrapper">
               <div class="hero__content">
                 <p class="hero__highlight font-display color-accent reveal visible">Premium Speedcubes</p>
@@ -158,7 +153,7 @@
     position: relative;
     min-height: calc(100vh - 80px);
     height: auto;
-    background-color: var(--color-bg);
+    background: linear-gradient(135deg, rgba(6,15,26,0.95) 0%, rgba(6,15,26,0.7) 100%);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -189,16 +184,6 @@
     align-items: center;
     position: relative;
   }
-
-  .slide-bg-tint {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .bg-tint-1 { background: radial-gradient(ellipse at center, rgba(26,159,224,0.1) 0%, transparent 60%); }
-  .bg-tint-2 { background: radial-gradient(ellipse at center, rgba(255,208,0,0.1) 0%, transparent 60%); }
-  .bg-tint-3 { background: radial-gradient(ellipse at center, rgba(255,107,26,0.1) 0%, transparent 60%); }
 
   .carousel-slide.is-active {
     opacity: 1;
