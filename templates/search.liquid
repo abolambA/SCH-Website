@@ -1,39 +1,52 @@
-<div class="container section">
-  <div class="search-page">
-    <div class="search-page-header" style="text-align: center; margin-bottom: 40px;">
-      <h1 class="font-display">{{ search.results_count }} results for "{{ search.terms }}"</h1>
+<div class="collection-page">
+  <div class="collection-banner text-center" style="padding: 6rem 0; background-color: var(--color-surface); margin-bottom: 3rem;">
+    <h1 class="font-display reveal">Search Results</h1>
+    <div class="collection-desc font-body text-muted mt-4 reveal">
+      {% if search.performed %}
+        {{ search.results_count }} results for "{{ search.terms }}"
+      {% else %}
+        Enter a keyword to search our catalog.
+      {% endif %}
     </div>
-    {% if search.results.size > 0 %}
-      <div class="product-grid">
-        {% for item in search.results %}
-          {% if item.object_type == 'product' %}
-            {% assign product = item %}
-            {% render 'product-card', product: product %}
-          {% endif %}
-        {% endfor %}
+  </div>
+
+  <div class="container pb-6">
+    <div class="collection-layout">
+      
+      <!-- Main Products Area -->
+      <div class="collection-main" style="width: 100%;">
+        {% if search.performed and search.results_count > 0 %}
+          <div class="grid grid--4-col">
+            {% paginate search.results by 12 %}
+              {%- for item in search.results -%}
+                {% if item.object_type == 'product' %}
+                  <div class="grid__item reveal">
+                    {% render 'product-card', product: item %}
+                  </div>
+                {% endif %}
+              {%- endfor -%}
+              
+              {%- if paginate.pages > 1 -%}
+                <div class="collection-pagination mt-4 text-center basis-full">
+                  {{ paginate | default_pagination }}
+                </div>
+              {%- endif -%}
+            {% endpaginate %}
+          </div>
+        {% elsif search.performed and search.results_count == 0 %}
+          <div class="search-empty text-center" style="padding: 60px 20px;">
+            <p style="font-size: 1.2rem; margin-bottom: 12px;">No products found.</p>
+            <p style="font-size: 1rem; color: var(--color-text-muted); margin-bottom: 30px;">Try expanding your search like "GAN" or "3x3".</p>
+            <a href="/collections/all" class="btn btn-primary">Browse All Products</a>
+          </div>
+        {% endif %}
       </div>
-    {% else %}
-      <div class="search-empty" style="text-align: center; padding: 60px 20px;">
-        <p style="font-size: 1.2rem; color: var(--color-text-muted); margin-bottom: 12px;">No results for "{{ search.terms }}"</p>
-        <p style="font-size: 1.1rem; margin-bottom: 30px;">Try: GAN, MoYu, 3x3, Pyraminx, Megaminx</p>
-        <a href="/collections/all" class="btn btn-purchase">Browse All Products</a>
-      </div>
-    {% endif %}
+
+    </div>
   </div>
 </div>
 
 <style>
-  .search-page { margin-top: 20px; }
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  @media (max-width: 1024px) {
-    .product-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 768px) {
-    /* Mobile breakpoint applied globally in theme.css will handle this */
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  }
+  .pb-6 { padding-bottom: 6rem; }
+  .basis-full { flex-basis: 100%; }
 </style>

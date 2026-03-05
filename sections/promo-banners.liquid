@@ -1,18 +1,18 @@
 <section class="section container price-range-section">
   <div class="price-boxes-grid">
-    <a href="/collections/all?filter.p.m.global.max_price=15&sort_by=price-ascending" class="price-box price-box-1">
+    <a href="/collections/all?filter.v.price.lte=15" class="price-box price-box-1">
       <span class="price-label">Under $15</span>
       <span class="price-cta">Shop this range →</span>
     </a>
-    <a href="/collections/all?filter.p.m.global.max_price=30&sort_by=price-ascending" class="price-box price-box-2">
-      <span class="price-label">Under $30</span>
+    <a href="/collections/all?filter.v.price.gte=15&filter.v.price.lte=30" class="price-box price-box-2">
+      <span class="price-label">$15 - $30</span>
       <span class="price-cta">Shop this range →</span>
     </a>
-    <a href="/collections/all?filter.p.m.global.max_price=60&sort_by=price-ascending" class="price-box price-box-3">
-      <span class="price-label">Under $60</span>
+    <a href="/collections/all?filter.v.price.gte=30&filter.v.price.lte=60" class="price-box price-box-3">
+      <span class="price-label">$30 - $60</span>
       <span class="price-cta">Shop this range →</span>
     </a>
-    <a href="/collections/all?filter.p.m.global.min_price=60&sort_by=price-ascending" class="price-box price-box-4">
+    <a href="/collections/all?filter.v.price.gte=60" class="price-box price-box-4">
       <span class="price-label">$60+</span>
       <span class="price-cta">Shop this range →</span>
     </a>

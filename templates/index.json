@@ -1,5 +1,8 @@
 {
     "sections": {
+        "banner_carousel": {
+            "type": "banner-carousel"
+        },
         "hero": {
             "type": "hero"
         },
@@ -26,6 +29,7 @@
         }
     },
     "order": [
+        "banner_carousel",
         "hero",
         "promo_banners",
         "category_grid",

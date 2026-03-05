@@ -130,9 +130,9 @@
         </button>
       </div>
 
-      <a href="{{ routes.search_url }}" class="header__icon-btn search-toggle" aria-label="Search" data-search-toggle>
+      <button class="header__icon-btn search-toggle" aria-label="Search" id="search-overlay-trigger">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </a>
+      </button>
       
       <!-- Account Login/Register -->
       {%- if customer -%}
@@ -187,6 +187,26 @@
     </div>
   </div>
 
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="container search-overlay-inner">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+        <input type="hidden" name="type" value="product">
+        <input class="search-input font-display"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search for cubes, brands, or accessories..."
+          id="SearchInput"
+          autocomplete="off">
+        <button type="submit" class="search-submit" aria-label="Submit Search">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="color-primary" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </form>
+      <button class="search-close" id="search-close" aria-label="Close Search">✕</button>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Mobile menu toggle
@@ -207,6 +227,25 @@
           document.body.style.overflow = '';
         });
       }
+
+      // Search Overlay toggle
+      const searchTrigger = document.getElementById('search-overlay-trigger');
+      const searchOverlay = document.getElementById('search-overlay');
+      const searchClose = document.getElementById('search-close');
+      const searchInput = document.getElementById('SearchInput');
+
+      if(searchTrigger && searchOverlay) {
+        searchTrigger.addEventListener('click', () => {
+          searchOverlay.classList.add('active');
+          setTimeout(() => searchInput.focus(), 100);
+        });
+      }
+
+      if(searchClose && searchOverlay) {
+        searchClose.addEventListener('click', () => {
+          searchOverlay.classList.remove('active');
+        });
+      }
     });
 
     // We expose toggleLanguage in a global scope in i18n.js, so the onclick will work
@@ -225,6 +264,87 @@
     transition: transform 0.3s ease;
   }
   
+  /* Search Overlay CSS */
+  .search-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0D1E2E;
+    border-bottom: 2px solid var(--color-primary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    padding: 24px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 100;
+  }
+
+  .search-overlay.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .search-overlay-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .search-form {
+    flex-grow: 1;
+    display: flex;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .search-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    padding: 16px 24px;
+    font-size: 1.25rem;
+    color: var(--color-text);
+    outline: none;
+  }
+  
+  .search-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .search-submit {
+    background: transparent;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .search-submit:hover {
+    transform: scale(1.1);
+  }
+
+  .search-close {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .search-close:hover {
+    color: #fff;
+  }
+
+  
   .header__inner {
     display: flex;
     justify-content: space-between;
@@ -235,6 +355,7 @@
   .nav-logo-wrap {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 10px;
     text-decoration: none;
     line-height: 1;
@@ -254,6 +375,13 @@
     color: var(--color-text);
     white-space: nowrap;
     line-height: 1;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 480px) {
+    .nav-logo-text {
+      display: none;
+    }
   }
 
   .header__nav {
