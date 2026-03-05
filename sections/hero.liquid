@@ -53,30 +53,64 @@
           </div>
         {%- endfor -%}
       {%- else -%}
-        <!-- Fallback mock blocks if section is empty -->
-        {%- for i in (1..3) -%}
+        <!-- Real products fallback from speedcubes collection -->
+        {%- assign hero_collection = collections['speedcubes'] -%}
+        {%- assign hero_products = hero_collection.products | default: collections['all'].products -%}
+        {%- for prod in hero_products limit: 3 -%}
+          {%- assign taglines = 'Top Rated,Best Seller,New Arrival' | split: ',' -%}
           <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             <div class="slide-bg-tint bg-tint-{{ forloop.index }}"></div>
             <div class="container hero__content-wrapper">
               <div class="hero__content">
                 <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
-                  {% if i == 1 %}The New Meta{% elsif i == 2 %}Budget King{% else %}Top Choice{% endif %}
+                  {{ taglines[forloop.index0] }}
                 </p>
                 <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
-                  {% if i == 1 %}GAN 14 MagLev{% elsif i == 2 %}MoYu WeiLong WRM{% else %}YJ MGC 4x4{% endif %}
+                  {{ prod.title | truncate: 40 }}
                 </h1>
+                <p class="hero__subtitle reveal visible" style="transition-delay: 150ms; color: var(--color-text-muted); font-size: 1rem; margin-bottom: 1rem;">
+                  {{ prod.vendor }} · {{ prod.product_type }}
+                </p>
                 <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
-                  <a href="/collections/all" class="btn btn-info">Discover More</a>
+                  <a href="{{ prod.url }}" class="btn btn-primary">
+                    Shop Now
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </a>
+                  <a href="/collections/speedcubes" class="btn btn-ghost">View All</a>
+                </div>
+                <div class="hero__price-tag reveal visible" style="transition-delay: 250ms; margin-top: 1.5rem;">
+                  {%- if prod.compare_at_price > prod.price -%}
+                    <span style="color: var(--color-text-muted); text-decoration: line-through; font-size: 0.9rem; margin-right: 0.5rem;">{{ prod.compare_at_price | money }}</span>
+                  {%- endif -%}
+                  <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: var(--color-primary);">{{ prod.price | money }}</span>
                 </div>
               </div>
               <div class="hero__image-col">
                 <div class="hero__image-wrapper tilt-enabled">
-                  <div class="hero-cube-placeholder">
-                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-                      <path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/>
-                      <path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/>
-                    </svg>
-                  </div>
+                  {%- if prod.featured_image -%}
+                    <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="eager">
+                  {%- else -%}
+                    <div class="hero-cube-placeholder">
+                      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                        <path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/>
+                        <path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/>
+                      </svg>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- else -%}
+          <!-- Last resort: brand name slides if collection is empty -->
+          <div class="carousel-slide is-active" data-index="0">
+            <div class="slide-bg-tint bg-tint-1"></div>
+            <div class="container hero__content-wrapper">
+              <div class="hero__content">
+                <p class="hero__highlight font-display color-accent reveal visible">Premium Speedcubes</p>
+                <h1 class="hero__title reveal visible">The Best Cubes.<br>Delivered Fast.</h1>
+                <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
+                  <a href="/collections/speedcubes" class="btn btn-primary">Shop Now</a>
                 </div>
               </div>
             </div>
