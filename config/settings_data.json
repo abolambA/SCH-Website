@@ -1,19 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "current": {
-        "color_bg": "#071726",
-        "color_surface": "#0D1E2E",
-        "color_surface_2": "#112233",
-        "color_primary": "#FFD000",
-        "color_secondary": "#FF6B1A",
-        "color_accent": "#1A9FE0",
-        "color_text": "#FFFFFF",
-        "color_text_muted": "#8899AA",
-        "color_border": "#ffffff",
-        "color_glow": "#ffd000",
-        "font_display": "rajdhani_n7",
-        "font_body": "dm_sans_n4",
-        "store_tagline": "Solve Faster. Shop SCH.",
-        "free_shipping_threshold": 100,
-        "enable_countdown_timer": true
-    }
+  "current": {
+    "color_bg": "#071726",
+    "color_surface": "#0D1E2E",
+    "color_surface_2": "#112233",
+    "color_primary": "#FFD000",
+    "color_secondary": "#FF6B1A",
+    "color_accent": "#1A9FE0",
+    "color_text": "#FFFFFF",
+    "color_text_muted": "#8899AA",
+    "color_border": "#ffffff",
+    "color_glow": "#ffd000",
+    "font_display": "rajdhani_n7",
+    "font_body": "dm_sans_n4",
+    "store_tagline": "Solve Faster. Shop SCH.",
+    "free_shipping_threshold": 100,
+    "enable_countdown_timer": true
+  }
 }
