@@ -379,6 +379,408 @@
         "waiting_on_payment_methods": "جارٍ البحث عن طرق الدفع المتاحة...",
         "apple_pay_payment_error": "لم يتم إتمام عملية الدفع. حاول مرة أخرى أو استخدم طريقة دفع مختلفة.",
         "taxes_not_included": "الضرائب غير مشمولة"
+      },
+      "thank_you": {
+        "ready_for_delivery_title": "طلبك جاهز للتسليم",
+        "ready_for_delivery_description": "لقد جهزنا طلبك.",
+        "order_updates_title": "تحديثات الطلبات",
+        "shop_phone_description": "ستتلقى رسالة نصية تحتوي على رابط لتطبيق المتجر لمساعدتك في تتبع طلبك.",
+        "order_updates_description_html": "سيتم إرسال التحديثات إلى %{customer_contact}",
+        "order_updates_current_step_prefix": "الخطوة الحالية: ",
+        "order_updates_past_step_prefix": "الخطوة السابقة: ",
+        "order_updates_upcoming_step_prefix": "الخطوة التالية: ",
+        "in_transit": "في طريقها",
+        "in_transit_title": "طلبك في طريقه إليك",
+        "in_transit_description": "ستتلقى تحديثات حول تقدم المشروع.",
+        "in_transit_description_days": "من المفترض أن تتلقى طلبك خلال فترة %{number} يومًا القادمة.",
+        "in_transit_description_today": "من المفترض أن تستلم طلبك اليوم.",
+        "in_transit_description_tomorrow": "من المفترض أن تستلم طلبك في اليوم التالي.",
+        "no_tracking_number": "لا يوجد رقم تتبع لهذا الطلب.",
+        "out_for_delivery": "في طريقها للتسليم",
+        "out_for_delivery_title": "طلبك في طريقه للتوصيل",
+        "out_for_delivery_description_html": "طلبك في طريقه إليك، ومن المتوقع وصوله اليوم. إذا لم يصلك خلال اليومين القادمين، يُرجى التواصل معنا.",
+        "out_for_delivery_local_title": "طلبك في طريقه للتوصيل",
+        "out_for_delivery_local_description_html": "سيصل طلبك قريباً.",
+        "attempted_delivery": "محاولة تسليم",
+        "attempted_delivery_title": "تمت محاولة توصيل طلبك",
+        "attempted_delivery_description_html": "تمت محاولة توصيل طلبك ولكنها لم تنجح. تواصل معنا لترتيب محاولة توصيل أخرى.",
+        "attempted_delivery_local_title": "لم يتم التسليم",
+        "attempted_delivery_local_description_html": "لم نتمكن من توصيل طلبك. لتحديد موعد توصيل آخر، يرجى التواصل معنا.",
+        "delivered": "تم التوصيل",
+        "delivered_title": "تم تسليم طلبك",
+        "delivered_description_html": "تم توصيل طلبك إلى العنوان الذي قدمته. إذا لم تستلمه، أو إذا كانت لديك أي مشاكل أخرى، فيرجى التواصل معنا.",
+        "delivered_local_title": "تم تسليم طلبك",
+        "delivered_local_description_html": "ألم تستلم طلبك؟ %{let_us_know}.",
+        "choose_payment_method_later": "اختر طريقة الدفع لاحقًا",
+        "picked_up_title": "تم استلام طلبك",
+        "picked_up_description_html": "تم استلام طلبك من %{location_name} بتاريخ %{date}.",
+        "contact_us": "اتصل بنا",
+        "contact_us_lowercase": "اتصل بنا",
+        "contact_us_html": "هل تحتاج إلى مساعدة؟ %{contact_us}",
+        "updated_time": "تم التحديث منذ %{time_ago}",
+        "failure": "لم يتم التسليم",
+        "failed_title": "لم يتم تسليم طلبك",
+        "failed_contact_merchant": "اتصل بشركة %{company} لترتيب عملية التسليم.",
+        "failed_contact_merchant_no_company": "اتصل بنا لترتيب عملية التوصيل.",
+        "non_shippable_title": "تم إكمال طلبك",
+        "let_us_know": "أخبرنا بذلك",
+        "login_title": "سجّل الدخول لعرض جميع تفاصيل الطلب",
+        "login_description": "يمكنك العثور على رقم طلبك في الإيصال الذي استلمته عبر البريد الإلكتروني.",
+        "login_description_phone": "يمكنك العثور على رقم طلبك في الإيصال الذي استلمته عبر رسالة نصية.",
+        "login_not_customer_html": "ليس %{name}؟ يمكنك %{link}",
+        "login_reorder_link_text": {
+          "one": "اشتر هذا المنتج أيضًا",
+          "other": "اشتر هذه المنتجات أيضًا"
+        },
+        "customer_information_hidden_fields_message": "قم بتسجيل الدخول لعرض جميع معلومات العملاء.",
+        "cancelled_title": "تم إلغاء طلبك",
+        "cancelled_description": "تم إلغاء طلبك بتاريخ %{date}. تواصل معنا إذا كانت لديك أي أسئلة.",
+        "order_number_label": "رقم الطلب",
+        "customer_validation_error": "أدخل بريدًا إلكترونيًا أو رقم طلب صحيحًا.",
+        "customer_validation_error_phone": "أدخل رقم هاتف أو رقم طلب صحيح.",
+        "login": "تسجيل الدخول",
+        "unfulfilled_items_title": "الاستعداد للشحن",
+        "unfulfilled_items_description": "نقوم حاليًا بتجهيز هذه المنتجات للشحن.",
+        "marker": {
+          "current": "موقع الشحنة الحالي",
+          "shipping": "عنوان الشحن"
+        },
+        "pick_up_in_store_marker": {
+          "current": "موقع الشحنة الحالي",
+          "shipping": "موقع الاستلام"
+        },
+        "fulfillment": {
+          "fulfilled_table_title": "محتويات هذه الشحنة",
+          "unfulfilled_table_title": "المنتجات التي يتم تجهيزها للشحن",
+          "product_image_label": "صورة المنتج",
+          "description_label": "وصف",
+          "quantity_label": "كمية"
+        },
+        "order_updates_description_missing": "أنت لا تتلقى تحديثات الشحن.",
+        "order_updates_subscribe_to_email_notifications": "احصل على تحديثات الشحن عبر البريد الإلكتروني",
+        "order_updates_subscribe_to_email_or_phone_notifications": "احصل على تحديثات الشحن عبر البريد الإلكتروني أو الرسائل النصية",
+        "order_updates_subscribe_to_phone_notifications": "احصل على تحديثات الشحن عبر الرسائل النصية",
+        "order_updates_submit_subscription": "يُقدِّم",
+        "track_shipment": "تتبع الشحنة",
+        "other_options": "خيارات أخرى",
+        "delivery_information_label": "معلومات التوصيل:",
+        "gift_card_sent_confirmation": "تم إرسال بطاقات الهدايا",
+        "qr_code": {
+          "send_link_to_phone": "أو أرسل رابطًا إلى هاتفك",
+          "title": "تتبع الموقع على هاتفك"
+        },
+        "shop_qr_with_sms_upsell": {
+          "qr_code": {
+            "title": "امسح ضوئيًا باستخدام هاتفك"
+          },
+          "sms": {
+            "title": "أو أرسل رابطًا إلى هاتفك"
+          }
+        },
+        "view_business_customer_account": "عرض الحساب",
+        "breadcrumbs_submitted": "مُقَدَّم",
+        "breadcrumbs_in_review": "مراجعة",
+        "breadcrumbs_confirmed": "مؤكد",
+        "missing_shipping_address_banner": {
+          "title": "لا يوجد عنوان شحن للطلب",
+          "text_html": "أضف عنوانك إلى %{contact_us}",
+          "contact_us": "اتصل بنا"
+        },
+        "first_payment_complete": "تم إتمام الدفعة الأولى",
+        "in_store_purchase": "الشراء من المتجر",
+        "company_location_section_title": "الشركة والموقع",
+        "thank_you_ready_for_picked_up": "تم استلام طلبك من العنوان %{address}.",
+        "ready_for_delivery": "جاهز للتسليم",
+        "order_updates_subscribe_to_email_notifications_failed": "لا يمكننا تخزين هذا البريد الإلكتروني للتحديثات. حاول مرة أخرى أو استخدم بريدًا إلكترونيًا آخر.",
+        "order_updates_subscribe_to_email_notifications_email_already_exists": "البريد الإلكتروني الذي أدخلته موجود بالفعل.",
+        "subscriptions_management": {
+          "title": "الاشتراك",
+          "description": "انتقل إلى حسابك لعرض وإدارة اشتراكاتك.",
+          "button_label": "إدارة اشتراكك"
+        },
+        "manage_order_label": "إدارة طلبك",
+        "gift_card_confirmation_by_text_typ": {
+          "one": "ستتلقى رسالة نصية تحتوي على بطاقة الهدية الخاصة بك في غضون دقائق قليلة.",
+          "other": "ستتلقى رسالة نصية تحتوي على بطاقات الهدايا الخاصة بك في غضون دقائق قليلة."
+        }
+      }
+    },
+    "errors": {
+      "shop_404": {
+        "ctas": {
+          "store_owner": {
+            "header": "هل أنت صاحب المتجر؟",
+            "caption": "هل تواجه مشكلة في الدخول إلى متجرك؟ جرّب ميزة %{forgot_your_store_link}. إذا كنت ترغب في إعادة تفعيل متجرك، تواصل مع %{shopify_support_link}.",
+            "shopify_support_link_text": "دعم Shopify"
+          }
+        }
+      }
+    },
+    "notices": {
+      "customer": {
+        "password_reset_error": "خطأ في إعادة تعيين كلمة المرور",
+        "subscribe_error": "خطأ في الاشتراك",
+        "unsubscribe_error": "خطأ في إلغاء الاشتراك",
+        "no_account_found": "لم يتم العثور على حساب مرتبط بهذا البريد الإلكتروني.",
+        "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+        "denylisted_reset_password": "تعذر الوصول إلى حسابك لأن كلمة المرور الحالية غير آمنة. ستتلقى رسالة بريد إلكتروني لتحديث كلمة مرورك.",
+        "signup_disabled": "تم تعطيل إنشاء حسابات العملاء."
+      },
+      "address": {
+        "updated": "تم تحديث العنوان بنجاح.",
+        "error_updating": "حدث خطأ أثناء تحديث العنوان",
+        "created": "تم إنشاء العنوان بنجاح",
+        "error_creating": "حدث خطأ أثناء إنشاء العنوان.",
+        "deleted": "تم حذف العنوان بنجاح",
+        "error_deleting": "حدث خطأ أثناء حذف العنوان."
+      },
+      "line_item": {
+        "item_status": {
+          "add_variant": "تمت إضافة %{delta}",
+          "increment_item": "تمت إضافة %{delta}",
+          "decrement_item": "تمت إزالة %{delta} من %{total}",
+          "decrement_fulfilled_line_item": "تم إرجاع %{delta} من %{total}",
+          "decrement_return_line_item": "تمت إزالة %{delta} من الإرجاع"
+        }
+      },
+      "order": {
+        "not_available": "هذا الطلب غير متوفر",
+        "financial_status": {
+          "authorized": "مُصرَّح به",
+          "pending": "قيد الانتظار",
+          "paid": "مدفوع",
+          "unpaid": "بدون أجر",
+          "voided": "باطل",
+          "partially_paid": "مدفوع جزئياً",
+          "partially_refunded": "تم استرداد جزء من المبلغ",
+          "refunded": "تم استرداد المبلغ",
+          "expired": "منتهي الصلاحية"
+        },
+        "fulfillment_status": {
+          "fulfilled": "تم الإنجاز",
+          "complete": "مكتمل",
+          "partial": "جزئي",
+          "unfulfilled": "غير مُحقق",
+          "restocked": "تم إعادة التخزين"
+        },
+        "transaction_status": {
+          "success": "نجاح",
+          "pending": "قيد الانتظار",
+          "failure": "فشل",
+          "error": "خطأ"
+        },
+        "cancel_reason": {
+          "declined": "تم رفض الدفع",
+          "inventory": "المنتجات غير متوفرة",
+          "fraud": "طلب احتيالي",
+          "customer": "قام العميل بتغيير/إلغاء الطلب",
+          "staff": "خطأ من الموظفين",
+          "other": "آخر"
+        },
+        "cash_on_delivery": "الدفع عند الاستلام (COD)"
+      },
+      "cart": {
+        "not_found": "لم يتم العثور على سلة التسوق",
+        "only_n_items_available": "يمكنك إضافة %{count} %{name} فقط إلى سلة التسوق.",
+        "too_many_items_in_cart": "لا يمكنك إضافة المزيد من %{name} إلى سلة التسوق.",
+        "only_one_added_to_cart": "تمت إضافة عنصر واحد فقط إلى سلة التسوق الخاصة بك بسبب عدم توفره.",
+        "only_n_added_to_cart": "تمت إضافة %{quantity} عنصر فقط إلى سلة التسوق الخاصة بك نظرًا لتوافرها.",
+        "maximum_available_quantity_reached": "الحد الأقصى لكمية هذا المنتج موجود بالفعل في سلة التسوق الخاصة بك.",
+        "less_than_minimum": "يحتوي هذا العنصر على حد أدنى قدره %{min}.",
+        "more_than_maximum": "يبلغ الحد الأقصى لهذا العنصر %{max}.",
+        "not_respect_step": "لا يمكنك إضافة هذا العنصر إلا بزيادات قدرها %{step}.",
+        "all_items_in_cart": "جميع %{count} %{name} موجودة في سلة التسوق الخاصة بك.",
+        "empty_update": "لا يمكن تحديث سلة التسوق الفارغة",
+        "missing_parameters": "لا يوجد معرف أو معلمة سطر صالحة",
+        "generic_error": "خطأ في سلة التسوق",
+        "invalid_input": "المعامل %{parameter} غير صالح.",
+        "product_not_available": "المنتج غير متوفر",
+        "too_many_line_items_error": "لا يمكن أن تحتوي سلة التسوق الخاصة بك على أكثر من %{max} عنصرًا.",
+        "link_expired": "انتهت صلاحية الرابط",
+        "link_no_longer_exists": "الرابط لم يعد موجوداً.",
+        "stock_problems_html": "بعض المنتجات غير متوفرة حالياً. لقد قمنا <a href=\"%{link}\">بتحديث سلة التسوق</a> .",
+        "changed": "تم تغيير سلة التسوق",
+        "items_changed": "لقد تغير عنصر واحد أو أكثر.",
+        "product_sold_out": "المنتج '%{name}' قد نفد بالفعل.",
+        "variant_not_found": "لا يمكن العثور على البديل",
+        "variant_requires_selling_plan": "لا يمكن شراء هذا الإصدار إلا من خلال خطة بيع.",
+        "selling_plan_not_available_for_company_locations": "لا تتوفر إلا عملية شراء لمرة واحدة لطلبات الشركات (B2B).",
+        "digital_product_not_available_for_company_locations": "لا يمكن إضافة هذا المنتج إلى طلب B2B",
+        "buyer_cannot_purchase_for_company_locations": "لا يمكنك الشراء من هذا الموقع",
+        "selling_plan_not_applicable": "لا يمكن تطبيق خطة البيع على هذا النوع",
+        "shipping_address_not_required": "لا تتطلب هذه العربة شحنًا",
+        "shipping_address_invalid": "حدثت مشكلة أثناء حساب تكاليف الشحن. يرجى متابعة عملية الدفع لاختيار تكلفة الشحن قبل إتمام طلبك.",
+        "bundle_requires_components": "لا يمكن إضافة المنتج المجمع '%{name}' إلى سلة التسوق.",
+        "gift_card_with_components_not_supported": "لا يمكن إضافة المنتج المجمع '%{name}' إلى سلة التسوق.",
+        "gift_card_price_must_be_greater_than_zero": "لا يمكن إضافة المنتج المجمع '%{name}' إلى سلة التسوق.",
+        "gift_card_recipient_validation_error": "مستلم بطاقة الهدية المحدد غير صالح",
+        "view_lines_limit_reached": "يجب أن تكون الأسطر أقل من أو تساوي %{limit}",
+        "cart_too_large": "العربة كبيرة جدًا.",
+        "cart_attributes_error": "تحتوي خصائص سلة التسوق على بيانات غير صالحة.",
+        "merchandise_line_transformers": {
+          "run_error": "حدث خطأ في سلة التسوق الخاصة بك."
+        },
+        "merchandise_not_applicable": "لا يمكن شراء المنتج بهذه المواصفات."
+      },
+      "storefront": {
+        "invalid_password": "كلمة المرور غير صحيحة، يرجى المحاولة مرة أخرى."
+      },
+      "tags": {
+        "add_articles": "تضييق نطاق البحث ليشمل المقالات التي تحتوي أيضًا على الوسم %{tag}",
+        "add_products": "تضييق نطاق الاختيار ليشمل المنتجات المطابقة للوسم %{tag}",
+        "remove_articles": "وسّع نطاق البحث ليشمل المقالات غير المصنفة بالوسم %{tag}",
+        "remove_products": "إزالة الوسم %{tag}"
+      }
+    },
+    "email_marketing": {
+      "subscribed": {
+        "confirmation": "نشكرك على اشتراكك في قائمتنا البريدية.",
+        "disclaimer": "يمكنك إلغاء الاشتراك في أي وقت.",
+        "unsubscribe": "إلغاء الاشتراك"
+      },
+      "unsubscribed": {
+        "confirmation": "لقد ألغيت اشتراكك من قائمتنا البريدية.",
+        "disclaimer": "لن تتلقى أي تحديثات تسويقية أخرى منا. يمكنك الاشتراك مجدداً في أي وقت.",
+        "preview": "أنت الآن تستعرض ما سيراه العملاء عند إلغاء اشتراكهم."
+      },
+      "sms_unsubscribe_confirm": {
+        "message": "هل أنت متأكد من رغبتك في إلغاء الاشتراك في التسويق عبر الرسائل النصية القصيرة؟",
+        "button": "إلغاء الاشتراك"
+      },
+      "open_tracking": {
+        "opt_in": {
+          "opted_in_html": "<b>لقد اخترتَ تفعيل خاصية تتبع فتح الرسائل الإلكترونية.</b>"
+        }
+      }
+    }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "ok_duties_tooltip": "يتم شحن هذا الطلب من دولة أخرى، لذلك تمت إضافة الرسوم الجمركية إلى إجمالي طلبك.",
+      "error_duties_tooltip": "يتم شحن هذا الطلب من دولة أخرى، لذا قد يتم فرض رسوم وضرائب عند التسليم.",
+      "zero_duties_tooltip": "يتم شحن هذا الطلب من دولة أخرى. لا تُفرض رسوم جمركية على الطلبات التي تبلغ قيمتها هذا الحد.",
+      "tip": "نصيحة",
+      "title": "اطلب {{name}}",
+      "total": "المجموع",
+      "unit_price": "{{price}} /للوحدة",
+      "pagination": {
+        "load_more": "تحميل المزيد",
+        "load_more_accessibility_label": "تحميل المزيد من العناصر",
+        "loading_accessibility_label": "تحميل العناصر"
+      },
+      "login_to_view_all_order_details": "سجّل الدخول لعرض جميع تفاصيل الطلب.",
+      "log_in": "تسجيل الدخول",
+      "logged_in_account_no_permission_to_order": "أنت مسجل دخولك باسم {{email}} . لا يملك هذا الحساب صلاحية إدارة هذا الطلب.",
+      "log_in_to_a_different_account": "قم بتسجيل الدخول إلى حساب آخر",
+      "fees": {
+        "restocking_fee": "رسوم إعادة التخزين",
+        "return_shipping_fee": "شحن الإرجاع"
+      },
+      "vat_invoices": {
+        "title": "فواتير ضريبة القيمة المضافة"
+      },
+      "link_sent": "تم إرسال الرابط",
+      "cash_rounding": "تقريب النقود",
+      "adjusted_payment": "الدفعة المعدلة",
+      "adjusted_total": "المجموع المعدل",
+      "due_on_date": "تاريخ الاستحقاق {{date}}",
+      "due_on_fulfillment": "مستحق الدفع عند الإنجاز",
+      "due_on_receipt": "مستحق الدفع عند الاستلام"
+    },
+    "addresses": {
+      "add_button": "إضافة عنوان",
+      "add_button_text": "يضيف",
+      "add_button_accessibility_label": "إضافة عنوان",
+      "back_button": "خلف",
+      "back_button_accessibility_label": "العودة إلى تحرير العنوان {{address}}",
+      "add_address_banner": "أضف العناوين لاستخدامها عند إتمام عملية الشراء",
+      "no_addresses_banner": "لم تتم إضافة أي عناوين",
+      "address_deleted_notification": "تم حذف العنوان",
+      "cancel_adding_address_accessibility_label": "إلغاء إضافة العنوان",
+      "cancel_deletion_button": "يلغي",
+      "cancel_deletion_button_accessibility_label": "إلغاء حذف {{address}}",
+      "default_address": {
+        "title": "العنوان الافتراضي",
+        "title_accessibility_label": "العنوان الافتراضي: {{address}}"
+      },
+      "delete_button": "يمسح",
+      "delete_button_accessibility_label": "حذف {{address}}",
+      "delete_confirmation_button": "حذف العنوان",
+      "delete_confirmation_button_accessibility_label": "حذف {{address}}",
+      "delete_confirmation_message": "هل تريد حذف العنوان؟ لن تتأثر الطلبات الحالية.",
+      "delete_confirmation_title": "هل تريد حذف العنوان؟",
+      "delete_confirmation_description": "الطلبات الحالية لا تتأثر.",
+      "edit_button": "يحرر",
+      "edit_button_accessibility_label": "تعديل {{address}}",
+      "edit_section_accessibility_label": "تعديل {{address}}",
+      "edit_modal_title": {
+        "default": "تعديل العنوان",
+        "billing": "تعديل عنوان الفواتير",
+        "shipping": "تعديل عنوان الشحن"
+      },
+      "loading_accessibility_message": "عنوان التحميل",
+      "loading_addresses_accessibility_message": "جارٍ تحميل العناوين",
+      "loading_billing_accessibility_message": "جارٍ تحميل عنوان الفوترة",
+      "loading_finished_accessibility_message": "تم تحميل صفحة جديدة من العناوين",
+      "loading_shipping_accessibility_message": "جارٍ تحميل عنوان الشحن",
+      "pagination": {
+        "load_more": "تحميل المزيد",
+        "load_more_accessibility_label": "تحميل المزيد من العناوين"
+      },
+      "save_new_address_accessibility_label": "حفظ العنوان",
+      "title": "العناوين",
+      "billing_address_dropdown_placeholder": "عنوان الفواتير"
+    },
+    "address_form": {
+      "attention": "انتباه",
+      "attention_company": "الشركة/الاهتمام",
+      "attention_help_text": "اسم شخص أو قسم",
+      "auto_complete_close_accessibility_label": "إغلاق الاقتراحات",
+      "auto_complete_title": "اقتراحات",
+      "billing_address": "استخدم كعنوان للفواتير",
+      "cancel": "يلغي",
+      "cancel_accessibility_label": "إلغاء تعديل العنوان {{address}}",
+      "creation_success_notification": "تمت إضافة العنوان",
+      "default_address": "هذا هو عنواني الافتراضي",
+      "default_address_creation_success_notification": "تمت إضافة العنوان الافتراضي",
+      "default_address_update_success_notification": "تم تحديث العنوان الافتراضي",
+      "loading_add_form_accessibility_message": "جارٍ تحميل نموذج العنوان الجديد",
+      "loading_edit_form_accessibility_message": "جارٍ تحميل نموذج تعديل العنوان",
+      "loading_form_accessibility_message": "تحميل نموذج العنوان",
+      "loading_finished_accessibility_message": "تم تحميل نموذج العنوان",
+      "save": "يحفظ",
+      "save_accessibility_label": "حفظ العنوان {{address}}",
+      "section_title_accessibility_label": "إضافة عنوان",
+      "update_success_notification": "تم تحديث العنوان"
+    },
+    "account_menu": {
+      "signed_out_state": {
+        "sheet_title": "سجّل الدخول أو أنشئ حسابًا",
+        "section_divider": "طرق أخرى لتسجيل الدخول",
+        "alternate_divider": "أو",
+        "use_email_button": "استخدم البريد الإلكتروني بدلاً من ذلك",
+        "email_field_label": "بريد إلكتروني",
+        "orders_button": "طلبات",
+        "profile_button": "حساب تعريفي",
+        "shop_login_button": "سجّل الدخول باستخدام المتجر",
+        "continue_with_google": "تابع مع جوجل",
+        "continue_with_facebook": "تابع عبر فيسبوك"
+      },
+      "signed_in_state": {
+        "greeting_with_name": "مرحباً، {{first_name}}",
+        "greeting_without_name": "حساب",
+        "orders_button": "طلبات",
+        "profile_button": "حساب تعريفي"
+      },
+      "location_picker": {
+        "sheet_title": "المواقع",
+        "search_field_placeholder": "يبحث"
+      },
+      "aria_labels": {
+        "close_menu": "إغلاق القائمة",
+        "back_to_main_menu": "العودة إلى القائمة الرئيسية من {{title}}",
+        "open_submenu": "{{title}} ، يفتح القائمة الفرعية",
+        "loading_menu": "تحميل القائمة"
       }
     }
   }
