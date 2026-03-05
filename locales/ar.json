@@ -1,0 +1,135 @@
+{
+    "general": {
+        "password_page": {
+            "login_form_heading": "أدخل كلمة مرور المتجر"
+        }
+    },
+    "header": {
+        "home": "الرئيسية",
+        "shop": "المتجر",
+        "about": "من نحن",
+        "contact": "اتصل بنا",
+        "search_placeholder": "ابحث عن مكعبات أو ماركات...",
+        "cart": "السلة",
+        "account": "حسابي",
+        "signin": "تسجيل الدخول",
+        "menu": "القائمة"
+    },
+    "nav": {
+        "brands": "الماركات",
+        "shop_by_type": "تسوق حسب النوع",
+        "all_products": "جميع المنتجات",
+        "new_arrivals": "وصل حديثاً",
+        "accessories": "إكسسوارات",
+        "smart_cubes": "المكعبات الذكية",
+        "big_cubes": "المكعبات الكبيرة"
+    },
+    "home": {
+        "hero_eyebrow": "سرعة. دقة. أداء.",
+        "hero_heading_line1": "المكعبات",
+        "hero_heading_line2": "الاحترافية",
+        "hero_subtext": "اختارها المحترفون، معتمدة من أبطال العالم",
+        "hero_cta_primary": "تسوق الآن",
+        "hero_cta_secondary": "شاهد الماركات",
+        "promo_heading": "تسوق حسب الميزانية",
+        "featured_eyebrow": "الأعلى تقييماً",
+        "featured_heading": "الأكثر مبيعاً",
+        "featured_cta": "عرض جميع المنتجات",
+        "category_heading": "تسوق حسب الفئة",
+        "brands_heading": "تجار معتمدون",
+        "community_heading": "انضم إلى مجتمع SCH",
+        "community_subtext": "ضم أكثر من 10,000 مكعباتي من الشرق الأوسط",
+        "newsletter_heading": "اشترك في نشرتنا",
+        "newsletter_placeholder": "أدخل بريدك الإلكتروني",
+        "newsletter_btn": "اشترك"
+    },
+    "trust": {
+        "shipping": "شحن سريع",
+        "curated": "اختيار من المحترفين",
+        "support": "دعم متخصص",
+        "secure": "دفع آمن"
+    },
+    "collection": {
+        "products_count": "منتج",
+        "sort_by": "ترتيب حسب",
+        "sort_featured": "مميز",
+        "sort_price_asc": "السعر: من الأقل للأعلى",
+        "sort_price_desc": "السعر: من الأعلى للأقل",
+        "sort_newest": "الأحدث",
+        "sort_best_selling": "الأكثر مبيعاً",
+        "filter_brand": "الماركة",
+        "filter_type": "النوع",
+        "filter_price": "السعر",
+        "no_products": "لم يتم العثور على منتجات",
+        "no_products_cta": "تصفح جميع المكعبات",
+        "browse_all": "تصفح الكل",
+        "filters": "فلتر"
+    },
+    "product": {
+        "add_to_cart": "أضف إلى السلة",
+        "buy_now": "اشتر الآن",
+        "sold_out": "نفذت الكمية",
+        "sale": "عرض",
+        "new": "جديد",
+        "description": "الوصف",
+        "shipping_returns": "الشحن والإرجاع",
+        "shipping_returns_text": "شحن مجاني على الطلبات التي تتجاوز 100 د.إ. إرجاع مجاني خلال 30 يوماً.",
+        "related_heading": "قد يعجبك أيضاً",
+        "quantity": "الكمية",
+        "share": "مشاركة"
+    },
+    "cart": {
+        "title": "سلتك",
+        "empty": "سلتك فارغة",
+        "continue_shopping": "تابع التسوق",
+        "checkout": "إتمام الشراء",
+        "subtotal": "المجموع الفرعي",
+        "shipping_note": "الشحن والضرائب تحسب عند الدفع",
+        "remove": "إزالة",
+        "quantity": "الكمية"
+    },
+    "footer": {
+        "brand_desc": "بيت مجتمع المكعبات في الشرق الأوسط. مُختار ومُعتمد من المحترفين.",
+        "shop_heading": "المتجر",
+        "brands_heading": "الماركات",
+        "help_heading": "المساعدة",
+        "newsletter_heading": "ابقَ على اطلاع",
+        "newsletter_btn": "اشترك",
+        "copyright": "جميع الحقوق محفوظة",
+        "faq": "الأسئلة الشائعة",
+        "shipping": "سياسة الشحن",
+        "returns": "الإرجاع",
+        "contact": "اتصل بنا",
+        "about": "من نحن",
+        "track_order": "تتبع الطلب"
+    },
+    "search": {
+        "heading": "نتائج البحث",
+        "no_results": "لم نجد نتائج لـ",
+        "placeholder": "ابحث عن مكعبات، ماركات، إكسسوارات...",
+        "submit": "بحث"
+    },
+    "about": {
+        "heading": "من نحن",
+        "mission_heading": "مهمتنا",
+        "team_heading": "فريقنا",
+        "values_heading": "قيمنا"
+    },
+    "contact": {
+        "heading": "اتصل بنا",
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "message": "الرسالة",
+        "submit": "إرسال",
+        "whatsapp": "تواصل معنا عبر واتساب"
+    },
+    "errors": {
+        "404_heading": "الصفحة غير موجودة",
+        "404_body": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+        "404_cta": "العودة للرئيسية"
+    },
+    "pagination": {
+        "next": "التالي",
+        "previous": "السابق"
+    }
+}

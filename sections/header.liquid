@@ -164,13 +164,38 @@
       <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
     </div>
     <div class="mobile-menu-links">
-      <a href="{{ routes.all_products_collection_url }}" class="mobile-menu-link">Shop <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-      <a href="/pages/about" class="mobile-menu-link">About <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-      <a href="/pages/contact" class="mobile-menu-link">Contact <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      <a href="{{ routes.root_url }}" class="mobile-menu-link">Home</a>
+      
+      <!-- Shop Accordion -->
+      <div class="mobile-accordion">
+        <button class="mobile-menu-link mobile-accordion-toggle" onclick="this.parentElement.classList.toggle('open')">
+          Shop
+          <svg class="mobile-accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-accordion-inner">
+          <p class="mobile-accordion-label">By Brand</p>
+          <a href="/collections/gan" class="mobile-sub-link">GAN</a>
+          <a href="/collections/moyu" class="mobile-sub-link">MoYu</a>
+          <a href="/collections/qiyi" class="mobile-sub-link">QiYi</a>
+          <a href="/collections/yj" class="mobile-sub-link">YJ / YongJun</a>
+          <p class="mobile-accordion-label" style="margin-top:0.8rem;">By Type</p>
+          <a href="/collections/3x3" class="mobile-sub-link">3×3 Cubes</a>
+          <a href="/collections/2x2" class="mobile-sub-link">2×2 Cubes</a>
+          <a href="/collections/4x4" class="mobile-sub-link">4×4 Cubes</a>
+          <a href="/collections/pyraminx" class="mobile-sub-link">Pyraminx</a>
+          <a href="/collections/megaminx" class="mobile-sub-link">Megaminx</a>
+          <a href="/collections/accessories" class="mobile-sub-link">Accessories</a>
+          <a href="/collections/new-arrivals" class="mobile-sub-link" style="color: var(--color-primary); font-weight:700;">🔥 New Arrivals</a>
+          <a href="/collections/speedcubes" class="mobile-sub-link btn btn-primary" style="display:block; margin-top:0.8rem; text-align:center;">View All Products →</a>
+        </div>
+      </div>
+      
+      <a href="/pages/about" class="mobile-menu-link">About</a>
+      <a href="/pages/contact" class="mobile-menu-link">Contact</a>
       {%- if customer -%}
-        <a href="{{ routes.account_url }}" class="mobile-menu-link">Account <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+        <a href="{{ routes.account_url }}" class="mobile-menu-link">Account</a>
       {% else %}
-        <a href="{{ routes.account_login_url }}" class="mobile-menu-link">Sign In <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+        <a href="{{ routes.account_login_url }}" class="mobile-menu-link">Sign In</a>
       {% endif %}
       <div style="padding: 16px 24px;">
         <button class="header__icon-btn" aria-label="Change Language" onclick="toggleLanguage()" style="display: flex; align-items: center; gap: 8px;">
@@ -566,6 +591,96 @@
       padding: 1rem;
     }
   }
+  /* Mobile Accordion for Brand/Type nav */
+  .mobile-accordion {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .mobile-accordion-toggle {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .mobile-accordion-arrow {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .mobile-accordion.open .mobile-accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  .mobile-accordion-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 1.5rem;
+  }
+
+  .mobile-accordion.open .mobile-accordion-inner {
+    max-height: 600px;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .mobile-accordion-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin: 0.5rem 0 0.3rem;
+  }
+
+  .mobile-sub-link {
+    display: block;
+    padding: 0.45rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .mobile-sub-link:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-sub-link:hover {
+    color: var(--color-primary);
+    padding-left: 4px;
+  }
+
+  /* RTL Support for Arabic */
+  [dir="rtl"] .header__inner {
+    flex-direction: row-reverse;
+  }
+  [dir="rtl"] .header__menu {
+    flex-direction: row-reverse;
+  }
+  [dir="rtl"] .mobile-menu-links {
+    text-align: right;
+  }
+  [dir="rtl"] .mobile-sub-link {
+    text-align: right;
+    padding-right: 0;
+    padding-left: initial;
+  }
+  [dir="rtl"] .mobile-sub-link:hover {
+    padding-right: 4px;
+    padding-left: 0;
+  }
+  [dir="rtl"] .mega-menu-inner {
+    direction: rtl;
+    text-align: right;
+  }
+
 </style>
 
 {% schema %}
