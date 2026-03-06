@@ -1,45 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "banner_carousel": {
-            "type": "banner-carousel"
-        },
-        "hero": {
-            "type": "hero"
-        },
-        "promo_banners": {
-            "type": "promo-banners"
-        },
-        "featured_products": {
-            "type": "featured-products",
-            "settings": {
-                "collection": "speedcubes"
-            }
-        },
-        "category_grid": {
-            "type": "category-grid"
-        },
-        "authorized_dealers": {
-            "type": "authorized-dealers"
-        },
-        "trust_bar": {
-            "type": "trust-bar"
-        },
-        "community": {
-            "type": "community-section"
-        },
-        "newsletter": {
-            "type": "newsletter"
-        }
+  "sections": {
+    "banner_carousel": {
+      "type": "banner-carousel",
+      "settings": {}
     },
-    "order": [
-        "banner_carousel",
-        "hero",
-        "promo_banners",
-        "category_grid",
-        "featured_products",
-        "authorized_dealers",
-        "trust_bar",
-        "community",
-        "newsletter"
-    ]
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "promo_banners": {
+      "type": "promo-banners",
+      "settings": {}
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "collection": "speedcubes"
+      }
+    },
+    "category_grid": {
+      "type": "category-grid",
+      "settings": {}
+    },
+    "authorized_dealers": {
+      "type": "authorized-dealers",
+      "settings": {}
+    },
+    "trust_bar": {
+      "type": "trust-bar",
+      "settings": {}
+    },
+    "community": {
+      "type": "community-section",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "banner_carousel",
+    "hero",
+    "promo_banners",
+    "category_grid",
+    "featured_products",
+    "authorized_dealers",
+    "trust_bar",
+    "community",
+    "newsletter"
+  ]
 }
