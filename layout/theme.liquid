@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="{{ request.locale.iso_code }}">
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,6 +33,12 @@
 
     <!-- Theme CSS -->
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      /* Hover Bridge for Mega Menu to prevent losing hover in the gap */
+      .header__menu-item--has-mega { padding-bottom: 20px; }
+      .header__menu-item--has-mega .mega-menu { margin-top: -20px; padding-top: 20px; }
+    </style>
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');

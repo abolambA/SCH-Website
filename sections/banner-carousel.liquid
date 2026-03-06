@@ -169,8 +169,8 @@
 
   .slide-content {
     max-width: 700px;
-    padding: 2rem 2.5rem;
-    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    padding: 0;
+    background: transparent;
     border-radius: 0;
     border-left: none;
     border: none;
@@ -193,6 +193,7 @@
     letter-spacing: 0.15em;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
 
   .slide-heading {
@@ -201,6 +202,7 @@
     line-height: 1.1;
     margin: 0 0 1.5rem 0;
     text-transform: uppercase;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.7);
   }
 
   .slide-btn {
@@ -217,13 +219,11 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -231,14 +231,19 @@
     transition: all 0.3s ease;
   }
 
-  .carousel-btn:hover {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-bg);
+  .carousel-btn svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
   }
 
-  .prev-btn { left: 24px; }
-  .next-btn { right: 24px; }
+  .carousel-btn:hover {
+    color: var(--color-primary);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .prev-btn { left: 16px; }
+  .next-btn { right: 16px; }
 
   @media (max-width: 768px) {
     .prev-btn { left: 12px; width: 36px; height: 36px; }
@@ -258,18 +263,25 @@
   }
 
   .carousel-indicator {
-    width: 40px;
-    height: 4px;
-    background: rgba(255,255,255,0.3);
-    border: none;
-    border-radius: 2px;
+    width: 12px;
+    height: 12px;
+    background: rgba(255,255,255,0.4);
+    border: 2px solid transparent;
+    border-radius: 50%;
     cursor: pointer;
-    transition: background 0.3s ease, width 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0;
   }
 
   .carousel-indicator.active {
     background: var(--color-primary);
-    width: 60px;
+    transform: scale(1.2);
+    border-color: rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 768px) {
+    .carousel-indicator { width: 10px; height: 10px; }
+    .carousel-indicators { bottom: 16px; }
   }
 </style>
 

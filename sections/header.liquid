@@ -126,7 +126,9 @@
       <div class="header__language-switcher hide-on-mobile" style="position: relative;">
         <button class="header__icon-btn" aria-label="Change Language" id="lang-toggle" onclick="toggleLanguage()" style="display: flex; align-items: center; gap: 4px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-          <span class="font-display hide-on-mobile lang-current" style="font-size: 0.9rem;">EN</span>
+          <span class="font-display hide-on-mobile lang-current" style="font-size: 0.9rem;">
+            {% if request.locale.iso_code == 'ar' %}عربي{% else %}EN{% endif %}
+          </span>
         </button>
       </div>
 
@@ -200,7 +202,9 @@
       <div style="padding: 16px 24px;">
         <button class="header__icon-btn" aria-label="Change Language" onclick="toggleLanguage()" style="display: flex; align-items: center; gap: 8px;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-          <span class="font-display lang-current" style="font-size: 1.2rem; font-weight:700;">EN</span>
+          <span class="font-display lang-current" style="font-size: 1.2rem; font-weight:700;">
+            {% if request.locale.iso_code == 'ar' %}عربي{% else %}EN{% endif %}
+          </span>
         </button>
       </div>
     </div>
@@ -440,6 +444,10 @@
     letter-spacing: 1px;
     transition: color var(--transition-fast);
     padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    line-height: 1;
   }
 
   .header__menu-link:hover {

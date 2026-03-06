@@ -12,7 +12,13 @@
         
         {%- if main_image -%}
           <div class="product-gallery__image-wrapper zoom-container">
-            <img src="{{ main_image | image_url: width: 1000 }}" alt="{{ main_image.alt | escape }}" class="product-gallery__image zoom-image">
+            <button class="gallery-nav-btn prev" aria-label="Previous Image" onclick="navigateGallery(-1)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <img src="{{ main_image | image_url: width: 1000 }}" alt="{{ main_image.alt | escape }}" class="product-gallery__image zoom-image" id="main-product-image">
+            <button class="gallery-nav-btn next" aria-label="Next Image" onclick="navigateGallery(1)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag: 'product-gallery__image' }}
@@ -201,6 +207,28 @@
     transform: scale(1.5);
     cursor: zoom-in;
   }
+
+  .gallery-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.8);
+    border: none;
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-bg);
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+  }
+  .gallery-nav-btn:hover {
+    background: var(--color-primary);
+    transform: translateY(-50%) scale(1.1);
+  }
+  .gallery-nav-btn.prev { left: 1rem; }
+  .gallery-nav-btn.next { right: 1rem; }
 
   .product-gallery__badges {
     position: absolute;
@@ -429,7 +457,39 @@
         const y = (e.clientY - top) / height * 100;
         img.style.transformOrigin = `${x}% ${y}%`;
       });
+      container.addEventListener('mouseleave', () => {
+        img.style.transformOrigin = `center center`;
+      });
     }
+
+    // Thumbnail click logic
+    const thumbs = document.querySelectorAll('.product-gallery__thumb');
+    if (thumbs.length > 0) {
+      thumbs.forEach((thumb, idx) => {
+        thumb.dataset.index = idx;
+        thumb.addEventListener('click', function() {
+          const newSrc = this.querySelector('img').src.replace('width=200', 'width=1000');
+          if (img) img.src = newSrc;
+          
+          thumbs.forEach(t => t.classList.remove('is-active'));
+          this.classList.add('is-active');
+        });
+      });
+    }
+
+    // Carousel arrows logic
+    window.navigateGallery = function(direction) {
+      const activeThumb = document.querySelector('.product-gallery__thumb.is-active');
+      if (!activeThumb || thumbs.length === 0) return;
+      
+      let currentIndex = parseInt(activeThumb.dataset.index, 10);
+      let newIndex = currentIndex + direction;
+      
+      if (newIndex < 0) newIndex = thumbs.length - 1;
+      if (newIndex >= thumbs.length) newIndex = 0;
+      
+      thumbs[newIndex].click();
+    };
 
     // Tabs logic
     const tabs = document.querySelectorAll('.product-tab__btn');
