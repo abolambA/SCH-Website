@@ -319,6 +319,142 @@
         "generic_error": "تعذر إضافة الحساب البنكي. حاول مرة أخرى لاحقاً."
       },
       "add_payment_method_banner": "أضف طريقة دفع لتسريع عملية الدفع أو الخدمات المعتمدة مسبقًا"
+    },
+    "order_details": {
+      "payment_confirmation": {
+        "payment_received": "شكراً لك! تم استلام دفعتك {{amount}} .",
+        "full_payment_received": "شكراً لك! تم استلام دفعتك {{amount}} ، وقد تم سداد هذا الطلب بالكامل.",
+        "payment_authorized": "شكراً لك! سيتم تحديث الرصيد عند استلام الدفعة.",
+        "dismiss_label": "تجاهل تأكيد الدفع"
+      },
+      "payment": {
+        "status_in_review": "يُستحق الدفع بعد المراجعة",
+        "status_unpaid": "تاريخ استحقاق الدفع: {{date}}",
+        "title": "قسط",
+        "payment_type": {
+          "gift_card": "بطاقة هدايا",
+          "store_credit": "رصيد المتجر",
+          "money_order": "حوالة بريدية",
+          "cash_on_delivery": "الدفع عند الاستلام (COD)",
+          "bank_deposit": "إيداع بنكي",
+          "manual": "يدوي"
+        },
+        "card_payment_details": "ينتهي بـ {{lastDigits}} - {{formattedTransactionAmount}}",
+        "gift_card_payment_details": "ينتهي بـ {{lastDigits}} - {{formattedTransactionAmount}}",
+        "store_credit_payment_details": "رصيد المتجر - {{formattedTransactionAmount}}",
+        "shop_pay_installments": {
+          "paid_in_installments": "تم الدفع بالتقسيط عبر خدمة الدفع الإلكتروني",
+          "view_schedule": "عرض الجدول الزمني"
+        },
+        "manual_payment_methods": {
+          "money_order": "حوالة بريدية - {{formattedTransactionAmount}}",
+          "cash_on_delivery": "الدفع عند الاستلام (COD) - {{formattedTransactionAmount}}",
+          "bank_deposit": "إيداع بنكي - {{formattedTransactionAmount}}",
+          "manual": "يدوي - {{formattedTransactionAmount}}"
+        },
+        "transactions": {
+          "show_all": "عرض الكل",
+          "show_less": "عرض أقل",
+          "details": "تفاصيل",
+          "payment_details": "تفاصيل الدفع"
+        },
+        "emv_details": {
+          "auth": "المصادقة:",
+          "aid": "يساعد:",
+          "source": "مصدر:"
+        }
+      },
+      "paid_with_shop_pay_installments_card": {
+        "paid_with_shop_pay_installments": "تم الدفع عن طريق أقساط Shop Pay",
+        "description": "تابع جدول دفعاتك بدقة من خلال التذكيرات الموجودة في تطبيق المتجر.",
+        "payment_reminders_button": "احصل على تذكيرات بالدفع",
+        "desktop_qr_code_content": {
+          "title": "امسح ضوئيًا للتذكيرات",
+          "description": "احصل على تذكيرات بأقساطك مع تطبيق Shop."
+        }
+      },
+      "refunded_amount": "تم استرداد المبلغ",
+      "request_return_failed": "حدثت مشكلة أثناء معالجة طلبك. يرجى المحاولة مرة أخرى.",
+      "login_card": {
+        "resend_link_and_login": "لعرض تفاصيل طلبك، قم بتسجيل الدخول أو أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الهاتف المستخدم عند إتمام عملية الشراء.",
+        "resend_link_only": "للاطلاع على تفاصيل طلبك، أرسل رابطًا جديدًا إلى البريد الإلكتروني أو رقم الهاتف المستخدم عند إتمام عملية الشراء.",
+        "log_in": "تسجيل الدخول",
+        "resend_link": "أرسل رابطًا جديدًا",
+        "link_expired": "انتهت صلاحية الرابط"
+      },
+      "remaining_amount": "متبقي",
+      "marketing_section_title": "أخبار وعروض",
+      "marketing_description": "ستتلقى رسائل تسويقية عبر البريد الإلكتروني. يمكنك إلغاء الاشتراك في أي وقت.",
+      "marketing_checkbox_label": "راسلني عبر البريد الإلكتروني لإطلاعي على الأخبار والعروض.",
+      "marketing_checkmark_label": "أنت مشترك في خدمة تلقي الأخبار والعروض عبر البريد الإلكتروني",
+      "marketing_pending_confirmation": "انقر على الرابط الموجود في بريدك الإلكتروني للتأكيد.",
+      "marketing_resend_email": "أعد إرسال البريد الإلكتروني",
+      "marketing_resend_email_success": "تم إرسال الرابط",
+      "returns": {
+        "expand_events_label": "عرض التفاصيل",
+        "hide_events_label": "إخفاء التفاصيل",
+        "ineligible_return_message": "لا يمكن إرجاع أي من المنتجات في هذا الطلب.",
+        "ineligible_return_message_when_returned": "لا يمكن إرجاع أي منتجات إضافية في هذا الطلب.",
+        "print_shipping_label": "اطبع ملصق الشحن",
+        "return_and_refund_modal_header": "سياسة الاسترداد",
+        "tracking_number": "عدد تتبع:",
+        "exchange_header": "تبادل الأشياء",
+        "exchange_subheader": "ستتم إضافة المنتجات البديلة إلى الطلب بمجرد اكتمال عملية الإرجاع."
+      },
+      "shipping": {
+        "address": "عنوان الشحن",
+        "address_map_marker": "عنوان الشحن",
+        "method": "طريقة الشحن",
+        "summary": "شحن",
+        "free": "حر",
+        "free_shipping_discount": "ًالشحن مجانا",
+        "one_time": "شحن لمرة واحدة",
+        "subscription": "شحن الاشتراكات"
+      },
+      "pickup": {
+        "pickup": "يلتقط",
+        "pickup_location": "موقع الاستلام",
+        "pickup_point": "نقطة الاستلام"
+      },
+      "show_items": "عرض",
+      "total_savings": "إجمالي الوفورات",
+      "show_order_summary": "عرض ملخص الطلب",
+      "hide_order_summary": "إخفاء ملخص الطلب",
+      "subtitle": "تم التأكيد {{date}}",
+      "subtotal": "المجموع الفرعي",
+      "subtotal_label_with_quantity": {
+        "one": "المجموع الفرعي",
+        "other": "المجموع الفرعي · {{count}} عنصرًا"
+      },
+      "summary_list_title_accessibility_label": "طلب المنتجات",
+      "summary_title": "ملخص الطلب",
+      "summary_totals_title_accessibility_label": "إجمالي الطلبات",
+      "shop_order_tracking": {
+        "download_shop_to_track": "قم بتنزيل تطبيق المتجر لتتبع الشحنة",
+        "track_order_with_shop": "تتبع طلبك مع المتجر",
+        "title_header": "امسح ضوئيًا باستخدام هاتفك",
+        "real_time_delivery_updates": "سيرسل لك المتجر تحديثات فورية عن عملية التسليم بمجرد شحن طلبك."
+      },
+      "edit_summary": {
+        "added": "تمت الإضافة",
+        "added_with_quantity": "تمت إضافة {{quantity}}",
+        "removed": "تمت إزالته",
+        "removed_with_quantity": "تمت إزالة {{quantity}}",
+        "updated_at": "تم تحديث طلبك بتاريخ {{date}}",
+        "returned": "عاد",
+        "returned_with_quantities": "تم إرجاع {{delta}} من {{total}}",
+        "removed_with_quantities": "تمت إزالة {{delta}} من {{total}}",
+        "return_line_item_removed": "تمت إزالته من قائمة الإرجاع",
+        "return_line_item_removed_with_quantities": "تمت إزالة {{delta}} من الإرجاع"
+      },
+      "shop_pay": {
+        "order_completed_with": "تم إتمام الطلب بنجاح.",
+        "learn_more": "يتعلم أكثر"
+      },
+      "taxes": "الضرائب",
+      "taxes_included": "يشمل ذلك {{amount}} في الضرائب",
+      "duties_and_taxes_included": "يشمل السعر الإجمالي الرسوم والضرائب. لا توجد رسوم إضافية على التوصيل.",
+      "duties": "الواجبات"
     }
   },
   "shopify": {
