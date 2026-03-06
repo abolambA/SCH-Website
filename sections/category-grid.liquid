@@ -32,7 +32,7 @@
       </div>
     {%- else -%}
       <!-- Fallbacks that map to popular categories grabbing real product images -->
-      {%- assign default_labels = "3x3,2x2,4x4,Pyraminx,Megaminx,Accessories" | split: "," -%}
+      {%- assign default_labels = "3x3,2x2,4x4,5x5,Pyraminx,Megaminx,Skewb,Square-1,Clock,Accessories,Timers,Lubricants" | split: "," -%}
       {%- for label in default_labels -%}
         {%- assign expected_handle = label | handleize -%}
         {%- assign matched_coll = collections[expected_handle] -%}
@@ -44,11 +44,7 @@
                 <img src="{{ auto_img | image_url: width: 600 }}" alt="{{ label | escape }}" loading="lazy" style="width:80%;height:80%;object-fit:contain;">
               {%- else -%}
                 <div class="collection-icon-fallback">
-                  <svg viewBox="0 0 80 80" fill="none" width="60" height="60">
-                    <rect x="10" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.3)" stroke="#FFD000" stroke-width="1.5"/>
-                    <rect x="30" y="10" width="20" height="20" rx="2" fill="rgba(255,208,0,0.2)" stroke="#FFD000" stroke-width="1.5"/>
-                    <rect x="10" y="30" width="20" height="20" rx="2" fill="rgba(26,159,224,0.2)" stroke="#1A9FE0" stroke-width="1.5"/>
-                  </svg>
+                  <span style="font-family: var(--font-display); font-weight: 700; color: var(--color-text-muted);">{{ label | slice: 0, 2 | upcase }}</span>
                 </div>
               {%- endif -%}
             </div>

@@ -265,16 +265,24 @@
   }
 
   .carousel-btn {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: rgba(255,208,0,0.1);
-    border: 1px solid rgba(255,208,0,0.3);
-    color: #FFD000; cursor: pointer;
+    width: 44px; height: 44px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7); 
+    cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
   }
 
+  .carousel-btn svg {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+
   .carousel-btn:hover {
-    background: rgba(255,208,0,0.22);
+    color: #FFD000;
+    transform: scale(1.1);
   }
 
   .carousel-dots {
@@ -291,7 +299,7 @@
   }
 
   .carousel-dot.is-active {
-    width: 20px; background: #FFD000; transform: none;
+    background: #FFD000;
   }
 
   @media (max-width: 768px) {
