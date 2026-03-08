@@ -1,6 +1,9 @@
 <section class="hero hero-slider" data-section="{{ section.id }}">
   <div class="hero-particles"></div>
 
+  <!-- Permanent dark overlay — always behind content, never flashes -->
+  <div class="hero-bg-overlay"></div>
+
   <div class="carousel-container">
     <div class="carousel-track">
       {%- if section.blocks.size > 0 -%}
@@ -21,7 +24,7 @@
                   </div>
                 {%- else -%}
                   <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
-                    {{ block.settings.tagline | default: 'Editor"s Choice' }}
+                    {{ block.settings.tagline | default: 'Editor\'s Choice' }}
                   </p>
                   <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
                     {% if forloop.index == 1 %}GAN 14 MagLev
@@ -33,7 +36,6 @@
                   </div>
                 {%- endif -%}
               </div>
-              
               <div class="hero__image-col">
                 <div class="hero__image-wrapper tilt-enabled">
                   {%- if prod != blank and prod.featured_image -%}
@@ -52,7 +54,6 @@
           </div>
         {%- endfor -%}
       {%- else -%}
-        <!-- Real products fallback from speedcubes collection -->
         {%- assign hero_collection = collections['speedcubes'] -%}
         {%- assign hero_products = hero_collection.products | default: collections['all'].products -%}
         {%- for prod in hero_products limit: 6 -%}
@@ -85,18 +86,7 @@
               <div class="hero__image-col">
                 <div class="hero__image-wrapper tilt-enabled">
                   {%- if prod.featured_image -%}
-                    {%- assign prod_handle = prod.handle | default: forloop.index -%}
-                    <div class="cube-gallery-container" style="position: relative; width: 100%; height: 100%;">
-                      <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img active" loading="eager" id="hero-img-{{ prod_handle }}" data-index="0">
-                      
-                      {%- if prod.images.size > 1 -%}
-                        <div style="display: none;" id="hero-data-{{ prod_handle }}">
-                          {%- for img in prod.images -%}
-                            <span data-src="{{ img | image_url: width: 800 }}"></span>
-                          {%- endfor -%}
-                        </div>
-                      {%- endif -%}
-                    </div>
+                    <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="eager">
                   {%- else -%}
                     <div class="hero-cube-placeholder">
                       <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
@@ -110,13 +100,12 @@
             </div>
           </div>
         {%- else -%}
-          <!-- Last resort: brand name slides if collection is empty -->
           <div class="carousel-slide is-active" data-index="0">
             <div class="container hero__content-wrapper">
               <div class="hero__content">
                 <p class="hero__highlight font-display color-accent reveal visible">Premium Speedcubes</p>
                 <h1 class="hero__title reveal visible">The Best Cubes.<br>Delivered Fast.</h1>
-                <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
+                <div class="hero__buttons reveal visible">
                   <a href="/collections/speedcubes" class="btn btn-primary">Shop Now</a>
                 </div>
               </div>
@@ -126,14 +115,12 @@
       {%- endif -%}
     </div>
 
-    <!-- Controls -->
     {%- assign dot_count = section.blocks.size -%}
     {%- if dot_count == 0 -%}{%- assign dot_count = 3 -%}{%- endif -%}
-    
     {%- if dot_count > 1 -%}
       <div class="hero-carousel-controls">
         <button class="carousel-btn prev" aria-label="Previous Slide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
         <div class="carousel-dots">
           {%- for i in (1..dot_count) -%}
@@ -141,7 +128,7 @@
           {%- endfor -%}
         </div>
         <button class="carousel-btn next" aria-label="Next Slide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
       </div>
     {%- endif -%}
@@ -152,274 +139,102 @@
   .hero-slider {
     position: relative;
     min-height: calc(100vh - 80px);
-    height: auto;
-    background: linear-gradient(135deg, rgba(6,15,26,0.95) 0%, rgba(6,15,26,0.7) 100%);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    background: #071726;
   }
-
-  .carousel-container {
-    width: 100%;
-    flex: 1;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 50px;
-  }
-
-  .carousel-track {
-    display: flex;
-    flex: 1;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    width: 100%;
-  }
-
-  .carousel-slide {
-    min-width: 100%;
-    opacity: 0.3;
-    transition: opacity 0.5s ease;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .carousel-slide.is-active {
-    opacity: 1;
-  }
-
-  .hero__content-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 4rem;
-  }
-
-  .hero__content {
-    flex: 1;
-    max-width: 500px;
-  }
-
-  .hero__highlight {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .hero__title {
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    line-height: 1.1;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-
-  .hero__image-col {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
-  }
-
-  .hero__image-wrapper {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1/1;
-    position: relative;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
-    transition: transform 0.1s ease-out, filter 0.3s ease;
-  }
-
-  .hero__image-wrapper:hover {
-    filter: drop-shadow(0 30px 60px var(--color-glow));
-  }
-
-  .hero-cube-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .placeholder-svg {
-    background: var(--color-surface);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    fill: var(--color-text-muted);
-  }
-
-  /* Positioned INSIDE the hero section, absolutely at the bottom */
-  .hero-carousel-controls {
+  .hero-bg-overlay {
     position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(6,15,26,0.88) 0%, rgba(6,15,26,0.55) 55%, rgba(6,15,26,0.25) 100%);
+    z-index: 2;
+    pointer-events: none;
   }
-
+  .carousel-container {
+    width: 100%; flex: 1; position: relative; z-index: 3;
+    display: flex; flex-direction: column; padding-bottom: 70px;
+  }
+  .carousel-track {
+    display: flex; flex: 1;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1); width: 100%;
+  }
+  .carousel-slide { min-width: 100%; opacity: 1; display: flex; align-items: center; position: relative; }
+  .hero__content-wrapper {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; gap: 4rem; padding-top: 3rem; padding-bottom: 2rem;
+  }
+  .hero__content { flex: 1; max-width: 500px; }
+  .hero__highlight { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; font-weight: 700; }
+  .hero__title { font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 1.1; text-transform: uppercase; margin-bottom: 2rem; text-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+  .hero__image-col { flex: 1; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
+  .hero__image-wrapper { width: 100%; max-width: 480px; aspect-ratio: 1/1; position: relative; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4)); transition: filter 0.3s ease; }
+  .hero__image-wrapper:hover { filter: drop-shadow(0 30px 60px var(--color-glow)); }
+  .hero-cube-img { width: 100%; height: 100%; object-fit: contain; }
+  .hero-carousel-controls {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; align-items: center; gap: 16px;
+  }
   .carousel-btn {
-    width: 44px; height: 44px;
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.7); 
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    border-radius: 50%; color: rgba(255,255,255,0.85);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0;
   }
-
-  .carousel-btn svg {
-    width: 28px;
-    height: 28px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-  }
-
-  .carousel-btn:hover {
-    color: #FFD000;
-    transform: scale(1.1);
-  }
-
-  .carousel-dots {
-    display: flex;
-    gap: 8px;
-  }
-
+  .carousel-btn:hover { background: #FFD000; border-color: #FFD000; color: #071726; transform: scale(1.12); }
+  .carousel-dots { display: flex; gap: 6px; align-items: center; }
   .carousel-dot {
-    width: 8px; height: 8px; border-radius: 4px;
-    background: rgba(255,255,255,0.25);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0;
   }
-
-  .carousel-dot.is-active {
-    background: #FFD000;
-  }
-
+  .carousel-dot.is-active { background: #FFD000; width: 22px; border-radius: 4px; }
   @media (max-width: 768px) {
-    .hero__content-wrapper {
-      flex-direction: column-reverse;
-      text-align: center;
-      gap: 2rem;
-      padding-top: 2rem;
-    }
-    .hero__title {
-      font-size: 2.5rem;
-    }
-    .hero__image-wrapper {
-      max-width: 300px;
-    }
-    .hero__buttons {
-      justify-content: center;
-    }
+    .hero__content-wrapper { flex-direction: column-reverse; text-align: center; gap: 1.5rem; padding-top: 2rem; padding-bottom: 1rem; }
+    .hero__title { font-size: 2rem; }
+    .hero__image-wrapper { max-width: 220px; }
+    .hero__buttons { justify-content: center; display: flex; }
+    .carousel-container { padding-bottom: 60px; }
+    .hero-carousel-controls { bottom: 14px; gap: 10px; }
+    .carousel-btn { width: 32px; height: 32px; }
+    .carousel-btn svg { width: 14px; height: 14px; }
+    .carousel-dot { width: 6px; height: 6px; }
+    .carousel-dot.is-active { width: 16px; }
   }
 </style>
 
 <script>
-  function changeHeroImage(handle, dir, e) {
-    if (e) { e.preventDefault(); e.stopPropagation(); }
-    const imgEl = document.getElementById('hero-img-' + handle);
-    const dataContainer = document.getElementById('hero-data-' + handle);
-    if (!imgEl || !dataContainer) return;
-    
-    const spans = dataContainer.querySelectorAll('span');
-    if (spans.length === 0) return;
-    
-    let currentIndex = parseInt(imgEl.getAttribute('data-index') || '0', 10);
-    currentIndex += dir;
-    if (currentIndex < 0) currentIndex = spans.length - 1;
-    if (currentIndex >= spans.length) currentIndex = 0;
-    
-    const newSrc = spans[currentIndex].getAttribute('data-src');
-    imgEl.src = newSrc;
-    imgEl.setAttribute('data-index', currentIndex);
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.carousel-track');
     const slides = document.querySelectorAll('.carousel-slide');
     const prevBtn = document.querySelector('.carousel-btn.prev');
     const nextBtn = document.querySelector('.carousel-btn.next');
     const dots = document.querySelectorAll('.carousel-dot');
-    
     if(!track || slides.length === 0) return;
-
-    let currentIndex = 0;
-    let autoSlideInterval;
-
+    let currentIndex = 0, autoSlideInterval;
     function goToSlide(index) {
       if(index < 0) index = slides.length - 1;
       if(index >= slides.length) index = 0;
-      
       currentIndex = index;
-      const offset = currentIndex * -100;
-      track.style.transform = `translateX(${offset}%)`;
-      
+      track.style.transform = `translateX(${currentIndex * -100}%)`;
       slides.forEach(s => s.classList.remove('is-active'));
       slides[currentIndex].classList.add('is-active');
-      
       dots.forEach(d => d.classList.remove('is-active'));
       if(dots[currentIndex]) dots[currentIndex].classList.add('is-active');
     }
-
-    if(nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        goToSlide(currentIndex + 1);
-        resetInterval();
-      });
-    }
-
-    if(prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        goToSlide(currentIndex - 1);
-        resetInterval();
-      });
-    }
-
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        goToSlide(idx);
-        resetInterval();
-      });
-    });
-
-    function startInterval() {
-      autoSlideInterval = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 5000); // 5 seconds per slide
-    }
-
-    function resetInterval() {
-      clearInterval(autoSlideInterval);
-      startInterval();
-    }
-
-    // Touch swipe support
+    if(nextBtn) nextBtn.addEventListener('click', () => { goToSlide(currentIndex + 1); resetInterval(); });
+    if(prevBtn) prevBtn.addEventListener('click', () => { goToSlide(currentIndex - 1); resetInterval(); });
+    dots.forEach((dot, idx) => { dot.addEventListener('click', () => { goToSlide(idx); resetInterval(); }); });
+    function startInterval() { autoSlideInterval = setInterval(() => goToSlide(currentIndex + 1), 5000); }
+    function resetInterval() { clearInterval(autoSlideInterval); startInterval(); }
     let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-      clearInterval(autoSlideInterval);
-    });
-
+    track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(autoSlideInterval); }, {passive:true});
     track.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if(Math.abs(diff) > 50) goToSlide(currentIndex + (diff < 0 ? 1 : -1));
       startInterval();
-    });
-
-    function handleSwipe() {
-      if(touchEndX < touchStartX - 50) goToSlide(currentIndex + 1);
-      if(touchEndX > touchStartX + 50) goToSlide(currentIndex - 1);
-    }
-
+    }, {passive:true});
     startInterval();
   });
 </script>
@@ -427,24 +242,15 @@
 {% schema %}
 {
   "name": "Hero Slider",
-  "max_blocks": 3,
+  "max_blocks": 6,
   "settings": [],
   "blocks": [
     {
       "type": "slide",
       "name": "Product Slide",
       "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Select Product"
-        },
-        {
-          "type": "text",
-          "id": "tagline",
-          "label": "Tagline",
-          "default": "The New Meta"
-        }
+        { "type": "product", "id": "product", "label": "Select Product" },
+        { "type": "text", "id": "tagline", "label": "Tagline", "default": "The New Meta" }
       ]
     }
   ],
