@@ -1,1 +1,307 @@
-/home/claude/sch-theme-fixes/sections/main-product.liquid
+<section class="product-page section" id="MainProduct-{{ section.id }}" data-section="{{ section.id }}">
+  <div class="container">
+    <div class="product-grid">
+
+      <!-- Left: Image Gallery -->
+      <div class="product-gallery reveal">
+        <div class="product-gallery__main">
+          {%- if product.selected_or_first_available_variant.featured_image -%}
+            {%- assign main_image = product.selected_or_first_available_variant.featured_image -%}
+          {%- else -%}
+            {%- assign main_image = product.featured_image -%}
+          {%- endif -%}
+
+          {%- if main_image -%}
+            <div class="product-gallery__image-wrapper">
+              {%- if product.media.size > 1 -%}
+                <button class="pg-nav-btn pg-nav-prev" aria-label="Previous image" onclick="navigateGallery(-1)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+              {%- endif -%}
+              <img src="{{ main_image | image_url: width: 1000 }}" alt="{{ main_image.alt | escape }}" class="product-gallery__image" id="main-product-image">
+              {%- if product.media.size > 1 -%}
+                <button class="pg-nav-btn pg-nav-next" aria-label="Next image" onclick="navigateGallery(1)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'product-gallery__image' }}
+          {%- endif -%}
+
+          <div class="product-gallery__badges">
+            {%- if product.compare_at_price > product.price -%}
+              {% render 'badge', type: 'sale', text: 'SALE' %}
+            {%- endif -%}
+            {%- if product.tags contains 'New' -%}
+              {% render 'badge', type: 'new', text: 'NEW' %}
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="product-gallery__thumbnails">
+            {%- for media in product.media -%}
+              <button class="product-gallery__thumb {% if media.id == main_image.id %}is-active{% endif %}" data-media-id="{{ media.id }}">
+                <img src="{{ media.preview_image | image_url: width: 200 }}" alt="{{ media.alt | escape }}">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Right: Buy Box -->
+      <div class="product-info reveal" style="transition-delay:100ms;">
+        <div class="product-info__sticky">
+          <h1 class="product__title font-display">{{ product.title }}</h1>
+          <div class="product__meta">
+            <p class="font-body" style="color:var(--color-text-muted);">{{ product.vendor }}</p>
+          </div>
+
+          <div class="product__price-container">
+            <span class="product__price font-display color-primary" id="product-price-{{ section.id }}">
+              {{ product.selected_or_first_available_variant.price | money }}
+            </span>
+            {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+              <span class="product__compare-price" id="product-compare-price-{{ section.id }}">
+                {{ product.selected_or_first_available_variant.compare_at_price | money }}
+              </span>
+            {%- endif -%}
+          </div>
+
+          {%- unless product.has_only_default_variant -%}
+            <div class="product__variants">
+              {%- for option in product.options_with_values -%}
+                <fieldset class="variant-fieldset">
+                  <legend class="variant-legend">{{ option.name }}</legend>
+                  <div class="variant-pills">
+                    {%- for value in option.values -%}
+                      <input type="radio"
+                        id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                        name="{{ option.name }}"
+                        value="{{ value | escape }}"
+                        form="product-form-{{ section.id }}"
+                        {% if option.selected_value == value %}checked{% endif %}
+                        class="visually-hidden">
+                      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="variant-pill">{{ value }}</label>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          {%- form 'product', product, id: 'product-form-{{ section.id }}', class: 'product-form' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <div class="product__actions">
+              <div class="product__quantity">
+                <button type="button" class="qty-btn minus">−</button>
+                <input type="number" name="quantity" value="1" min="1" class="qty-input">
+                <button type="button" class="qty-btn plus">+</button>
+              </div>
+              <button type="button" class="btn btn-purchase product-form__submit btn--full"
+                {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+                onclick="CartDrawer.addProduct({{ product.selected_or_first_available_variant.id }}, document.querySelector('.qty-input').value, this)">
+                {%- if product.selected_or_first_available_variant.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+              </button>
+            </div>
+            <div class="product__dynamic-checkout">{{ form | payment_button }}</div>
+          {%- endform -%}
+
+          <div class="product__trust">
+            <div class="trust-icons-row">
+              <div class="trust-icon-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="color-primary"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <span>Free Shipping</span>
+              </div>
+              <div class="trust-icon-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="color-primary"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>Secure Payment</span>
+              </div>
+              <div class="trust-icon-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="color-primary"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><polyline points="3 3 3 8 8 8"></polyline></svg>
+                <span>Easy Returns</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-tabs">
+            <div class="product-tabs__nav">
+              <button class="product-tab__btn is-active" data-target="tab-desc">Description</button>
+              <button class="product-tab__btn" data-target="tab-specs">Specs</button>
+              <button class="product-tab__btn" data-target="tab-shipping">Shipping</button>
+              <div class="product-tabs__indicator"></div>
+            </div>
+            <div class="product-tabs__content">
+              <div class="product-tab__panel is-active" id="tab-desc">
+                <div class="rte font-body" style="color:var(--color-text-muted);">{{ product.description }}</div>
+              </div>
+              <div class="product-tab__panel" id="tab-specs">
+                <div class="rte font-body" style="color:var(--color-text-muted);">
+                  <table class="specs-table">
+                    <tbody>
+                      <tr><th>Size</th><td>56mm</td></tr>
+                      <tr><th>Weight</th><td>73g</td></tr>
+                      <tr><th>Magnet Strength</th><td>Adjustable</td></tr>
+                      <tr><th>Plastic</th><td>Stickerless (Bright)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="product-tab__panel" id="tab-shipping">
+                <div class="rte font-body" style="color:var(--color-text-muted);">
+                  <p>Fast delivery across UAE in 1–2 business days. GCC delivery in 3–5 days. Free shipping on orders over 100 AED.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-page { padding-top: 2rem; padding-bottom: 4rem; }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .product-gallery__main { position: relative; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; }
+  .product-gallery__image-wrapper { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; }
+  .product-gallery__image { width: 100%; height: 100%; object-fit: contain; display: block; padding: 1.5rem; }
+
+  .pg-nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+    width: 38px; height: 38px;
+    background: rgba(7,23,38,0.85); border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 50%; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; padding: 0; backdrop-filter: blur(4px);
+  }
+  .pg-nav-btn:hover { background: #FFD000; border-color: #FFD000; color: #071726; }
+  .pg-nav-prev { left: 12px; }
+  .pg-nav-next { right: 12px; }
+
+  .product-gallery__badges { position: absolute; top: 1rem; left: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .product-gallery__thumbnails { display: flex; gap: 0.6rem; overflow-x: auto; padding: 0.8rem 1rem; scrollbar-width: thin; border-top: 1px solid var(--color-border); }
+  .product-gallery__thumb { width: 68px; height: 68px; flex-shrink: 0; border: 2px solid transparent; border-radius: 8px; background: var(--color-bg); padding: 0.3rem; cursor: pointer; transition: border-color 0.2s; }
+  .product-gallery__thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .product-gallery__thumb.is-active, .product-gallery__thumb:hover { border-color: var(--color-primary); }
+
+  .product-info__sticky { position: sticky; top: 80px; }
+  .product__title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.5rem; }
+  .product__meta { margin-bottom: 1.2rem; }
+  .product__price-container { margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+  .product__price { font-size: 2rem; font-weight: 900; }
+  .product__compare-price { color: var(--color-text-muted); text-decoration: line-through; font-size: 1.1rem; font-family: var(--font-body); }
+  .product__variants { margin-bottom: 1.5rem; }
+  .variant-fieldset { border: none; padding: 0; margin: 0 0 1rem; }
+  .variant-legend { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem; display: block; }
+  .variant-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .variant-pill { display: inline-block; padding: 0.5rem 1rem; border: 1.5px solid var(--color-border); border-radius: 50px; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; font-weight: 600; color: var(--color-text-muted); }
+  input[type="radio"]:checked + .variant-pill { background: var(--color-primary); color: var(--color-bg); border-color: var(--color-primary); }
+
+  .product__actions { display: flex; gap: 0.8rem; margin-bottom: 1rem; align-items: stretch; }
+  .product__quantity { display: flex; align-items: center; border: 1.5px solid var(--color-border); border-radius: 10px; background: var(--color-surface); flex-shrink: 0; }
+  .qty-btn { background: none; border: none; color: var(--color-text); width: 38px; height: 48px; cursor: pointer; font-size: 1.2rem; transition: color 0.2s; }
+  .qty-btn:hover { color: var(--color-primary); }
+  .qty-input { width: 44px; height: 48px; background: none; border: none; text-align: center; color: var(--color-text); font-size: 1rem; -moz-appearance: textfield; padding: 0; }
+  .qty-input::-webkit-outer-spin-button, .qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  .product__dynamic-checkout { margin: 0.8rem 0 1.2rem; }
+  .product__trust { padding-top: 1.2rem; border-top: 1px solid var(--color-border); margin-bottom: 1.5rem; }
+  .trust-icons-row { display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+  .trust-icon-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--color-text-muted); flex: 1; }
+
+  .product-tabs { border-top: 1px solid var(--color-border); padding-top: 1.2rem; }
+  .product-tabs__nav { display: flex; border-bottom: 1px solid var(--color-border); position: relative; }
+  .product-tab__btn { background: none; border: none; padding: 0.8rem 1.2rem; color: var(--color-text-muted); font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: color 0.2s; }
+  .product-tab__btn.is-active { color: var(--color-text); }
+  .product-tabs__indicator { position: absolute; bottom: -1px; left: 0; height: 2px; background: var(--color-primary); transition: transform 0.3s, width 0.3s; width: 80px; }
+  .product-tabs__content { padding-top: 1rem; }
+  .product-tab__panel { display: none; }
+  .product-tab__panel.is-active { display: block; }
+
+  .specs-table { width: 100%; border-collapse: collapse; }
+  .specs-table th, .specs-table td { padding: 0.7rem 0; border-bottom: 1px solid var(--color-border); font-size: 0.9rem; }
+  .specs-table th { color: var(--color-text); width: 40%; text-align: left; }
+
+  @media (max-width: 768px) {
+    .product-page { padding-top: 1rem; padding-bottom: 2rem; }
+    .product-info__sticky { position: static; }
+    .product__actions { flex-direction: column; }
+    .product__quantity { width: fit-content; }
+    .trust-icons-row { gap: 1rem; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainImg = document.getElementById('main-product-image');
+    const thumbs = document.querySelectorAll('.product-gallery__thumb');
+
+    if (thumbs.length > 0) {
+      thumbs.forEach((thumb, idx) => {
+        thumb.dataset.index = idx;
+        thumb.addEventListener('click', function() {
+          const newSrc = this.querySelector('img').src.replace('width=200', 'width=1000');
+          if (mainImg) mainImg.src = newSrc;
+          thumbs.forEach(t => t.classList.remove('is-active'));
+          this.classList.add('is-active');
+        });
+      });
+    }
+
+    window.navigateGallery = function(dir) {
+      const active = document.querySelector('.product-gallery__thumb.is-active');
+      if (!active || thumbs.length === 0) return;
+      let idx = parseInt(active.dataset.index || '0', 10) + dir;
+      if (idx < 0) idx = thumbs.length - 1;
+      if (idx >= thumbs.length) idx = 0;
+      thumbs[idx].click();
+    };
+
+    const galleryWrap = document.querySelector('.product-gallery__image-wrapper');
+    if (galleryWrap && thumbs.length > 1) {
+      let tStart = 0;
+      galleryWrap.addEventListener('touchstart', e => tStart = e.changedTouches[0].screenX, {passive:true});
+      galleryWrap.addEventListener('touchend', e => {
+        const diff = e.changedTouches[0].screenX - tStart;
+        if (Math.abs(diff) > 40) navigateGallery(diff < 0 ? 1 : -1);
+      }, {passive:true});
+    }
+
+    const tabs = document.querySelectorAll('.product-tab__btn');
+    const panels = document.querySelectorAll('.product-tab__panel');
+    const indicator = document.querySelector('.product-tabs__indicator');
+    if (indicator && tabs.length > 0) indicator.style.width = tabs[0].offsetWidth + 'px';
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('is-active'));
+        panels.forEach(p => p.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const panel = document.getElementById(tab.dataset.target);
+        if (panel) panel.classList.add('is-active');
+        if (indicator) { indicator.style.width = tab.offsetWidth + 'px'; indicator.style.transform = `translateX(${tab.offsetLeft}px)`; }
+      });
+    });
+
+    const minus = document.querySelector('.qty-btn.minus');
+    const plus = document.querySelector('.qty-btn.plus');
+    const qtyInput = document.querySelector('.qty-input');
+    if (minus && plus && qtyInput) {
+      minus.addEventListener('click', () => { let v = parseInt(qtyInput.value)||1; if(v>1) qtyInput.value=v-1; });
+      plus.addEventListener('click', () => { let v = parseInt(qtyInput.value)||1; qtyInput.value=v+1; });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Page",
+  "settings": []
+}
+{% endschema %}

@@ -1,1 +1,361 @@
-/home/claude/sch-theme-fixes/sections/header.liquid
+<style>
+  #shopify-section-{{ section.id }} {
+    position: sticky;
+    top: 0;
+    z-index: 1000 !important;
+    overflow: visible !important;
+  }
+</style>
+
+<header class="header sticky-header">
+  <div class="container header__inner">
+
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="nav-logo-wrap">
+      {%- if settings.logo != blank -%}
+        <img src="{{ settings.logo | image_url: width: 160 }}" alt="{{ shop.name | escape }}" class="nav-logo-img" loading="eager">
+      {%- else -%}
+        <img src="{{ 'Logo removed BG.png' | asset_url }}" alt="SpeedCubeHub Logo" class="nav-logo-img" loading="eager">
+      {%- endif -%}
+      <span class="nav-logo-text">{{ shop.name | default: 'SpeedCubeHub' }}</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="header__nav hide-on-mobile" aria-label="Main navigation">
+      <ul class="header__menu">
+        <li class="header__menu-item">
+          <a href="{{ routes.root_url }}" class="header__menu-link">Home</a>
+        </li>
+        <li class="header__menu-item header__menu-item--has-mega">
+          <a href="{{ routes.all_products_collection_url }}" class="header__menu-link" aria-expanded="false">
+            Shop
+            <svg class="header__menu-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="mega-menu" role="navigation">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h3 class="mega-col-heading" style="color: var(--color-primary)">GAN</h3>
+                <ul>
+                  <li><a href="/collections/gan-3x3">3×3</a></li>
+                  <li><a href="/collections/gan-2x2">2×2</a></li>
+                  <li><a href="/collections/gan-pyraminx">Pyraminx</a></li>
+                  <li><a href="/collections/gan-smart-cubes">Smart Cubes</a></li>
+                  <li><a href="/collections/gan-accessories">Accessories</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h3 class="mega-col-heading" style="color: var(--color-accent)">MoYu</h3>
+                <ul>
+                  <li><a href="/collections/moyu-3x3">3×3</a></li>
+                  <li><a href="/collections/moyu-2x2">2×2</a></li>
+                  <li><a href="/collections/moyu-4x4">4×4</a></li>
+                  <li><a href="/collections/moyu-5x5">5×5</a></li>
+                  <li><a href="/collections/moyu-big-cubes">Big Cubes</a></li>
+                  <li><a href="/collections/moyu-accessories">Accessories</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h3 class="mega-col-heading" style="color: var(--color-secondary)">YJ / YongJun</h3>
+                <ul>
+                  <li><a href="/collections/yj-3x3">3×3</a></li>
+                  <li><a href="/collections/yj-2x2">2×2</a></li>
+                  <li><a href="/collections/yj-pyraminx">Pyraminx</a></li>
+                  <li><a href="/collections/yj-megaminx">Megaminx</a></li>
+                  <li><a href="/collections/yj-budget-series">Budget Series</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h3 class="mega-col-heading" style="color: #a78bfa">QiYi</h3>
+                <ul>
+                  <li><a href="/collections/qiyi-3x3">3×3</a></li>
+                  <li><a href="/collections/qiyi-2x2">2×2</a></li>
+                  <li><a href="/collections/qiyi-4x4">4×4</a></li>
+                  <li><a href="/collections/qiyi-pyraminx">Pyraminx</a></li>
+                  <li><a href="/collections/qiyi-skewb">Skewb</a></li>
+                  <li><a href="/collections/qiyi-accessories">Accessories</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h3 class="mega-col-heading" style="color: #10b981">Shop by Type</h3>
+                <ul>
+                  <li><a href="/collections/3x3">3×3 Cubes</a></li>
+                  <li><a href="/collections/2x2">2×2 Cubes</a></li>
+                  <li><a href="/collections/4x4">4×4 Cubes</a></li>
+                  <li><a href="/collections/5x5">5×5 Cubes</a></li>
+                  <li><a href="/collections/pyraminx">Pyraminx</a></li>
+                  <li><a href="/collections/megaminx">Megaminx</a></li>
+                  <li><a href="/collections/skewb">Skewb</a></li>
+                  <li><a href="/collections/square-1">Square-1</a></li>
+                  <li><a href="/collections/clock">Clock</a></li>
+                  <li><a href="/collections/accessories">Accessories</a></li>
+                  <li><a href="/collections/timers">Timers</a></li>
+                  <li><a href="/collections/lubricants">Lubricants</a></li>
+                </ul>
+              </div>
+              <div class="mega-footer">
+                <a href="{{ routes.all_products_collection_url }}" class="btn btn-purchase" style="width:100%;">View All Products →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="header__menu-item"><a href="/pages/about" class="header__menu-link">About</a></li>
+        <li class="header__menu-item"><a href="/pages/contact" class="header__menu-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Icons -->
+    <div class="header__icons">
+      <div class="header__language-switcher hide-on-mobile">
+        <a href="{% if request.locale.iso_code == 'ar' %}{{ routes.root_url }}{% else %}/ar/{% endif %}"
+           class="header__icon-btn header__lang-btn" aria-label="Switch language">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span class="font-display lang-label">{% if request.locale.iso_code == 'ar' %}EN{% else %}عربي{% endif %}</span>
+        </a>
+      </div>
+
+      <button class="header__icon-btn search-toggle" aria-label="Search" id="search-overlay-trigger">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      {%- if customer -%}
+        <a href="{{ routes.account_url }}" class="header__icon-btn hide-on-mobile" aria-label="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+      {%- else -%}
+        <a href="{{ routes.account_login_url }}" class="header__icon-btn hide-on-mobile" aria-label="Sign In">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+      {%- endif -%}
+
+      <a href="{{ routes.cart_url }}" class="header__icon-btn" data-cart-trigger aria-label="Cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="header-cart-badge">0</span>
+      </a>
+
+      <button class="header__icon-btn header__hamburger show-on-mobile" id="mobile-menu-toggle" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <span class="font-display" style="font-size:1.4rem;font-weight:900;">{{ shop.name }}</span>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+    </div>
+    <div class="mobile-menu-links">
+      <a href="{{ routes.root_url }}" class="mobile-menu-link">Home</a>
+      <div class="mobile-accordion">
+        <button class="mobile-menu-link mobile-accordion-toggle" onclick="this.parentElement.classList.toggle('open')">
+          Shop
+          <svg class="mobile-accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="mobile-accordion-inner">
+          <p class="mobile-accordion-label">By Brand</p>
+          <a href="/collections/gan" class="mobile-sub-link">GAN</a>
+          <a href="/collections/moyu" class="mobile-sub-link">MoYu</a>
+          <a href="/collections/qiyi" class="mobile-sub-link">QiYi</a>
+          <a href="/collections/yj" class="mobile-sub-link">YJ / YongJun</a>
+          <p class="mobile-accordion-label" style="margin-top:0.8rem;">By Type</p>
+          <a href="/collections/3x3" class="mobile-sub-link">3×3 Cubes</a>
+          <a href="/collections/2x2" class="mobile-sub-link">2×2 Cubes</a>
+          <a href="/collections/4x4" class="mobile-sub-link">4×4 Cubes</a>
+          <a href="/collections/pyraminx" class="mobile-sub-link">Pyraminx</a>
+          <a href="/collections/megaminx" class="mobile-sub-link">Megaminx</a>
+          <a href="/collections/skewb" class="mobile-sub-link">Skewb</a>
+          <a href="/collections/accessories" class="mobile-sub-link">Accessories</a>
+          <a href="/collections/lubricants" class="mobile-sub-link">Lubricants</a>
+          <a href="/collections/new-arrivals" class="mobile-sub-link" style="color:var(--color-primary);font-weight:700;">🔥 New Arrivals</a>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" style="display:block;margin-top:0.8rem;text-align:center;min-height:auto;padding:10px;">View All Products →</a>
+        </div>
+      </div>
+      <a href="/pages/about" class="mobile-menu-link">About</a>
+      <a href="/pages/contact" class="mobile-menu-link">Contact</a>
+      {%- if customer -%}
+        <a href="{{ routes.account_url }}" class="mobile-menu-link">Account</a>
+      {%- else -%}
+        <a href="{{ routes.account_login_url }}" class="mobile-menu-link">Sign In</a>
+      {%- endif -%}
+      <div style="padding:14px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <a href="{% if request.locale.iso_code == 'ar' %}{{ routes.root_url }}{% else %}/ar/{% endif %}"
+           style="display:flex;align-items:center;gap:10px;color:var(--color-text);text-decoration:none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span class="font-display" style="font-size:1.1rem;font-weight:700;">{% if request.locale.iso_code == 'ar' %}Switch to English{% else %}التبديل للعربية{% endif %}</span>
+        </a>
+      </div>
+    </div>
+    <div class="mobile-menu-footer">
+      <a href="https://wa.me/000000000" class="mobile-whatsapp-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.21 12.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Message us on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="container search-overlay-inner">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+        <input type="hidden" name="type" value="product">
+        <input class="search-input font-display" type="search" name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search for cubes, brands, or accessories..."
+          id="SearchInput" autocomplete="off">
+        <button type="submit" class="search-submit" aria-label="Submit Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="color-primary" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </form>
+      <button class="search-close" id="search-close" aria-label="Close Search">✕</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileClose = document.getElementById('mobile-menu-close');
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', () => { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+      }
+      if (mobileClose && mobileMenu) {
+        mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+      }
+      const searchTrigger = document.getElementById('search-overlay-trigger');
+      const searchOverlay = document.getElementById('search-overlay');
+      const searchClose = document.getElementById('search-close');
+      const searchInput = document.getElementById('SearchInput');
+      if (searchTrigger && searchOverlay) {
+        searchTrigger.addEventListener('click', () => { searchOverlay.classList.add('active'); setTimeout(() => searchInput && searchInput.focus(), 100); });
+      }
+      if (searchClose && searchOverlay) {
+        searchClose.addEventListener('click', () => searchOverlay.classList.remove('active'));
+      }
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && searchOverlay) searchOverlay.classList.remove('active'); });
+    });
+  </script>
+</header>
+
+<style>
+  .sticky-header {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(7,23,38,0.97);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .sticky-header::before {
+    content: ''; position: absolute; inset: 0;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: -1;
+  }
+  .header__inner {
+    display: flex; justify-content: space-between; align-items: center; height: 64px;
+  }
+  .nav-logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo-img { height: 34px; width: auto; display: block; }
+  .nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--color-text); white-space: nowrap; }
+  @media (max-width: 480px) { .nav-logo-text { display: none; } }
+
+  /* Nav — all items same height & vertical centering */
+  .header__nav { height: 64px; display: flex; align-items: center; }
+  .header__menu { display: flex; list-style: none; height: 100%; align-items: center; gap: 0; margin: 0; padding: 0; }
+  .header__menu-item { height: 100%; display: flex; align-items: center; position: relative; }
+  .header__menu-link {
+    font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+    color: var(--color-text); text-transform: uppercase; letter-spacing: 1px;
+    text-decoration: none; height: 100%; display: flex; align-items: center;
+    padding: 0 1.1rem; transition: color 0.2s ease; white-space: nowrap; gap: 4px;
+  }
+  .header__menu-link:hover { color: var(--color-primary); }
+  .header__menu-caret { opacity: 0.6; transition: transform 0.2s; flex-shrink: 0; }
+  .header__menu-item--has-mega:hover .header__menu-caret { transform: rotate(180deg); }
+
+  /* Mega menu */
+  .header__menu-item--has-mega { position: static; }
+  .mega-menu {
+    position: absolute; top: 64px; left: 0; right: 0; width: 100vw;
+    background: #0D1E2E; border-bottom: 2px solid #FFD000;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    opacity: 0; transform: translateY(-6px); pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s; z-index: 200;
+  }
+  .header__menu-item--has-mega:hover .mega-menu { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .mega-menu-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 2rem; padding: 28px 24px 20px;
+  }
+  .mega-col-heading {
+    font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mega-menu ul { list-style: none; margin: 0; padding: 0; }
+  .mega-menu ul li a { display: block; padding: 5px 0; font-size: 0.85rem; color: #8899AA; text-decoration: none; transition: color 0.15s, padding-left 0.15s; }
+  .mega-menu ul li a:hover { color: #FFF; padding-left: 4px; }
+  .mega-footer { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center; }
+
+  /* Icons */
+  .header__icons { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+  .header__icon-btn {
+    background: none; border: none; color: var(--color-text); cursor: pointer;
+    position: relative; transition: color 0.2s; display: flex; align-items: center; padding: 0; text-decoration: none;
+  }
+  .header__icon-btn:hover { color: var(--color-primary); }
+  .header__lang-btn { gap: 5px; }
+  .lang-label { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; }
+  .header-cart-badge {
+    position: absolute; top: -8px; right: -10px;
+    background: var(--color-primary); color: var(--color-bg);
+    font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+    min-width: 17px; height: 17px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 3px; border: 2px solid var(--color-bg);
+  }
+
+  /* Search overlay */
+  .search-overlay {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: #0D1E2E; border-bottom: 2px solid var(--color-primary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 20px 0;
+    opacity: 0; transform: translateY(-8px); pointer-events: none;
+    transition: all 0.25s ease; z-index: 100;
+  }
+  .search-overlay.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .search-overlay-inner { display: flex; align-items: center; gap: 16px; max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+  .search-form { flex-grow: 1; display: flex; border-radius: 30px; overflow: hidden; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
+  .search-input { flex-grow: 1; background: transparent; border: none; padding: 14px 20px; font-size: 1.1rem; color: var(--color-text); outline: none; }
+  .search-input::placeholder { color: var(--color-text-muted); }
+  .search-submit { background: transparent; border: none; padding: 0 16px; cursor: pointer; }
+  .search-close { background: none; border: none; color: var(--color-text-muted); font-size: 1.4rem; cursor: pointer; transition: color 0.2s; }
+  .search-close:hover { color: #fff; }
+
+  /* Mobile show/hide */
+  .hide-on-mobile { display: flex; }
+  .show-on-mobile { display: none; }
+  @media (max-width: 1023px) {
+    .hide-on-mobile { display: none !important; }
+    .show-on-mobile { display: flex !important; }
+  }
+
+  /* Mobile accordion */
+  .mobile-accordion { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .mobile-accordion-toggle { width: 100%; text-align: left; background: none; border: none; cursor: pointer; }
+  .mobile-accordion-arrow { transition: transform 0.3s; flex-shrink: 0; margin-left: auto; }
+  .mobile-accordion.open .mobile-accordion-arrow { transform: rotate(180deg); }
+  .mobile-accordion-inner { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 1.5rem; }
+  .mobile-accordion.open .mobile-accordion-inner { max-height: 650px; padding: 0 1.5rem 1.5rem; }
+  .mobile-accordion-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary); font-weight: 700; margin: 0.8rem 0 0.3rem; }
+  .mobile-sub-link { display: block; padding: 0.4rem 0; color: var(--color-text-muted); font-size: 0.9rem; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.04); transition: color 0.2s; min-height: auto; }
+  .mobile-sub-link:hover { color: var(--color-primary); }
+
+  /* RTL */
+  [dir="rtl"] .header__inner { flex-direction: row-reverse; }
+  [dir="rtl"] .header__menu { flex-direction: row-reverse; }
+  [dir="rtl"] .mega-menu-inner { direction: rtl; text-align: right; }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}
