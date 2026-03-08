@@ -260,7 +260,17 @@
           "other": "يوجد عدد %{count} من البطاقات المنتهية الصلاحية، والتي يمكنك عرضها وتعديلها في حسابك."
         },
         "waiting_on_taxes_message": "إذا لم يتم حساب ضرائبك خلال الثواني القليلة القادمة، فقم بتحديث الصفحة.",
-        "gift_cards_unavailable": "لم يعد بالإمكان استخدام بطاقة الهدية الخاصة بك لهذا الطلب، وقد تم حذفها."
+        "gift_cards_unavailable": "لم يعد بالإمكان استخدام بطاقة الهدية الخاصة بك لهذا الطلب، وقد تم حذفها.",
+        "purchase_options_card_update_agreement_label_html": "بتحديث طريقة الدفع الخاصة بك، فإنك تفوض عمليات الدفع لأي عملية شراء متكررة أو مؤجلة وفقًا <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{cancellation_policy}\" href=\"%{policy_href}\">لسياسة الإلغاء</a> الخاصة بهذا المتجر.",
+        "subscription_agreement_label": "يُعدّ عنصر واحد أو أكثر في سلة التسوق الخاصة بك عملية شراء مؤجلة أو اشتراك. بمتابعة عملية الدفع، فإنك توافق على خصم المبلغ تلقائيًا من وسيلة الدفع الخاصة بك بالسعر والوتيرة الموضحة في هذه الصفحة حتى انتهاء مدة الاشتراك أو قيامك بإلغائه. تخضع جميع عمليات الإلغاء لشروط وأحكام %{cancelled}.",
+        "subscription_agreement_label_html": "أفهم أنني أوافق على الاشتراك. سيتم تجديده بالسعر والوتيرة المحددين حتى ينتهي أو يتم...\n <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{subscription_policy}\" href=\"%{policy_href}\">تم الإلغاء</a> .\n",
+        "purchase_options_agreement_label": "يُعتبر عنصر واحد أو أكثر في سلة التسوق الخاصة بك عملية شراء مؤجلة أو متكررة. بمتابعة عملية الدفع، فإنك توافق على خصم المبلغ تلقائيًا من وسيلة الدفع الخاصة بك بالسعر والتكرار المذكورين في هذه الصفحة حتى انتهاء العملية أو قيامك بالإلغاء. تخضع جميع عمليات الإلغاء لسياسة الإلغاء.",
+        "purchase_options_agreement_label_html": "أُدرك أن أحد المنتجات أو أكثر في سلة التسوق الخاصة بي هي عملية شراء مؤجلة أو متكررة. بمتابعتي، أوافق على\n <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{subscription_policy}\" href=\"%{policy_href}\">سياسة الإلغاء</a>\n وأُصرِّح لكم بخصم المبلغ من وسيلة الدفع الخاصة بي بالأسعار والتكرار والتواريخ المذكورة في هذه الصفحة حتى تاريخ...\n يتم تنفيذ الطلب أو أقوم بإلغائه، إذا كان ذلك مسموحًا به.\n",
+        "mor_disclaimer_html": "بالنقر أدناه وإتمام طلبك، فإنك توافق على شراء منتجاتك من Global-e بصفتها التاجر المسجل.\n بالنسبة لهذه المعاملة، وفقًا <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{mor_terms}\" href=\"%{terms_href}\">لشروط وأحكام</a> Global-e\n <a class=\"link--small\" data-modal=\"true\" data-title-text=\"%{privacy_policy}\" href=\"%{policy_href}\">وسياسة الخصوصية</a> . غلوبال-إي هي شركة دولية\n موفر خدمة التوصيل إلى %{shop_name}\n",
+        "business_customer_vaulting_payment_label": "احفظ طريقة الدفع هذه عند إتمام عملية الشراء، وامنح شركة %{company} صلاحية تحصيل المبلغ منها في عمليات الشراء المستقبلية لهذا الموقع. يمكن لجميع جهات الاتصال المرتبطة بهذا الموقع استخدام طريقة الدفع هذه.",
+        "business_customer_with_bank_account_vaulting_payment_label": "احفظ طريقة الدفع هذه عند إتمام عملية الشراء، وصرح لشركة %{company} بخصم المبلغ من حسابك مقابل عمليات الشراء المستقبلية التي توافق عليها لهذا الموقع، إلى حين إلغاء العملية. يمكن لجميع جهات الاتصال المرتبطة بهذا الموقع استخدام طريقة الدفع هذه.",
+        "purchase_options_and_vaulting_agreement_label": "يُعدّ عنصر واحد أو أكثر في سلة التسوق الخاصة بك عملية شراء مؤجلة أو اشتراك. بمتابعة عملية الدفع، فإنك توافق على خصم المبلغ تلقائيًا من وسيلة الدفع الخاصة بك بالسعر والوتيرة الموضحة في هذه الصفحة حتى انتهاء مدة الاشتراك أو قيامك بإلغائه. تخضع جميع عمليات الإلغاء لسياسة الإلغاء.",
+        "markets_pro_disclaimer_label": "بتقديم طلبك، فإنك توافق على الشراء من Global-e بصفتها التاجر المسجل، وفقًا لشروط وأحكام Global-e %{markets_pro_terms} و %{privacy_policy}، ومشاركة معلوماتك مع %{shop_name}."
       },
       "billing": {
         "address_confirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان من حسابك؟"
@@ -271,7 +281,8 @@
         "payment_gateway_unsupported_for_deferred_purchase_options": "طريقة الدفع هذه غير متاحة لخيارات الشراء المؤجل.",
         "must_use_available_shipping_rate": "يجب اختيار سعر الشحن من بين أسعار الشحن المتاحة.",
         "split_by_delivery_method_not_allowed": "لا يُسمح بتقسيم الطلبات حسب طريقة التوصيل لهذه الجلسة أو المتجر.",
-        "must_use_available_delivery_address": "يجب اختيار عنوان التوصيل من بين عناوين التوصيل المتاحة."
+        "must_use_available_delivery_address": "يجب اختيار عنوان التوصيل من بين عناوين التوصيل المتاحة.",
+        "payment_gateway_unsupported_for_order_above_maximum_orders_html": "لقد وصلت إلى الحد الأقصى لطلبات متجر التطوير باستخدام معالج الدفع هذا. لتقديم طلب آخر، ستحتاج إلى استخدام بوابة دفع تجريبية. تعرّف على المزيد حول <a href=\"%{docs_link}\">اختبار الطلبات في متاجر التطوير</a> ."
       },
       "redeemable_errors": {
         "gift_card": {
@@ -290,7 +301,9 @@
         "shipping_must_match_billing": "يجب أن يتطابق عنوان الفوترة مع عنوان الشحن. استخدم طريقة دفع مختلفة.",
         "payment_method_not_applicable": "طريقة الدفع هذه غير مناسبة. استخدم طريقة دفع أخرى.",
         "paypal_over_capture": "تم تحديث إجمالي طلبك. ادفع باستخدام {{walletName}} لإتمام طلبك.",
-        "captcha_required": "أدخل معلومات الدفع وقم بحل اختبار التحقق (الكابتشا) لإتمام عملية الشراء."
+        "captcha_required": "أدخل معلومات الدفع وقم بحل اختبار التحقق (الكابتشا) لإتمام عملية الشراء.",
+        "payment_method_billing_address": "حدثت مشكلة في عنوان الفوترة الخاص بطريقة الدفع التي اخترتها، ولم يتم خصم المبلغ منك. يرجى التحقق من العنوان والمحاولة مرة أخرى، أو استخدام طريقة دفع أخرى.",
+        "development_store_order_limit_reached": "لقد وصلت إلى الحد الأقصى لطلبات متجر التطوير باستخدام معالج الدفع هذا. لتقديم طلب آخر، ستحتاج إلى استخدام بوابة دفع تجريبية. تعرّف على المزيد حول %{development_store_order_testing_docs_link}."
       },
       "shipping_errors": {
         "empty_state": "أدخل عنوان الشحن الخاص بك لعرض طرق الشحن المتاحة.",
@@ -358,7 +371,13 @@
         }
       },
       "marketing": {
-        "pending_accept_marketing_checkbox_label": "تحقق من بريدك الإلكتروني لتأكيد اشتراكك في الأخبار والعروض"
+        "pending_accept_marketing_checkbox_label": "تحقق من بريدك الإلكتروني لتأكيد اشتراكك في الأخبار والعروض",
+        "sms": {
+          "disclaimer": {
+            "description_html": "بالتسجيل عبر الرسائل النصية، فإنك توافق على تلقي رسائل تسويقية آلية دورية، بما في ذلك تذكيرات سلة التسوق، على رقم الهاتف المُقدّم. الموافقة ليست شرطًا للشراء. أرسل \"إيقاف\" لإلغاء الاشتراك. أرسل \"مساعدة\" للمساعدة. يختلف عدد الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على سياسة الخصوصية وشروط الخدمة.",
+            "description_transactional_html": "قد تتلقى رسائل نصية لتأكيد طلبك وتحديثات الشحن. أرسل \"إيقاف\" لإلغاء الاشتراك. أرسل \"مساعدة\" للمساعدة. يختلف عدد الرسائل. قد تُطبق رسوم الرسائل والبيانات. اطلع على سياسة الخصوصية وشروط الخدمة."
+          }
+        }
       },
       "change_currency": {
         "card_provider_fx_charges_warning": "قد يفرض مزود بطاقتك رسومًا على معاملات %{currency_code}."
@@ -485,6 +504,11 @@
     "email_marketing": {
       "unsubscribed": {
         "preview": "أنت الآن تستعرض ما سيراه العملاء عند إلغاء اشتراكهم."
+      },
+      "open_tracking": {
+        "updated_policy": {
+          "visibility": "لقد قمنا بتحديث سياستنا، ونتتبع الآن عمليات فتح الرسائل الإلكترونية. سيتم الإبلاغ عن معدلات فتح الرسائل الإلكترونية بشكل مجهول. سنرى فقط ما إذا كنت قد فتحت رسالة إلكترونية كجزء من إجمالي معدل فتح الرسائل الإلكترونية."
+        }
       }
     },
     "errors": {
@@ -493,9 +517,20 @@
         "ctas": {
           "open_a_store": {
             "caption": "ابدأ تجربة مجانية لمدة 3 أيام، ثم استمر مقابل دولار واحد شهريًا للأشهر الثلاثة التالية."
+          },
+          "store_owner": {
+            "caption": "هل تواجه مشكلة في الدخول إلى متجرك؟ جرّب ميزة %{forgot_your_store_link}. إذا كنت ترغب في إعادة تفعيل متجرك، تواصل مع %{shopify_support_link}."
           }
+        },
+        "owner_ctas": {
+          "fix_domain": "بعد الانتهاء من إعداد عنوان موقعك الإلكتروني الجديد، انتقل إلى %{domain_settings_link}. انقر على \"ربط النطاق\" وأدخل: %{domain}.<br> إذا كنت تواجه مشكلة في الدخول إلى متجرك، فجرب صفحة %{forgot_your_store_link}.",
+          "add_storefront": "يمكنك إعداد موقعك الإلكتروني بإضافة قناة المتجر الإلكتروني في ملف %{admin_link}. إذا واجهت مشكلة في الدخول إلى متجرك، فجرّب صفحة %{forgot_your_store_link}."
         }
       }
+    },
+    "subscriptions": {
+      "buyer_consent_product": "هذا المنتج عبارة عن عملية شراء متكررة أو مؤجلة. بمتابعتي، أوافق على سياسة الإلغاء %{cancellationPolicyLink} وأُصرّح لكم بخصم المبلغ من وسيلة الدفع الخاصة بي بالأسعار والتكرار والتواريخ المذكورة في هذه الصفحة حتى يتم تنفيذ طلبي أو أقوم بإلغائه، إن كان ذلك مسموحًا به.",
+      "buyer_consent_cart": "أحد المنتجات أو أكثر في سلة التسوق الخاصة بك عبارة عن عملية شراء متكررة أو مؤجلة. بمتابعتك، أوافق على سياسة الإلغاء %{cancellationPolicyLink} وأُصرّح لك بخصم المبلغ من وسيلة الدفع الخاصة بي بالأسعار والتكرار والتواريخ الموضحة في هذه الصفحة حتى يتم تنفيذ طلبي أو أقوم بإلغائه، إذا كان ذلك مسموحًا به."
     }
   },
   "customer_accounts": {
@@ -503,7 +538,12 @@
       "order_list": {
         "no_order_banner": "لاختبار الإضافة الخاصة بك على صفحة حالة الطلب، قم بإنشاء طلب.",
         "carousel": {
-          "one_products_accessibility_label": "يتضمن الطلب {{lineItemName1}} كمية {{lineItemQuantity1}}"
+          "one_products_accessibility_label": "يتضمن الطلب {{lineItemName1}} كمية {{lineItemQuantity1}}",
+          "three_products_accessibility_label": "يشمل الطلب {{lineItemName1}} كمية {{lineItemQuantity1}} ، {{lineItemName2}} كمية {{lineItemQuantity2}} ، و {{lineItemName3}} كمية {{lineItemQuantity3}}",
+          "four_products_accessibility_label": "يشمل الطلب {{lineItemName1}} الكمية {{lineItemQuantity1}} ، {{lineItemName2}} الكمية {{lineItemQuantity2}} ، {{lineItemName3}} الكمية {{lineItemQuantity3}} ، {{lineItemName4}} الكمية {{lineItemQuantity4}}",
+          "five_products_accessibility_label": "يشمل الطلب {{lineItemName1}} الكمية {{lineItemQuantity1}} ، {{lineItemName2}} الكمية {{lineItemQuantity2}} ، {{lineItemName3}} الكمية {{lineItemQuantity3}} ، {{lineItemName4}} الكمية {{lineItemQuantity4}} ، {{lineItemName5}} الكمية {{lineItemQuantity5}}",
+          "six_products_accessibility_label": "يشمل الطلب {{lineItemName1}} الكمية {{lineItemQuantity1}} ، {{lineItemName2}} الكمية {{lineItemQuantity2}} ، {{lineItemName3}} الكمية {{lineItemQuantity3}} ، {{lineItemName4}} الكمية {{lineItemQuantity4}} ، {{lineItemName5}} الكمية {{lineItemQuantity5}} ، {{lineItemName6}} الكمية {{lineItemQuantity6}}",
+          "six_and_more_products_accessibility_label": "يشمل الطلب {{lineItemName1}} بالكمية {{lineItemQuantity1}} ، {{lineItemName2}} بالكمية {{lineItemQuantity2}} ، {{lineItemName3}} بالكمية {{lineItemQuantity3}} ، {{lineItemName4}} بالكمية {{lineItemQuantity4}} ، {{lineItemName5}} بالكمية {{lineItemQuantity5}} ، {{lineItemName6}} بالكمية {{lineItemQuantity6}} وغيرها."
         },
         "three_images_accessibility_label": "يشمل الطلب {{lineItemName1}} و {{lineItemName2}} و {{lineItemName3}}"
       },
@@ -561,6 +601,11 @@
             "description_authorized": "سيتم خصم المبلغ من طريقة الدفع الخاصة بك في تاريخ الاستحقاق، أو يمكنك الدفع الآن."
           }
         }
+      },
+      "payment_methods": {
+        "payment_delete": {
+          "description_with_replacement": "سيؤدي حذف طريقة الدفع هذه إلى التأثير على المدفوعات المسبقة لهذا الموقع. استبدلها بطريقة دفع بديلة لمواصلة تلقي الطلبات القادمة."
+        }
       }
     },
     "errors": {
@@ -599,7 +644,16 @@
         "resources_list_accessibility_label": "المنتجات التي يتم الاشتراك فيها والمنتجات التي لا تزال قيد الطلب والتي تستخدم طريقة الدفع هذه"
       },
       "payment_delete": {
-        "description_without_replacement": "لن تكون طريقة الدفع هذه متاحة للمشتريات المستقبلية."
+        "description_without_replacement": "لن تكون طريقة الدفع هذه متاحة للمشتريات المستقبلية.",
+        "description_with_replacement": "سيؤثر حذف طريقة الدفع هذه على عمليات الدفع المسبقة. يمكنك استبدالها بطريقة دفع أخرى لمواصلة استلام الطلبات القادمة.",
+        "warning_message_with_replacement": {
+          "with_pending_orders_and_subscriptions": "سيؤثر حذف طريقة الدفع هذه على المدفوعات المسبقة. ما لم تختر طريقة دفع بديلة، فسيتم خصم أي أرصدة مستحقة على الطلبات الحالية من هذه الطريقة. سيُمكّنك اختيار طريقة دفع بديلة من استلام طلبات الاشتراك القادمة دون انقطاع.",
+          "with_pending_orders": "سيؤدي حذف طريقة الدفع هذه إلى إزالتها من حسابك ولن تكون متاحة للمشتريات المستقبلية. ما لم تختر طريقة دفع بديلة، فسيتم خصم أي مبالغ مستحقة على الطلبات الحالية."
+        },
+        "warning_message_without_replacement": {
+          "with_pending_orders_and_subscriptions": "سيؤثر حذف طريقة الدفع هذه على المدفوعات المسبقة. سيتم خصم أي أرصدة مستحقة على الطلبات الحالية من هذه الطريقة، ولكنك لن تتلقى طلبات الاشتراك القادمة. أضف طريقة دفع بديلة لمواصلة تلقي طلبات الاشتراك.",
+          "with_pending_orders": "سيؤدي حذف طريقة الدفع هذه إلى إزالتها من حسابك ولن تكون متاحة للمشتريات المستقبلية. مع ذلك، سيتم خصم أي مبالغ مستحقة على الطلبات الحالية منها."
+        }
       }
     }
   }
