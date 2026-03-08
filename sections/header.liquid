@@ -95,7 +95,7 @@
             </div>
           </div>
         </li>
-        <li class="header__menu-item"><a href="/pages/about" class="header__menu-link">About</a></li>
+        <li class="header__menu-item"><a href="/pages/about-us" class="header__menu-link">About</a></li>
         <li class="header__menu-item"><a href="/pages/contact" class="header__menu-link">Contact</a></li>
       </ul>
     </nav>
@@ -103,7 +103,7 @@
     <!-- Right Icons -->
     <div class="header__icons">
 
-      <!-- Language switcher: preserves path when switching locale -->
+      <!-- Language switcher: preserves current page path -->
       <div class="header__language-switcher hide-on-mobile">
         {%- assign current_path = request.path -%}
         {%- if request.locale.iso_code == 'ar' -%}
@@ -122,12 +122,10 @@
         {%- endif -%}
       </div>
 
-      <!-- Search -->
       <button class="header__icon-btn" aria-label="Search" id="search-overlay-trigger">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </button>
 
-      <!-- Account -->
       {%- if customer -%}
         <a href="{{ routes.account_url }}" class="header__icon-btn hide-on-mobile" aria-label="Account">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -138,13 +136,11 @@
         </a>
       {%- endif -%}
 
-      <!-- Cart — opens drawer, badge shows live Shopify count -->
       <a href="{{ routes.cart_url }}" class="header__icon-btn header__cart-btn" data-cart-trigger aria-label="Cart">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         <span class="header-cart-badge" style="display:{% if cart.item_count > 0 %}flex{% else %}none{% endif %}">{{ cart.item_count }}</span>
       </a>
 
-      <!-- Hamburger -->
       <button class="header__icon-btn show-on-mobile" id="mobile-menu-toggle" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
@@ -164,7 +160,7 @@
           Shop
           <svg class="mobile-accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
-        <div class="mobile-accordion-inner">
+        <div class="mobile-accordion-inner" style="padding:0 1.5rem 1rem;">
           <p class="mobile-accordion-label">By Brand</p>
           <a href="/collections/gan" class="mobile-sub-link">GAN</a>
           <a href="/collections/moyu" class="mobile-sub-link">MoYu</a>
@@ -183,7 +179,7 @@
           <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" style="display:block;margin-top:0.8rem;text-align:center;padding:10px;">View All →</a>
         </div>
       </div>
-      <a href="/pages/about" class="mobile-menu-link">About</a>
+      <a href="/pages/about-us" class="mobile-menu-link">About</a>
       <a href="/pages/contact" class="mobile-menu-link">Contact</a>
       {%- if customer -%}
         <a href="{{ routes.account_url }}" class="mobile-menu-link">Account</a>
@@ -195,13 +191,13 @@
           {%- assign mob_en_path = request.path | remove_first: '/ar' -%}
           {%- if mob_en_path == '' -%}{%- assign mob_en_path = '/' -%}{%- endif -%}
           <a href="{{ mob_en_path }}" style="display:flex;align-items:center;gap:10px;color:var(--color-text);text-decoration:none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             <span class="font-display" style="font-size:1.1rem;font-weight:700;">Switch to English</span>
           </a>
         {%- else -%}
           {%- assign mob_ar_path = '/ar' | append: request.path -%}
           <a href="{{ mob_ar_path }}" style="display:flex;align-items:center;gap:10px;color:var(--color-text);text-decoration:none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             <span class="font-display" style="font-size:1.1rem;font-weight:700;">التبديل للعربية</span>
           </a>
         {%- endif -%}
@@ -214,10 +210,7 @@
     <div class="container search-overlay-inner">
       <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
         <input type="hidden" name="type" value="product">
-        <input class="search-input font-display" type="search" name="q"
-          value="{{ search.terms | escape }}"
-          placeholder="Search cubes, brands, accessories..."
-          id="SearchInput" autocomplete="off">
+        <input class="search-input font-display" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search cubes, brands, accessories..." id="SearchInput" autocomplete="off">
         <button type="submit" class="search-submit" aria-label="Search">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
@@ -228,7 +221,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Mobile menu
       const mobileToggle = document.getElementById('mobile-menu-toggle');
       const mobileMenu = document.getElementById('mobileMenu');
       const mobileClose = document.getElementById('mobile-menu-close');
@@ -238,14 +230,11 @@
       if (mobileClose && mobileMenu) {
         mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
       }
-      // Close mobile menu when clicking outside
       document.addEventListener('click', e => {
-        if (mobileMenu && mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        if (mobileMenu && mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && mobileToggle && !mobileToggle.contains(e.target)) {
           mobileMenu.classList.remove('open'); document.body.style.overflow = '';
         }
       });
-
-      // Search overlay
       const searchTrigger = document.getElementById('search-overlay-trigger');
       const searchOverlay = document.getElementById('search-overlay');
       const searchClose = document.getElementById('search-close');
@@ -253,9 +242,7 @@
       if (searchTrigger && searchOverlay) {
         searchTrigger.addEventListener('click', e => { e.preventDefault(); searchOverlay.classList.add('active'); setTimeout(() => searchInput && searchInput.focus(), 100); });
       }
-      if (searchClose && searchOverlay) {
-        searchClose.addEventListener('click', () => searchOverlay.classList.remove('active'));
-      }
+      if (searchClose && searchOverlay) { searchClose.addEventListener('click', () => searchOverlay.classList.remove('active')); }
       document.addEventListener('keydown', e => { if (e.key === 'Escape' && searchOverlay) searchOverlay.classList.remove('active'); });
     });
   </script>
@@ -268,37 +255,26 @@
     border-bottom: 1px solid var(--color-border);
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   }
-  .header__inner {
-    display: flex; justify-content: space-between; align-items: center;
-    height: 64px; gap: 1rem;
-  }
+  .header__inner { display: flex; justify-content: space-between; align-items: center; height: 64px; gap: 1rem; }
   .nav-logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
   .nav-logo-img { height: 34px; width: auto; display: block; }
   .nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--color-text); white-space: nowrap; }
   @media (max-width: 480px) { .nav-logo-text { display: none; } }
 
-  /* ── Desktop nav: all items strictly same height, perfectly centered ── */
   .header__nav { height: 64px; }
-  .header__menu {
-    display: flex; list-style: none; margin: 0; padding: 0;
-    height: 64px; align-items: stretch;
-  }
-  .header__menu-item {
-    display: flex; align-items: stretch; position: relative;
-  }
+  .header__menu { display: flex; list-style: none; margin: 0; padding: 0; height: 64px; align-items: stretch; }
+  .header__menu-item { display: flex; align-items: stretch; position: relative; }
   .header__menu-link {
     display: inline-flex; align-items: center; gap: 4px;
     font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
     color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em;
-    text-decoration: none; padding: 0 1rem;
-    white-space: nowrap; transition: color 0.2s; cursor: pointer;
-    border: none; background: none;
+    text-decoration: none; padding: 0 1rem; white-space: nowrap;
+    transition: color 0.2s; cursor: pointer; border: none; background: none;
   }
   .header__menu-link:hover { color: var(--color-primary); }
   .header__menu-caret { width: 12px; height: 12px; opacity: 0.55; transition: transform 0.2s; flex-shrink: 0; display: block; }
   .header__menu-item--has-mega:hover .header__menu-caret { transform: rotate(180deg); }
 
-  /* ── Mega menu ── */
   .header__menu-item--has-mega { position: static; }
   .mega-menu {
     position: fixed; top: 64px; left: 0; right: 0; width: 100%;
@@ -308,39 +284,19 @@
     transition: opacity 0.2s, transform 0.2s; z-index: 999;
   }
   .header__menu-item--has-mega:hover .mega-menu { opacity: 1; transform: translateY(0); pointer-events: all; }
-  .mega-menu-inner {
-    max-width: 1400px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 2rem; padding: 28px 24px 20px;
-  }
-  .mega-col-heading {
-    font-family: var(--font-display); font-weight: 700; font-size: 0.85rem;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    margin: 0 0 12px; padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
+  .mega-menu-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; padding: 28px 24px 20px; }
+  .mega-col-heading { font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .mega-menu ul { list-style: none; margin: 0; padding: 0; }
   .mega-menu ul li a { display: block; padding: 5px 0; font-size: 0.84rem; color: #8899AA; text-decoration: none; transition: color 0.15s, padding-left 0.15s; }
   .mega-menu ul li a:hover { color: #fff; padding-left: 4px; }
   .mega-footer { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center; }
 
-  /* ── Icons ── */
   .header__icons { display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
-  .header__icon-btn {
-    background: none; border: none; color: var(--color-text); cursor: pointer;
-    position: relative; transition: color 0.2s;
-    display: flex; align-items: center; gap: 4px; padding: 0; text-decoration: none;
-  }
+  .header__icon-btn { background: none; border: none; color: var(--color-text); cursor: pointer; position: relative; transition: color 0.2s; display: flex; align-items: center; gap: 4px; padding: 0; text-decoration: none; }
   .header__icon-btn:hover { color: var(--color-primary); }
   .lang-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; line-height: 1; }
-  .header-cart-badge {
-    position: absolute; top: -8px; right: -10px;
-    background: var(--color-primary); color: #071726;
-    font-family: var(--font-display); font-size: 0.68rem; font-weight: 900;
-    min-width: 17px; height: 17px; border-radius: 9px;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0 3px; border: 2px solid #071726; line-height: 1;
-  }
+  .header-cart-badge { position: absolute; top: -8px; right: -10px; background: var(--color-primary); color: #071726; font-family: var(--font-display); font-size: 0.68rem; font-weight: 900; min-width: 17px; height: 17px; border-radius: 9px; display: flex; align-items: center; justify-content: center; padding: 0 3px; border: 2px solid #071726; line-height: 1; }
+
   .hide-on-mobile { display: flex; }
   .show-on-mobile { display: none; }
   @media (max-width: 1023px) {
@@ -348,25 +304,12 @@
     .show-on-mobile { display: flex !important; }
   }
 
-  /* ── Mobile Menu ── */
-  .mobile-menu {
-    position: fixed; top: 0; left: 0; bottom: 0; width: 300px;
-    background: #0a1828; transform: translateX(-100%);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1100; overflow-y: auto; display: flex; flex-direction: column;
-  }
+  .mobile-menu { position: fixed; top: 0; left: 0; bottom: 0; width: 300px; background: #0a1828; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); z-index: 1100; overflow-y: auto; display: flex; flex-direction: column; }
   .mobile-menu.open { transform: translateX(0); }
   .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .mobile-menu-close { background: none; border: none; color: var(--color-text); font-size: 1.2rem; cursor: pointer; }
   .mobile-menu-links { flex: 1; }
-  .mobile-menu-link {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 24px; color: var(--color-text); text-decoration: none;
-    font-family: var(--font-display); font-weight: 700; font-size: 1rem;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s;
-    background: none; width: 100%; cursor: pointer;
-  }
+  .mobile-menu-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; color: var(--color-text); text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; background: none; width: 100%; cursor: pointer; }
   .mobile-menu-link:hover { color: var(--color-primary); }
   .mobile-accordion { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .mobile-accordion-toggle { width: 100%; text-align: left; border-bottom: none; }
@@ -374,19 +317,11 @@
   .mobile-accordion.open .mobile-accordion-arrow { transform: rotate(180deg); }
   .mobile-accordion-inner { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .mobile-accordion.open .mobile-accordion-inner { max-height: 700px; }
-  .mobile-accordion-inner-pad { padding: 0.5rem 1.5rem 1.5rem; }
-  .mobile-accordion-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary); font-weight: 700; margin: 0.8rem 0 0.3rem; padding: 0; }
+  .mobile-accordion-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary); font-weight: 700; margin: 0.8rem 0 0.3rem; }
   .mobile-sub-link { display: block; padding: 7px 0; color: var(--color-text-muted); font-size: 0.9rem; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.04); transition: color 0.2s; }
   .mobile-sub-link:hover { color: var(--color-primary); }
 
-  /* ── Search Overlay ── */
-  .search-overlay {
-    position: absolute; top: 100%; left: 0; right: 0;
-    background: #0D1E2E; border-bottom: 2px solid var(--color-primary);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 20px 0;
-    opacity: 0; transform: translateY(-8px); pointer-events: none;
-    transition: all 0.25s ease; z-index: 100;
-  }
+  .search-overlay { position: absolute; top: 100%; left: 0; right: 0; background: #0D1E2E; border-bottom: 2px solid var(--color-primary); box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 20px 0; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: all 0.25s ease; z-index: 100; }
   .search-overlay.active { opacity: 1; transform: translateY(0); pointer-events: all; }
   .search-overlay-inner { display: flex; align-items: center; gap: 16px; max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
   .search-form { flex-grow: 1; display: flex; border-radius: 30px; overflow: hidden; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
@@ -394,10 +329,9 @@
   .search-input::placeholder { color: var(--color-text-muted); }
   .search-submit { background: transparent; border: none; padding: 0 16px; cursor: pointer; color: var(--color-text); transition: color 0.2s; }
   .search-submit:hover { color: var(--color-primary); }
-  .search-close { background: none; border: none; color: var(--color-text-muted); font-size: 1.4rem; cursor: pointer; transition: color 0.2s; }
+  .search-close { background: none; border: none; color: var(--color-text-muted); font-size: 1.4rem; cursor: pointer; }
   .search-close:hover { color: #fff; }
 
-  /* RTL support */
   [dir="rtl"] .header__inner { flex-direction: row-reverse; }
   [dir="rtl"] .header__menu { flex-direction: row-reverse; }
   [dir="rtl"] .mega-menu-inner { direction: rtl; }

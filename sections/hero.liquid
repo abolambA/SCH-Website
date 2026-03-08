@@ -1,9 +1,5 @@
 <section class="hero hero-slider" data-section="{{ section.id }}">
-  <div class="hero-particles"></div>
-
-  <!-- Permanent dark overlay — always behind content, never flashes -->
   <div class="hero-bg-overlay"></div>
-
   <div class="carousel-container">
     <div class="carousel-track">
       {%- if section.blocks.size > 0 -%}
@@ -12,40 +8,31 @@
           <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             <div class="container hero__content-wrapper">
               <div class="hero__content">
+                <p class="hero__highlight font-display color-accent">{{ block.settings.tagline | default: 'Featured' }}</p>
+                <h1 class="hero__title">{%- if prod != blank -%}{{ prod.title }}{%- else -%}SpeedCubeHub{%- endif -%}</h1>
                 {%- if prod != blank -%}
-                  <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
-                    {{ block.settings.tagline }}
-                  </p>
-                  <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
-                    {{ prod.title }}
-                  </h1>
-                  <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
-                    <a href="{{ prod.url }}" class="btn btn-info">Discover More</a>
-                  </div>
-                {%- else -%}
-                  <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
-                    {{ block.settings.tagline | default: 'Editor\'s Choice' }}
-                  </p>
-                  <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
-                    {% if forloop.index == 1 %}GAN 14 MagLev
-                    {% elsif forloop.index == 2 %}MoYu WeiLong WRM
-                    {% else %}YJ MGC 4x4{% endif %}
-                  </h1>
-                  <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
-                    <a href="#" class="btn btn-info">Discover More</a>
+                  <p class="hero__vendor" style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:0.8rem;">{{ prod.vendor }}</p>
+                  <div class="hero__price-tag">
+                    {%- if prod.compare_at_price > prod.price -%}
+                      <span class="hero__compare-price">{{ prod.compare_at_price | money }}</span>
+                    {%- endif -%}
+                    <span class="hero__price font-display">{{ prod.price | money }}</span>
                   </div>
                 {%- endif -%}
+                <div class="hero__buttons">
+                  <a href="{{ prod.url | default: routes.all_products_collection_url }}" class="btn btn-primary">
+                    Shop Now
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </a>
+                </div>
               </div>
               <div class="hero__image-col">
-                <div class="hero__image-wrapper tilt-enabled">
+                <div class="hero__image-wrapper">
                   {%- if prod != blank and prod.featured_image -%}
-                    <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img">
+                    <img src="{{ prod.featured_image | image_url: width: 500 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
                   {%- else -%}
                     <div class="hero-cube-placeholder">
-                      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-                        <path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/>
-                        <path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/>
-                      </svg>
+                      <svg viewBox="0 0 120 120" fill="none" width="160" height="160"><path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/><path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/></svg>
                     </div>
                   {%- endif -%}
                 </div>
@@ -54,59 +41,31 @@
           </div>
         {%- endfor -%}
       {%- else -%}
-        {%- assign hero_collection = collections['speedcubes'] -%}
-        {%- assign hero_products = hero_collection.products | default: collections['all'].products -%}
-        {%- for prod in hero_products limit: 6 -%}
-          {%- assign taglines = 'Top Rated,Best Seller,New Arrival,Trending,Fan Favorite,Competition Pick' | split: ',' -%}
+        {%- assign taglines = 'Top Rated,Best Seller,New Arrival' | split: ',' -%}
+        {%- for prod in collections['all'].products limit: 3 -%}
           <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
             <div class="container hero__content-wrapper">
               <div class="hero__content">
-                <p class="hero__highlight font-display color-accent reveal visible" style="transition-delay: 50ms;">
-                  {{ taglines[forloop.index0] }}
-                </p>
-                <h1 class="hero__title reveal visible" style="transition-delay: 100ms;">
-                  {{ prod.title | truncate: 40 }}
-                </h1>
-                <p class="hero__subtitle reveal visible" style="transition-delay: 150ms; color: var(--color-text-muted); font-size: 1rem; margin-bottom: 1rem;">
-                  {{ prod.vendor }} · {{ prod.product_type }}
-                </p>
-                <div class="hero__buttons reveal visible" style="transition-delay: 200ms;">
-                  <a href="{{ prod.url }}" class="btn btn-primary">
-                    Shop Now
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                  </a>
-                </div>
-                <div class="hero__price-tag reveal visible" style="transition-delay: 250ms; margin-top: 1.5rem;">
+                <p class="hero__highlight font-display color-accent">{{ taglines[forloop.index0] }}</p>
+                <h1 class="hero__title">{{ prod.title | truncate: 40 }}</h1>
+                <p class="hero__vendor" style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:0.8rem;">{{ prod.vendor }}</p>
+                <div class="hero__price-tag">
                   {%- if prod.compare_at_price > prod.price -%}
-                    <span style="color: var(--color-text-muted); text-decoration: line-through; font-size: 0.9rem; margin-right: 0.5rem;">{{ prod.compare_at_price | money }}</span>
+                    <span class="hero__compare-price">{{ prod.compare_at_price | money }}</span>
                   {%- endif -%}
-                  <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: var(--color-primary);">{{ prod.price | money }}</span>
+                  <span class="hero__price font-display">{{ prod.price | money }}</span>
+                </div>
+                <div class="hero__buttons">
+                  <a href="{{ prod.url }}" class="btn btn-primary">Shop Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                 </div>
               </div>
               <div class="hero__image-col">
-                <div class="hero__image-wrapper tilt-enabled">
+                <div class="hero__image-wrapper">
                   {%- if prod.featured_image -%}
-                    <img src="{{ prod.featured_image | image_url: width: 800 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="eager">
+                    <img src="{{ prod.featured_image | image_url: width: 500 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
                   {%- else -%}
-                    <div class="hero-cube-placeholder">
-                      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-                        <path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/>
-                        <path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/>
-                      </svg>
-                    </div>
+                    <div class="hero-cube-placeholder"><svg viewBox="0 0 120 120" fill="none" width="160" height="160"><path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/></svg></div>
                   {%- endif -%}
-                </div>
-              </div>
-            </div>
-          </div>
-        {%- else -%}
-          <div class="carousel-slide is-active" data-index="0">
-            <div class="container hero__content-wrapper">
-              <div class="hero__content">
-                <p class="hero__highlight font-display color-accent reveal visible">Premium Speedcubes</p>
-                <h1 class="hero__title reveal visible">The Best Cubes.<br>Delivered Fast.</h1>
-                <div class="hero__buttons reveal visible">
-                  <a href="/collections/speedcubes" class="btn btn-primary">Shop Now</a>
                 </div>
               </div>
             </div>
@@ -115,20 +74,19 @@
       {%- endif -%}
     </div>
 
-    {%- assign dot_count = section.blocks.size -%}
-    {%- if dot_count == 0 -%}{%- assign dot_count = 3 -%}{%- endif -%}
+    {%- assign dot_count = section.blocks.size | default: 3 -%}
     {%- if dot_count > 1 -%}
       <div class="hero-carousel-controls">
-        <button class="carousel-btn prev" aria-label="Previous Slide">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <button class="carousel-btn hero-prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
         <div class="carousel-dots">
           {%- for i in (1..dot_count) -%}
-            <button class="carousel-dot {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+            <button class="carousel-dot {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
           {%- endfor -%}
         </div>
-        <button class="carousel-btn next" aria-label="Next Slide">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <button class="carousel-btn hero-next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
       </div>
     {%- endif -%}
@@ -138,105 +96,138 @@
 <style>
   .hero-slider {
     position: relative;
-    min-height: calc(100vh - 80px);
+    height: 460px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
     background: #071726;
   }
   .hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(6,15,26,0.88) 0%, rgba(6,15,26,0.55) 55%, rgba(6,15,26,0.25) 100%);
-    z-index: 2;
-    pointer-events: none;
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(6,15,26,0.9) 0%, rgba(6,15,26,0.5) 60%, rgba(6,15,26,0.1) 100%);
+    z-index: 2; pointer-events: none;
   }
   .carousel-container {
-    width: 100%; flex: 1; position: relative; z-index: 3;
-    display: flex; flex-direction: column; padding-bottom: 70px;
+    width: 100%; height: 100%; position: relative; z-index: 3;
+    display: flex; flex-direction: column;
   }
   .carousel-track {
     display: flex; flex: 1;
-    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1); width: 100%;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
   }
-  .carousel-slide { min-width: 100%; opacity: 1; display: flex; align-items: center; position: relative; }
+  .carousel-slide {
+    min-width: 100%; display: flex; align-items: center;
+  }
   .hero__content-wrapper {
     display: flex; align-items: center; justify-content: space-between;
-    width: 100%; gap: 4rem; padding-top: 3rem; padding-bottom: 2rem;
+    width: 100%; gap: 2rem;
+    padding-bottom: 3rem; /* room for controls */
   }
   .hero__content { flex: 1; max-width: 500px; }
-  .hero__highlight { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; font-weight: 700; }
-  .hero__title { font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 1.1; text-transform: uppercase; margin-bottom: 2rem; text-shadow: 0 4px 16px rgba(0,0,0,0.4); }
-  .hero__image-col { flex: 1; display: flex; justify-content: center; align-items: center; perspective: 1000px; }
-  .hero__image-wrapper { width: 100%; max-width: 480px; aspect-ratio: 1/1; position: relative; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4)); transition: filter 0.3s ease; }
-  .hero__image-wrapper:hover { filter: drop-shadow(0 30px 60px var(--color-glow)); }
+  .hero__highlight { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.6rem; font-weight: 700; }
+  .hero__title {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.05;
+    text-transform: uppercase; margin-bottom: 0.6rem;
+  }
+  .hero__price-tag { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.4rem; }
+  .hero__price { font-size: 1.5rem; font-weight: 900; color: var(--color-primary); }
+  .hero__compare-price { font-size: 0.95rem; color: var(--color-text-muted); text-decoration: line-through; }
+  .hero__buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  /* Image — smaller than before */
+  .hero__image-col {
+    flex: 0 0 auto; width: 280px;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero__image-wrapper {
+    width: 260px; height: 260px;
+    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.5));
+    transition: filter 0.3s;
+  }
+  .hero__image-wrapper:hover { filter: drop-shadow(0 20px 40px rgba(255,208,0,0.2)); }
   .hero-cube-img { width: 100%; height: 100%; object-fit: contain; }
+  .hero-cube-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+  /* Controls — overlaid at bottom center */
   .hero-carousel-controls {
-    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    z-index: 10; display: flex; align-items: center; gap: 16px;
+    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; align-items: center; gap: 10px;
   }
   .carousel-btn {
-    width: 38px; height: 38px;
-    background: rgba(255,255,255,0.08);
-    border: 1.5px solid rgba(255,255,255,0.22);
-    border-radius: 50%; color: rgba(255,255,255,0.85);
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 50%; color: rgba(255,255,255,0.9);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s ease; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0;
+    transition: all 0.2s; backdrop-filter: blur(8px); padding: 0;
   }
-  .carousel-btn:hover { background: #FFD000; border-color: #FFD000; color: #071726; transform: scale(1.12); }
+  .carousel-btn:hover { background: #FFD000; border-color: #FFD000; color: #071726; }
   .carousel-dots { display: flex; gap: 6px; align-items: center; }
   .carousel-dot {
     width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0;
+    background: rgba(255,255,255,0.3); border: none; cursor: pointer;
+    transition: all 0.3s; padding: 0;
   }
-  .carousel-dot.is-active { background: #FFD000; width: 22px; border-radius: 4px; }
-  @media (max-width: 768px) {
-    .hero__content-wrapper { flex-direction: column-reverse; text-align: center; gap: 1.5rem; padding-top: 2rem; padding-bottom: 1rem; }
-    .hero__title { font-size: 2rem; }
-    .hero__image-wrapper { max-width: 220px; }
-    .hero__buttons { justify-content: center; display: flex; }
-    .carousel-container { padding-bottom: 60px; }
-    .hero-carousel-controls { bottom: 14px; gap: 10px; }
-    .carousel-btn { width: 32px; height: 32px; }
-    .carousel-btn svg { width: 14px; height: 14px; }
-    .carousel-dot { width: 6px; height: 6px; }
-    .carousel-dot.is-active { width: 16px; }
+  .carousel-dot.is-active { background: #FFD000; width: 20px; border-radius: 4px; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero-slider { height: auto; min-height: 400px; }
+    .hero__content-wrapper { flex-direction: column-reverse; text-align: center; gap: 1rem; padding: 1.5rem 0 3.5rem; }
+    .hero__image-col { width: 100%; }
+    .hero__image-wrapper { width: 180px; height: 180px; }
+    .hero__buttons { justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .hero-slider { min-height: 360px; }
+    .hero__title { font-size: 1.6rem; }
+    .hero__image-wrapper { width: 150px; height: 150px; }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    const dots = document.querySelectorAll('.carousel-dot');
-    if(!track || slides.length === 0) return;
-    let currentIndex = 0, autoSlideInterval;
-    function goToSlide(index) {
-      if(index < 0) index = slides.length - 1;
-      if(index >= slides.length) index = 0;
-      currentIndex = index;
-      track.style.transform = `translateX(${currentIndex * -100}%)`;
-      slides.forEach(s => s.classList.remove('is-active'));
-      slides[currentIndex].classList.add('is-active');
-      dots.forEach(d => d.classList.remove('is-active'));
-      if(dots[currentIndex]) dots[currentIndex].classList.add('is-active');
+  (function() {
+    function initHeroSlider() {
+      var section = document.querySelector('.hero-slider');
+      if (!section) return;
+      var track = section.querySelector('.carousel-track');
+      var slides = section.querySelectorAll('.carousel-slide');
+      var prevBtn = section.querySelector('.hero-prev');
+      var nextBtn = section.querySelector('.hero-next');
+      var dots = section.querySelectorAll('.carousel-dot');
+      if (!track || slides.length === 0) return;
+      var cur = 0, timer;
+
+      function go(n) {
+        if (n < 0) n = slides.length - 1;
+        if (n >= slides.length) n = 0;
+        cur = n;
+        track.style.transform = 'translateX(' + (cur * -100) + '%)';
+        slides.forEach(function(s, i) { s.classList.toggle('is-active', i === cur); });
+        dots.forEach(function(d, i) { d.classList.toggle('is-active', i === cur); });
+      }
+      function start() { timer = setInterval(function() { go(cur + 1); }, 5500); }
+      function reset() { clearInterval(timer); start(); }
+
+      if (nextBtn) nextBtn.addEventListener('click', function() { go(cur + 1); reset(); });
+      if (prevBtn) prevBtn.addEventListener('click', function() { go(cur - 1); reset(); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
+
+      var tx = 0;
+      track.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; clearInterval(timer); }, {passive:true});
+      track.addEventListener('touchend', function(e) {
+        var diff = e.changedTouches[0].screenX - tx;
+        if (Math.abs(diff) > 50) go(cur + (diff < 0 ? 1 : -1));
+        start();
+      }, {passive:true});
+
+      start();
     }
-    if(nextBtn) nextBtn.addEventListener('click', () => { goToSlide(currentIndex + 1); resetInterval(); });
-    if(prevBtn) prevBtn.addEventListener('click', () => { goToSlide(currentIndex - 1); resetInterval(); });
-    dots.forEach((dot, idx) => { dot.addEventListener('click', () => { goToSlide(idx); resetInterval(); }); });
-    function startInterval() { autoSlideInterval = setInterval(() => goToSlide(currentIndex + 1), 5000); }
-    function resetInterval() { clearInterval(autoSlideInterval); startInterval(); }
-    let touchStartX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(autoSlideInterval); }, {passive:true});
-    track.addEventListener('touchend', e => {
-      const diff = e.changedTouches[0].screenX - touchStartX;
-      if(Math.abs(diff) > 50) goToSlide(currentIndex + (diff < 0 ? 1 : -1));
-      startInterval();
-    }, {passive:true});
-    startInterval();
-  });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroSlider);
+    } else {
+      initHeroSlider();
+    }
+  })();
 </script>
 
 {% schema %}
