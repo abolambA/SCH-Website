@@ -8,137 +8,413 @@
  * ------------------------------------------------------------
  */
 {
-    "general": {
-        "password_page": {
-            "login_form_heading": "أدخل كلمة مرور المتجر"
+  "general": {
+    "password_page": {
+      "login_form_heading": "أدخل كلمة مرور المتجر"
+    }
+  },
+  "header": {
+    "home": "الرئيسية",
+    "shop": "المتجر",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "search_placeholder": "ابحث عن مكعبات أو ماركات...",
+    "cart": "السلة",
+    "account": "حسابي",
+    "signin": "تسجيل الدخول",
+    "menu": "القائمة"
+  },
+  "nav": {
+    "brands": "الماركات",
+    "shop_by_type": "تسوق حسب النوع",
+    "all_products": "جميع المنتجات",
+    "new_arrivals": "وصل حديثاً",
+    "accessories": "إكسسوارات",
+    "smart_cubes": "المكعبات الذكية",
+    "big_cubes": "المكعبات الكبيرة"
+  },
+  "home": {
+    "hero_eyebrow": "سرعة. دقة. أداء.",
+    "hero_heading_line1": "المكعبات",
+    "hero_heading_line2": "الاحترافية",
+    "hero_subtext": "اختارها المحترفون، معتمدة من أبطال العالم",
+    "hero_cta_primary": "تسوق الآن",
+    "hero_cta_secondary": "شاهد الماركات",
+    "promo_heading": "تسوق حسب الميزانية",
+    "featured_eyebrow": "الأعلى تقييماً",
+    "featured_heading": "الأكثر مبيعاً",
+    "featured_cta": "عرض جميع المنتجات",
+    "category_heading": "تسوق حسب الفئة",
+    "brands_heading": "تجار معتمدون",
+    "community_heading": "انضم إلى مجتمع SCH",
+    "community_subtext": "ضم أكثر من 10,000 مكعباتي من الشرق الأوسط",
+    "newsletter_heading": "اشترك في نشرتنا",
+    "newsletter_placeholder": "أدخل بريدك الإلكتروني",
+    "newsletter_btn": "اشترك"
+  },
+  "trust": {
+    "shipping": "شحن سريع",
+    "curated": "اختيار من المحترفين",
+    "support": "دعم متخصص",
+    "secure": "دفع آمن"
+  },
+  "collection": {
+    "products_count": "منتج",
+    "sort_by": "ترتيب حسب",
+    "sort_featured": "مميز",
+    "sort_price_asc": "السعر: من الأقل للأعلى",
+    "sort_price_desc": "السعر: من الأعلى للأقل",
+    "sort_newest": "الأحدث",
+    "sort_best_selling": "الأكثر مبيعاً",
+    "filter_brand": "الماركة",
+    "filter_type": "النوع",
+    "filter_price": "السعر",
+    "no_products": "لم يتم العثور على منتجات",
+    "no_products_cta": "تصفح جميع المكعبات",
+    "browse_all": "تصفح الكل",
+    "filters": "فلتر"
+  },
+  "product": {
+    "add_to_cart": "أضف إلى السلة",
+    "buy_now": "اشتر الآن",
+    "sold_out": "نفذت الكمية",
+    "sale": "عرض",
+    "new": "جديد",
+    "description": "الوصف",
+    "shipping_returns": "الشحن والإرجاع",
+    "shipping_returns_text": "شحن مجاني على الطلبات التي تتجاوز 100 د.إ. إرجاع مجاني خلال 30 يوماً.",
+    "related_heading": "قد يعجبك أيضاً",
+    "quantity": "الكمية",
+    "share": "مشاركة"
+  },
+  "cart": {
+    "title": "سلتك",
+    "empty": "سلتك فارغة",
+    "continue_shopping": "تابع التسوق",
+    "checkout": "إتمام الشراء",
+    "subtotal": "المجموع الفرعي",
+    "shipping_note": "الشحن والضرائب تحسب عند الدفع",
+    "remove": "إزالة",
+    "quantity": "الكمية"
+  },
+  "footer": {
+    "brand_desc": "بيت مجتمع المكعبات في الشرق الأوسط. مُختار ومُعتمد من المحترفين.",
+    "shop_heading": "المتجر",
+    "brands_heading": "الماركات",
+    "help_heading": "المساعدة",
+    "newsletter_heading": "ابقَ على اطلاع",
+    "newsletter_btn": "اشترك",
+    "copyright": "جميع الحقوق محفوظة",
+    "faq": "الأسئلة الشائعة",
+    "shipping": "سياسة الشحن",
+    "returns": "الإرجاع",
+    "contact": "اتصل بنا",
+    "about": "من نحن",
+    "track_order": "تتبع الطلب"
+  },
+  "search": {
+    "heading": "نتائج البحث",
+    "no_results": "لم نجد نتائج لـ",
+    "placeholder": "ابحث عن مكعبات، ماركات، إكسسوارات...",
+    "submit": "بحث"
+  },
+  "about": {
+    "heading": "من نحن",
+    "mission_heading": "مهمتنا",
+    "team_heading": "فريقنا",
+    "values_heading": "قيمنا"
+  },
+  "contact": {
+    "heading": "اتصل بنا",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "message": "الرسالة",
+    "submit": "إرسال",
+    "whatsapp": "تواصل معنا عبر واتساب"
+  },
+  "errors": {
+    "404_heading": "الصفحة غير موجودة",
+    "404_body": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+    "404_cta": "العودة للرئيسية"
+  },
+  "pagination": {
+    "next": "التالي",
+    "previous": "السابق"
+  },
+  "shopify": {
+    "checkout": {
+      "general": {
+        "errors": {
+          "buyer_identity": {
+            "phone_number_does_not_match_expected_pattern": "رقم الهاتف المحدد لا يتطابق مع النمط المتوقع.",
+            "customer_profile_access_restricted": "لا يملك نظام الدفع إذنًا بالوصول إلى ملف تعريف العميل."
+          },
+          "delivery": {
+            "wrong_number_of_delivery_lines": "يجب تحديد خط توصيل لكل مجموعة من البضائع.",
+            "options_instructions_invalid": "التعليمات المحددة لا تتطابق مع النمط المتوقع.",
+            "origin_location_id_not_allowed": "لا تدعم طرق التسليم المطلوبة معرّف موقع المنشأ.",
+            "auto_fulfill_not_allowed": "هذه الجلسة غير مصرح لها بتجاوز سلوك التنفيذ."
+          },
+          "discount": {
+            "additional_requested_discount_discarded": "الخصم الخاص بك ساري المفعول ولكنه غير قابل للتطبيق. راجع شروط الخصم.",
+            "allocations_mismatch": "لقد تغير رمز الخصم الخاص بك. راجع سلة التسوق الخاصة بك وحاول مرة أخرى."
+          },
+          "tax": {
+            "new_tax_must_be_accepted": "لقد تغيرت الضرائب المرتبطة بطلبك. راجعها وحاول مرة أخرى."
+          },
+          "payment": {
+            "unexpected_retail_attributions": "تم توفير بيانات مدفوعات التجزئة بشكل غير متوقع لمدفوعات بطاقات الائتمان."
+          },
+          "inventory": {
+            "changing_behavior_not_allowed": "لا يملك هذا العميل إذنًا لتغيير سلوك المخزون."
+          },
+          "captcha": {
+            "job_already_queued": "تمت إضافة رمز التحقق من الكابتشا إلى قائمة الانتظار لهذا الرمز المميز."
+          }
         }
+      },
+      "customer_account": {
+        "invalid_shipping_method_summary": "اختر عنوان شحن صالحًا لعرض طرق الشحن المتاحة"
+      },
+      "stock": {
+        "unfulfillable_product": {
+          "default_message": {
+            "one": "لم تعد طريقة التوصيل المختارة متاحة لهذا المنتج.",
+            "other": "لم تعد طريقة التوصيل المختارة متاحة لهذه المنتجات."
+          }
+        },
+        "price_update": {
+          "description": "لقد تغيرت أسعار هذه المنتجات وتم تحديثها في سلة التسوق الخاصة بك."
+        }
+      },
+      "merchandise_unavailable_in_buyer_location": {
+        "banner_title": {
+          "some_products_one": "هذا المنتج غير متوفر للتوصيل إلى %{location_name}.",
+          "some_products_other": "هذه المنتجات غير متوفرة للتوصيل إلى %{location_name}."
+        }
+      },
+      "order_summary": {
+        "recurring_total_tooltip": "لا يشمل السعر تكاليف الشحن أو الضرائب أو الرسوم الجمركية أو أي خصومات سارية."
+      },
+      "shipping": {
+        "no_rates_for_cart_or_destination_notice": "لا تتوفر أي طرق شحن لسلة التسوق أو العنوان الخاص بك",
+        "subscription_delivery_description": {
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "other": "سعر الشحن %{shipping_price} لـ %{count} عملية توصيل (تكلفة التوصيل %{per_delivery_cost})"
+          },
+          "first_order_shipping_price_included": "يشمل السعر الطلب الأول، يليه %{recurring_order_shipping_price}"
+        },
+        "address_confirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان من حسابك؟",
+        "invalid_shipping_method_summary": "أدخل عنوان شحن صحيحًا لعرض طرق الشحن المتاحة",
+        "method_summary": {
+          "incomplete_address_entered": "أدخل عنوان الشحن بالكامل لعرض طرق الشحن المتاحة"
+        }
+      },
+      "payment": {
+        "offsite_gateway_redirect_hint": "سيتم إعادة توجيهك إلى %{gateway_label} لإتمام عملية الشراء.",
+        "offsite_gateway_redirect_hint_no_button_label": "سيتم إعادة توجيهك إلى %{gateway_label} لإتمام عملية الشراء.",
+        "brand_not_available": "لا يقبل هذا المتجر بطاقة {{brand}} . استخدم بطاقة أخرى للدفع.",
+        "vaulting_agreement_label": "احفظ معلومات الدفع الخاصة بي مع %{company} لإتمام عملية الدفع بشكل أسرع."
+      },
+      "billing": {
+        "address_confirm": "هل أنت متأكد من رغبتك في حذف هذا العنوان من حسابك؟"
+      },
+      "field_errors": {
+        "address_address2_too_long": "سطر العنوان الثاني طويل جدًا (الحد الأقصى هو 255 حرفًا)",
+        "gift_card_currency_mismatch": "لا يمكن استخدام سوى بطاقات الهدايا بعملة %{checkout_currency} مع هذا الطلب",
+        "payment_gateway_unsupported_for_deferred_purchase_options": "طريقة الدفع هذه غير متاحة لخيارات الشراء المؤجل.",
+        "must_use_available_shipping_rate": "يجب اختيار سعر الشحن من بين أسعار الشحن المتاحة.",
+        "split_by_delivery_method_not_allowed": "لا يُسمح بتقسيم الطلبات حسب طريقة التوصيل لهذه الجلسة أو المتجر."
+      },
+      "redeemable_errors": {
+        "gift_card": {
+          "throttle_limit_exceeded": "لقد تجاوزت الحد الأقصى لعدد المحاولات. حاول مرة أخرى لاحقاً."
+        }
+      },
+      "payment_errors": {
+        "deferred_payment_not_allowed": "لا يُسمح بتأجيل الدفع. يرجى مراجعة طلبك والمحاولة مرة أخرى.",
+        "three_d_secure_failed_payment_method": "لم يتم التحقق من بطاقتك. حاول مرة أخرى أو أضف بطاقة أخرى.",
+        "decision_rule_block": "حدثت مشكلة أثناء معالجة دفعتك. يرجى الاتصال بصاحب المتجر.",
+        "pick_up_card": "تم رفض بطاقتك. حاول مرة أخرى أو استخدم طريقة دفع مختلفة.",
+        "card_declined": "تم رفض بطاقتك. حاول مرة أخرى أو استخدم طريقة دفع مختلفة."
+      },
+      "shipping_errors": {
+        "empty_state": "أدخل عنوان الشحن الخاص بك لعرض طرق الشحن المتاحة."
+      },
+      "payment_gateway": {
+        "draft_order_payment_due_later_terms": "ستكون على شروط {{translatedName}} بمجرد تأكيد طلبك."
+      },
+      "thank_you": {
+        "shipping_address_map_title": "خريطة جوجل تعرض موقع عنوان الشحن: %{address}",
+        "thank_you_confirmed_with_email_description": {
+          "multi_store": "ستتلقى رسائل تأكيد منفصلة من كل متجر قريباً"
+        },
+        "thank_you_confirmed_with_phone_description": {
+          "multi_store": "ستتلقى رسائل تأكيد منفصلة من كل متجر قريباً"
+        },
+        "thank_you_confirmed_with_email_and_phone_description": {
+          "multi_store": "ستتلقى رسائل تأكيد منفصلة من كل متجر قريباً"
+        },
+        "thank_you_confirmed_order_with_email": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_confirmed_order_with_phone": "ستتلقى رسالة نصية للتأكيد تحتوي على رقم طلبك قريباً.",
+        "thank_you_confirmed_order_with_email_and_phone": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_confirmed_orders_with_email": "ستتلقى رسائل تأكيد منفصلة عبر البريد الإلكتروني تحتوي على أرقام طلبك قريباً",
+        "thank_you_confirmed_orders_with_phone": "ستتلقى رسائل تأكيد منفصلة تحتوي على أرقام طلبك قريباً",
+        "thank_you_confirmed_orders_with_email_and_phone": "ستتلقى رسائل تأكيد منفصلة عبر البريد الإلكتروني تحتوي على أرقام طلبك قريباً",
+        "thank_you_payments_app_pending_payment_description_default_with_email_and_phone": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_email_and_phone_payment": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_email_and_phone_pick_up": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_email": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_email_payment": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_email_pick_up": "ستتلقى رسالة تأكيد عبر البريد الإلكتروني تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_phone": "ستتلقى رسالة نصية للتأكيد تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_phone_payment": "ستتلقى رسالة نصية للتأكيد تحتوي على رقم طلبك قريباً.",
+        "thank_you_payments_app_pending_payment_description_default_with_phone_pick_up": "ستتلقى رسالة نصية للتأكيد تحتوي على رقم طلبك قريباً.",
+        "order_status_payments_app_pending_payment_description_buyer_action_required_with_missing_payment": "تواصل معنا عبر البريد الإلكتروني أو الهاتف لتلقي تأكيد الطلب.",
+        "order_status_payments_app_pending_payment_description_buyer_action_required_with_missing_pick_up": "تواصل معنا عبر البريد الإلكتروني أو الهاتف لتلقي تأكيد الطلب.",
+        "subscriptions_management": {
+          "description": "انتقل إلى حسابك لعرض وإدارة اشتراكاتك."
+        },
+        "gift_card_confirmation_by_email_typ": {
+          "other": "ستتلقى بريدًا إلكترونيًا يحتوي على بطاقات الهدايا الخاصة بك في غضون دقائق قليلة."
+        }
+      },
+      "marketing": {
+        "pending_accept_marketing_checkbox_label": "تحقق من بريدك الإلكتروني لتأكيد اشتراكك في الأخبار والعروض"
+      },
+      "change_currency": {
+        "card_provider_fx_charges_warning": "قد يفرض مزود بطاقتك رسومًا على معاملات %{currency_code}."
+      },
+      "subscriptions": {
+        "recurring_totals_with_initial_order_shipping_discount": "الدفعة الأولى %{total_price_with_discount}، ثم %{recurring_total}"
+      },
+      "throttle": {
+        "inventory": {
+          "sold_out": {
+            "no_storefront_body": "للأسف، المنتج الذي ترغب في شرائه لم يعد متوفراً."
+          }
+        },
+        "footer": {
+          "body": "لن يتم حجز المنتجات الموجودة في سلة التسوق الخاصة بك إلا بعد إتمام عملية الدفع."
+        }
+      },
+      "cart_checkout_validation": {
+        "runtime_error": "حدثت مشكلة أثناء معالجة طلبك. يرجى الاتصال بصاحب المتجر."
+      },
+      "no_address_location": {
+        "message": "اتصل بنا لإضافة عنوان لهذا الموقع لإتمام عملية الدفع."
+      },
+      "error_page": {
+        "embed_errors": {
+          "not_authorized": "فشلت عملية التحقق من الهوية. تحقق من بيانات اعتماد التطبيق الخاصة بك",
+          "policy_violation": "تعذر إتمام عملية الدفع بسبب قيود إعدادات السياسة"
+        }
+      },
+      "notice_banner": {
+        "company_location_changed": "تم تحديث سلة التسوق الخاصة بك. يرجى مراجعة طلبك قبل إرساله.",
+        "editable_shipping_address_violations_message_footer": "لتحديث عنوان هذا الموقع بشكل دائم، {{emailLink}} .",
+        "generic_processing_error": {
+          "body": "لم يتم خصم أي مبلغ منك. حاول مرة أخرى أو استخدم طريقة دفع مختلفة."
+        }
+      },
+      "review_address_modal": {
+        "subtitle": {
+          "one": "سيتم شحن هذا الطلب إلى العنوان المقدم من قبل {{merchant}} ."
+        }
+      },
+      "wallets": {
+        "payment_in_progress_body": "جارٍ معالجة دفعتك. سيتم إكمال طلبك قريبًا.",
+        "redirection_notice": "سيتم تحويلك إلى {{walletName}} لإتمام عملية الشراء",
+        "errors": {
+          "discount_code": "لا يمكن تطبيق رمز الخصم هذا. راجع الرمز وحاول مرة أخرى."
+        }
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "يلزم إجراء تفاعل إضافي لإتمام عملية الدفع."
+        }
+      },
+      "taxes": {
+        "vat_number": {
+          "status": {
+            "invalid_format": {
+              "gb": "تتكون أرقام ضريبة القيمة المضافة في المملكة المتحدة من GB أو XI و5-12 حرفًا"
+            }
+          }
+        }
+      }
     },
-    "header": {
-        "home": "الرئيسية",
-        "shop": "المتجر",
-        "about": "من نحن",
-        "contact": "اتصل بنا",
-        "search_placeholder": "ابحث عن مكعبات أو ماركات...",
-        "cart": "السلة",
-        "account": "حسابي",
-        "signin": "تسجيل الدخول",
-        "menu": "القائمة"
+    "notices": {
+      "cart": {
+        "only_n_added_to_cart": "تمت إضافة %{quantity} عنصر فقط إلى سلة التسوق الخاصة بك نظرًا لتوافرها."
+      }
     },
-    "nav": {
-        "brands": "الماركات",
-        "shop_by_type": "تسوق حسب النوع",
-        "all_products": "جميع المنتجات",
-        "new_arrivals": "وصل حديثاً",
-        "accessories": "إكسسوارات",
-        "smart_cubes": "المكعبات الذكية",
-        "big_cubes": "المكعبات الكبيرة"
+    "email_marketing": {
+      "unsubscribed": {
+        "preview": "أنت الآن تستعرض ما سيراه العملاء عند إلغاء اشتراكهم."
+      }
+    }
+  },
+  "customer_accounts": {
+    "orders": {
+      "order_list": {
+        "no_order_banner": "لاختبار الإضافة الخاصة بك على صفحة حالة الطلب، قم بإنشاء طلب.",
+        "carousel": {
+          "one_products_accessibility_label": "يتضمن الطلب {{lineItemName1}} كمية {{lineItemQuantity1}}"
+        }
+      },
+      "order_status": {
+        "delivery_promise_v2": {
+          "details_modal": {
+            "claimed_shop_cash_description": "نظراً لتأخر وصول هذا الطلب، فقد طالبت {{amount}} من رصيد المتجر."
+          }
+        },
+        "delivery_promise": {
+          "details_modal": {
+            "shop_cash_claim": {
+              "redeemed_label": "لقد استفدت بالفعل من رصيد المتجر لأن هذا الطلب وصل متأخراً.",
+              "claim_shop_cash_description": "يمكنك استخدام رصيدك في تطبيق المتجر على عمليات الشراء المستقبلية."
+            }
+          }
+        }
+      }
     },
-    "home": {
-        "hero_eyebrow": "سرعة. دقة. أداء.",
-        "hero_heading_line1": "المكعبات",
-        "hero_heading_line2": "الاحترافية",
-        "hero_subtext": "اختارها المحترفون، معتمدة من أبطال العالم",
-        "hero_cta_primary": "تسوق الآن",
-        "hero_cta_secondary": "شاهد الماركات",
-        "promo_heading": "تسوق حسب الميزانية",
-        "featured_eyebrow": "الأعلى تقييماً",
-        "featured_heading": "الأكثر مبيعاً",
-        "featured_cta": "عرض جميع المنتجات",
-        "category_heading": "تسوق حسب الفئة",
-        "brands_heading": "تجار معتمدون",
-        "community_heading": "انضم إلى مجتمع SCH",
-        "community_subtext": "ضم أكثر من 10,000 مكعباتي من الشرق الأوسط",
-        "newsletter_heading": "اشترك في نشرتنا",
-        "newsletter_placeholder": "أدخل بريدك الإلكتروني",
-        "newsletter_btn": "اشترك"
+    "order_details": {
+      "payment_confirmation": {
+        "payment_authorized": "شكراً لك! سيتم تحديث الرصيد عند استلام الدفعة."
+      },
+      "paid_with_shop_pay_installments_card": {
+        "description": "تابع جدول دفعاتك بدقة من خلال التذكيرات الموجودة في تطبيق المتجر."
+      },
+      "marketing_description": "ستتلقى رسائل تسويقية عبر البريد الإلكتروني. يمكنك إلغاء الاشتراك في أي وقت.",
+      "duties_and_taxes_included": "يشمل السعر الإجمالي الرسوم والضرائب. لا توجد رسوم إضافية على التوصيل."
     },
-    "trust": {
-        "shipping": "شحن سريع",
-        "curated": "اختيار من المحترفين",
-        "support": "دعم متخصص",
-        "secure": "دفع آمن"
-    },
-    "collection": {
-        "products_count": "منتج",
-        "sort_by": "ترتيب حسب",
-        "sort_featured": "مميز",
-        "sort_price_asc": "السعر: من الأقل للأعلى",
-        "sort_price_desc": "السعر: من الأعلى للأقل",
-        "sort_newest": "الأحدث",
-        "sort_best_selling": "الأكثر مبيعاً",
-        "filter_brand": "الماركة",
-        "filter_type": "النوع",
-        "filter_price": "السعر",
-        "no_products": "لم يتم العثور على منتجات",
-        "no_products_cta": "تصفح جميع المكعبات",
-        "browse_all": "تصفح الكل",
-        "filters": "فلتر"
-    },
-    "product": {
-        "add_to_cart": "أضف إلى السلة",
-        "buy_now": "اشتر الآن",
-        "sold_out": "نفذت الكمية",
-        "sale": "عرض",
-        "new": "جديد",
-        "description": "الوصف",
-        "shipping_returns": "الشحن والإرجاع",
-        "shipping_returns_text": "شحن مجاني على الطلبات التي تتجاوز 100 د.إ. إرجاع مجاني خلال 30 يوماً.",
-        "related_heading": "قد يعجبك أيضاً",
-        "quantity": "الكمية",
-        "share": "مشاركة"
-    },
-    "cart": {
-        "title": "سلتك",
-        "empty": "سلتك فارغة",
-        "continue_shopping": "تابع التسوق",
-        "checkout": "إتمام الشراء",
-        "subtotal": "المجموع الفرعي",
-        "shipping_note": "الشحن والضرائب تحسب عند الدفع",
-        "remove": "إزالة",
-        "quantity": "الكمية"
-    },
-    "footer": {
-        "brand_desc": "بيت مجتمع المكعبات في الشرق الأوسط. مُختار ومُعتمد من المحترفين.",
-        "shop_heading": "المتجر",
-        "brands_heading": "الماركات",
-        "help_heading": "المساعدة",
-        "newsletter_heading": "ابقَ على اطلاع",
-        "newsletter_btn": "اشترك",
-        "copyright": "جميع الحقوق محفوظة",
-        "faq": "الأسئلة الشائعة",
-        "shipping": "سياسة الشحن",
-        "returns": "الإرجاع",
-        "contact": "اتصل بنا",
-        "about": "من نحن",
-        "track_order": "تتبع الطلب"
-    },
-    "search": {
-        "heading": "نتائج البحث",
-        "no_results": "لم نجد نتائج لـ",
-        "placeholder": "ابحث عن مكعبات، ماركات، إكسسوارات...",
-        "submit": "بحث"
-    },
-    "about": {
-        "heading": "من نحن",
-        "mission_heading": "مهمتنا",
-        "team_heading": "فريقنا",
-        "values_heading": "قيمنا"
-    },
-    "contact": {
-        "heading": "اتصل بنا",
-        "name": "الاسم",
-        "email": "البريد الإلكتروني",
-        "message": "الرسالة",
-        "submit": "إرسال",
-        "whatsapp": "تواصل معنا عبر واتساب"
+    "B2B": {
+      "locations": {
+        "shipping_address_required": "أضف عنوان الشحن إلى هذا الموقع لبدء تقديم الطلبات."
+      },
+      "draft_order_details": {
+        "payment_status": {
+          "draft": {
+            "submitted": {
+              "deposit": {
+                "due_on_fulfillment": "يُستحق دفع المبلغ المتبقي بمجرد استكمال جميع بنود هذا الطلب."
+              }
+            }
+          }
+        }
+      }
     },
     "errors": {
-        "404_heading": "الصفحة غير موجودة",
-        "404_body": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
-        "404_cta": "العودة للرئيسية"
+      "addresses_loading_issue": {
+        "description": "حدث خطأ في الاتصال. تحقق من اتصالك بالإنترنت وحاول مرة أخرى."
+      },
+      "order_not_found": {
+        "description": "هذا الطلب غير موجود أو ليس لديك إذن لعرضه."
+      }
     },
-    "pagination": {
-        "next": "التالي",
-        "previous": "السابق"
+    "payment_methods": {
+      "add_payment_method_banner": "أضف طريقة دفع لتسريع عملية الدفع أو الخدمات المعتمدة مسبقًا"
     }
+  }
 }
