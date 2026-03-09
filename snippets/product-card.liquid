@@ -30,9 +30,9 @@
       <div class="product-card__info">
         <h3 class="product-card__title">{{ product.title | default: 'Example Speedcube M' }}</h3>
         <div class="product-card__prices">
-          <span class="product-card__price">{{ product.price | default: 8900 | money }}</span>
+          <span class="product-card__price" data-sch-price="{{ product.price | default: 8900 }}">{{ product.price | default: 8900 | money }}</span>
           {%- if product.compare_at_price > product.price -%}
-            <span class="product-card__compare-price">{{ product.compare_at_price | money }}</span>
+            <span class="product-card__compare-price" data-sch-price="{{ product.compare_at_price }}">{{ product.compare_at_price | money }}</span>
           {%- endif -%}
         </div>
       </div>

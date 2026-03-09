@@ -2,160 +2,280 @@
   <div class="banner-carousel-container">
     <div class="banner-carousel-track" id="carousel-track-{{ section.id }}">
       {%- for block in section.blocks -%}
-        <div class="banner-carousel-slide" data-index="{{ forloop.index0 }}">
-          <div class="slide-background">
+        <div class="banner-carousel-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="banner-slide-link" aria-label="{{ block.settings.label | default: 'View offer' }}">
+          {%- endif -%}
+          <div class="banner-slide-img-wrap">
             {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 1920 }}" alt="{{ block.settings.heading | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" class="slide-bg-img">
+              <img
+                src="{{ block.settings.image | image_url: width: 1920 }}"
+                srcset="{{ block.settings.image | image_url: width: 600 }} 600w,
+                        {{ block.settings.image | image_url: width: 900 }} 900w,
+                        {{ block.settings.image | image_url: width: 1400 }} 1400w,
+                        {{ block.settings.image | image_url: width: 1920 }} 1920w"
+                sizes="100vw"
+                alt="{{ block.settings.label | default: shop.name | escape }}"
+                class="banner-slide-img"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                draggable="false"
+              >
             {%- else -%}
-              <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0d2137 70%, #071022 100%); width:100%; height:100%;"></div>
+              <div class="banner-slide-placeholder">
+                <span>Add a banner image in the theme editor</span>
+              </div>
             {%- endif -%}
-            <div class="slide-overlay" style="background-color: {{ block.settings.overlay_color | default: '#000000' }}; opacity: {{ block.settings.overlay_opacity | default: 35 | divided_by: 100.0 }};"></div>
           </div>
-          <div class="slide-content-wrap">
-            <div class="slide-content">
-              {%- if block.settings.subheading != blank -%}
-                <span class="slide-subheading font-display" style="color: {{ block.settings.subheading_color | default: '#FFD000' }};">{{ block.settings.subheading }}</span>
-              {%- endif -%}
-              {%- if block.settings.heading != blank -%}
-                <h2 class="slide-heading font-display" style="color: {{ block.settings.heading_color | default: '#FFFFFF' }};">{{ block.settings.heading }}</h2>
-              {%- endif -%}
-              {%- if block.settings.button_label != blank -%}
-                <a href="{{ block.settings.button_link | default: '#' }}" class="btn btn-primary slide-btn">
-                  {{ block.settings.button_label }}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </a>
-              {%- endif -%}
-            </div>
-          </div>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
         </div>
       {%- else -%}
+        <!-- Default placeholder slides when none configured -->
         <div class="banner-carousel-slide" data-index="0">
-          <div class="slide-background">
-            <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0d2137 70%, #071022 100%); width:100%; height:100%;"></div>
-            <div class="slide-overlay" style="background: linear-gradient(to right, #000, transparent); opacity: 0.3;"></div>
-          </div>
-          <div class="slide-content-wrap">
-            <div class="slide-content">
-              <span class="slide-subheading font-display" style="color:#FFD000;">SUMMER SALE 2024</span>
-              <h2 class="slide-heading font-display" style="color:#FFF;">UP TO 50% OFF<br>BIG CUBES</h2>
-              <a href="/collections/speedcubes" class="btn btn-primary slide-btn">Shop the Sale <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          <a href="/collections/all" class="banner-slide-link">
+            <div class="banner-slide-placeholder">
+              <div style="text-align:center;">
+                <p style="font-family:var(--font-display);font-size:1.4rem;color:#FFD000;margin-bottom:0.5rem;">Add Banner Images</p>
+                <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;">Go to Theme Editor → Sections → Banner Carousel</p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="banner-carousel-slide" data-index="1">
-          <div class="slide-background">
-            <div class="slide-bg-placeholder" style="background: linear-gradient(135deg, #0a1628 0%, #1c2c40 40%, #1a2010 70%, #0a1628 100%); width:100%; height:100%;"></div>
-            <div class="slide-overlay" style="background: linear-gradient(to right, #000, transparent); opacity: 0.3;"></div>
-          </div>
-          <div class="slide-content-wrap">
-            <div class="slide-content">
-              <span class="slide-subheading font-display" style="color:#FF6B1A;">NEW ARRIVALS</span>
-              <h2 class="slide-heading font-display" style="color:#FFF;">GAN 14 MAGLEV<br>IS HERE</h2>
-              <a href="/collections/new-arrivals" class="btn btn-primary slide-btn">Discover Maglev <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-            </div>
-          </div>
+          </a>
         </div>
       {%- endfor -%}
     </div>
-    <button class="banner-prev-btn banner-arrow" id="prev-btn-{{ section.id }}" aria-label="Previous slide">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <button class="banner-next-btn banner-arrow" id="next-btn-{{ section.id }}" aria-label="Next slide">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
-    <div class="banner-indicators" id="indicators-{{ section.id }}"></div>
+
+    {%- if section.blocks.size > 1 -%}
+      <button class="banner-arrow banner-prev" id="banner-prev-{{ section.id }}" aria-label="Previous slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="banner-arrow banner-next" id="banner-next-{{ section.id }}" aria-label="Next slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <div class="banner-dots" id="banner-dots-{{ section.id }}" aria-label="Slide navigation"></div>
+    {%- endif -%}
   </div>
 </section>
 
 <style>
-  .banner-carousel-section { position: relative; width: 100%; overflow: hidden; background: #000; }
-  .banner-carousel-container { position: relative; width: 100%; height: 65vh; min-height: 380px; max-height: 780px; overflow: hidden; }
-  @media (max-width: 768px) { .banner-carousel-container { height: 55vw; min-height: 260px; max-height: 440px; } }
-  .banner-carousel-track { display: flex; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
-  .banner-carousel-slide { flex: 0 0 100%; width: 100%; height: 100%; position: relative; overflow: hidden; }
-  .slide-background { position: absolute; inset: 0; z-index: 1; }
-  .slide-bg-img { width: 100%; height: 100%; object-fit: cover; }
-  .slide-overlay { position: absolute; inset: 0; z-index: 2; }
-  .slide-content-wrap { position: absolute; inset: 0; z-index: 3; display: flex; align-items: center; padding: 0 8%; }
-  .slide-content { max-width: 600px; }
-  .slide-subheading { display: block; font-size: clamp(0.85rem, 1.5vw, 1rem); font-weight: 700; letter-spacing: 0.15em; margin-bottom: 0.5rem; text-transform: uppercase; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
-  .slide-heading { font-size: clamp(1.8rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.1; margin: 0 0 1.5rem 0; text-transform: uppercase; text-shadow: 0 4px 16px rgba(0,0,0,0.7); }
-  .slide-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.4rem; font-size: 0.95rem; }
-  .banner-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
-    width: 44px; height: 44px;
-    background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.25);
-    border-radius: 50%; color: rgba(255,255,255,0.9);
+  .banner-carousel-section {
+    position: relative;
+    width: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+  .banner-carousel-container {
+    position: relative;
+    width: 100%;
+    /* Fixed pixel height for predictable rendering */
+    height: 580px;
+    overflow: hidden;
+  }
+  @media (max-width: 1024px) { .banner-carousel-container { height: 420px; } }
+  @media (max-width: 768px)  { .banner-carousel-container { height: 260px; } }
+  @media (max-width: 480px)  { .banner-carousel-container { height: 200px; } }
+
+  .banner-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .banner-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+  .banner-slide-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+  .banner-slide-img-wrap {
+    width: 100%;
+    height: 100%;
+  }
+  .banner-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+  .banner-slide-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #0a1628, #1a3a5c, #071726);
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.2s ease;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0;
   }
-  .banner-arrow:hover { background: #FFD000; border-color: #FFD000; color: #071726; transform: translateY(-50%) scale(1.1); }
-  .banner-prev-btn { left: 20px; }
-  .banner-next-btn { right: 20px; }
-  @media (max-width: 768px) {
-    .banner-arrow { width: 36px; height: 36px; }
+
+  /* Arrows */
+  .banner-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px; height: 44px;
+    background: rgba(7,23,38,0.65);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    border-radius: 50%;
+    color: rgba(255,255,255,0.9);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: 0;
+  }
+  .banner-arrow:hover {
+    background: #FFD000;
+    border-color: #FFD000;
+    color: #071726;
+    transform: translateY(-50%) scale(1.08);
+  }
+  .banner-prev { left: 18px; }
+  .banner-next { right: 18px; }
+  @media (max-width: 480px) {
+    .banner-arrow { width: 34px; height: 34px; }
     .banner-arrow svg { width: 16px; height: 16px; }
-    .banner-prev-btn { left: 10px; }
-    .banner-next-btn { right: 10px; }
-    .slide-content-wrap { padding: 0 16px; }
-    .slide-heading { margin-bottom: 1rem; }
-    .slide-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+    .banner-prev { left: 8px; }
+    .banner-next { right: 8px; }
   }
-  .banner-indicators {
-    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-    z-index: 10; display: flex; gap: 7px; align-items: center;
+
+  /* Dots */
+  .banner-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 4px 8px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    line-height: 0;
+    width: auto;
+    white-space: nowrap;
   }
-  .banner-indicator-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(255,255,255,0.35); border: none; cursor: pointer;
-    padding: 0; transition: all 0.3s ease; flex-shrink: 0; display: block;
+  /* Use span-based dots (set via JS), not buttons, to avoid browser button sizing issues */
+  .banner-dot {
+    display: inline-block !important;
+    flex: 0 0 auto !important;
+    width: 7px !important;
+    height: 7px !important;
+    min-width: 7px !important;
+    max-width: 7px !important;
+    min-height: 7px !important;
+    max-height: 7px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,0.4) !important;
+    cursor: pointer;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    transition: background 0.25s, width 0.25s, border-radius 0.25s !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    outline: none;
+    vertical-align: middle;
   }
-  .banner-indicator-dot.active { background: #FFD000; width: 22px; border-radius: 4px; }
+  .banner-dot.is-active {
+    background: #FFD000 !important;
+    width: 20px !important;
+    min-width: 20px !important;
+    max-width: 20px !important;
+    border-radius: 4px !important;
+  }
   @media (max-width: 768px) {
-    .banner-indicator-dot { width: 7px; height: 7px; }
-    .banner-indicator-dot.active { width: 18px; }
-    .banner-indicators { bottom: 10px; gap: 5px; }
+    .banner-dots { bottom: 8px; gap: 4px; padding: 3px 7px; }
+    .banner-dot { width: 6px !important; height: 6px !important; min-width:6px !important; max-width:6px !important; min-height:6px !important; max-height:6px !important; }
+    .banner-dot.is-active { width: 14px !important; min-width:14px !important; max-width:14px !important; }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const sectionId = "{{ section.id }}";
-    const track = document.getElementById(`carousel-track-${sectionId}`);
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var sectionId = "{{ section.id }}";
+    var track = document.getElementById('carousel-track-' + sectionId);
     if (!track) return;
-    const slides = Array.from(track.children);
-    const nextBtn = document.getElementById(`next-btn-${sectionId}`);
-    const prevBtn = document.getElementById(`prev-btn-${sectionId}`);
-    const indicatorsContainer = document.getElementById(`indicators-${sectionId}`);
-    let currentIndex = 0, autoplayInterval;
-    slides.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'banner-indicator-dot';
-      dot.setAttribute('aria-label', `Slide ${index + 1}`);
-      dot.addEventListener('click', () => goToSlide(index));
-      indicatorsContainer.appendChild(dot);
-    });
-    const dots = Array.from(indicatorsContainer.children);
-    function updateCarousel() {
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+    var slides = track.querySelectorAll('.banner-carousel-slide');
+    if (slides.length <= 1) return;
+
+    var prevBtn = document.getElementById('banner-prev-' + sectionId);
+    var nextBtn = document.getElementById('banner-next-' + sectionId);
+    var dotsContainer = document.getElementById('banner-dots-' + sectionId);
+    var currentIndex = 0;
+    var autoplayTimer = null;
+    var touchStartX = 0;
+    var isDragging = false;
+
+    // Build dots
+    var dots = [];
+    if (dotsContainer) {
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'banner-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.setAttribute('type', 'button');
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
     }
-    function goToSlide(index) { currentIndex = (index + slides.length) % slides.length; updateCarousel(); resetAutoplay(); }
-    function startAutoplay() { autoplayInterval = setInterval(() => goToSlide(currentIndex + 1), 7000); }
-    function resetAutoplay() { clearInterval(autoplayInterval); startAutoplay(); }
-    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    let touchStartX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(autoplayInterval); }, {passive:true});
-    track.addEventListener('touchend', e => {
-      const diff = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(diff) > 50) goToSlide(currentIndex + (diff < 0 ? 1 : -1));
-      startAutoplay();
-    }, {passive:true});
-    updateCarousel();
+
+    function updateUI() {
+      track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      dots.forEach(function(d, i) {
+        d.classList.toggle('is-active', i === currentIndex);
+      });
+    }
+
+    function goTo(idx) {
+      currentIndex = ((idx % slides.length) + slides.length) % slides.length;
+      updateUI();
+      resetAutoplay();
+    }
+
+    function startAutoplay() {
+      autoplayTimer = setInterval(function() { goTo(currentIndex + 1); }, 6000);
+    }
+    function resetAutoplay() { clearInterval(autoplayTimer); startAutoplay(); }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); });
+
+    // Touch/swipe
+    track.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+      isDragging = false;
+      clearInterval(autoplayTimer);
+    }, { passive: true });
+    track.addEventListener('touchmove', function(e) {
+      if (Math.abs(e.changedTouches[0].clientX - touchStartX) > 10) isDragging = true;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var diff = e.changedTouches[0].clientX - touchStartX;
+      if (isDragging && Math.abs(diff) > 40) {
+        goTo(currentIndex + (diff < 0 ? 1 : -1));
+      } else {
+        startAutoplay();
+      }
+    }, { passive: true });
+
+    updateUI();
     startAutoplay();
   });
+})();
 </script>
 
 {% schema %}
@@ -164,20 +284,38 @@
   "settings": [],
   "blocks": [
     {
-      "type": "slide", "name": "Slide", "limit": 5,
+      "type": "slide",
+      "name": "Slide",
+      "limit": 10,
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Slide Image" },
-        { "type": "color", "id": "overlay_color", "label": "Overlay Color", "default": "#000000" },
-        { "type": "range", "id": "overlay_opacity", "min": 0, "max": 100, "step": 5, "label": "Overlay Opacity", "default": 35 },
-        { "type": "text", "id": "subheading", "label": "Subheading", "default": "NEW COLLECTION" },
-        { "type": "color", "id": "subheading_color", "label": "Subheading Color", "default": "#FFD000" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "UPGRADE YOUR MAINS" },
-        { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#FFFFFF" },
-        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Shop Now" },
-        { "type": "url", "id": "button_link", "label": "Button Link" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner Image (1920×650px recommended)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Click destination (link when banner is clicked)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Accessibility label",
+          "info": "Describe the banner for screen readers",
+          "default": "Shop now"
+        }
       ]
     }
   ],
-  "presets": [{ "name": "Banner Carousel", "blocks": [{ "type": "slide" }, { "type": "slide" }] }]
+  "presets": [
+    {
+      "name": "Banner Carousel",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
 }
 {% endschema %}

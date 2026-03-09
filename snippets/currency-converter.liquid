@@ -1,0 +1,153 @@
+<!-- Currency Converter: Auto-detects country, shows local currency at +5% markup -->
+<script>
+(function() {
+  // Map of currency codes to display symbols
+  var CURRENCY_SYMBOLS = {
+    'USD': '$', 'EUR': '€', 'GBP': '£', 'SAR': 'SAR', 'KWD': 'KWD',
+    'QAR': 'QAR', 'BHD': 'BHD', 'OMR': 'OMR', 'AED': 'Dhs.',
+    'EGP': 'EGP', 'JOD': 'JOD', 'PKR': '₨', 'INR': '₹', 'CAD': 'CA$',
+    'AUD': 'A$', 'SGD': 'S$', 'MYR': 'RM', 'TRY': '₺', 'NGN': '₦',
+    'GHS': 'GH₵', 'KES': 'KSh', 'ZAR': 'R', 'MAD': 'MAD', 'DZD': 'DZD',
+    'TND': 'TND', 'LYD': 'LYD', 'IQD': 'IQD', 'LBP': 'LBP'
+  };
+
+  // Country to currency map (top markets for GCC e-commerce)
+  var COUNTRY_CURRENCY = {
+    'AE': 'AED', 'SA': 'SAR', 'KW': 'KWD', 'QA': 'QAR',
+    'BH': 'BHD', 'OM': 'OMR', 'EG': 'EGP', 'JO': 'JOD',
+    'US': 'USD', 'GB': 'GBP', 'CA': 'CAD', 'AU': 'AUD',
+    'DE': 'EUR', 'FR': 'EUR', 'IT': 'EUR', 'ES': 'EUR', 'NL': 'EUR',
+    'IN': 'INR', 'PK': 'PKR', 'SG': 'SGD', 'MY': 'MYR',
+    'TR': 'TRY', 'NG': 'NGN', 'GH': 'GHS', 'KE': 'KES',
+    'ZA': 'ZAR', 'MA': 'MAD', 'DZ': 'DZD', 'TN': 'TND',
+    'LY': 'LYD', 'IQ': 'IQD', 'LB': 'LBP'
+  };
+
+  var MARKUP = 1.05; // 5% markup
+  var BASE_CURRENCY = 'AED'; // Shopify store currency
+  var ratesCache = null;
+  var detectedCurrency = null;
+  var detectedCountry = null;
+
+  // Detect country from URL param (Shopify passes ?country=XX)
+  function getCountryFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    return params.get('country') || null;
+  }
+
+  // Get stored preference
+  function getStoredCurrency() {
+    try { return sessionStorage.getItem('sch_currency'); } catch(e) { return null; }
+  }
+  function storeCurrency(code) {
+    try { sessionStorage.setItem('sch_currency', code); } catch(e) {}
+  }
+
+  // Fetch exchange rates (free API, no key needed)
+  function fetchRates(callback) {
+    if (ratesCache) { callback(ratesCache); return; }
+    fetch('https://open.er-api.com/v6/latest/AED')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data && data.rates) {
+          ratesCache = data.rates;
+          callback(ratesCache);
+        }
+      })
+      .catch(function() {
+        // Fallback hardcoded rates (approximate, as of 2025)
+        ratesCache = {
+          'USD': 0.2723, 'EUR': 0.2498, 'GBP': 0.2142, 'SAR': 1.0213,
+          'KWD': 0.0837, 'QAR': 0.9913, 'BHD': 0.1026, 'OMR': 0.1048,
+          'EGP': 13.38, 'JOD': 0.1932, 'CAD': 0.3681, 'AUD': 0.4201,
+          'INR': 22.71, 'PKR': 75.44, 'SGD': 0.3643, 'MYR': 1.2113,
+          'TRY': 9.71, 'NGN': 430.2, 'GHS': 3.98, 'KES': 35.22,
+          'ZAR': 4.98, 'MAD': 2.72, 'AED': 1
+        };
+        callback(ratesCache);
+      });
+  }
+
+  // Convert AED price to target currency
+  function convertPrice(aedAmount, targetCurrency, rates) {
+    if (!rates || targetCurrency === BASE_CURRENCY) return aedAmount;
+    var rate = rates[targetCurrency];
+    if (!rate) return aedAmount;
+    return aedAmount * rate * MARKUP;
+  }
+
+  // Format price for display
+  function formatPrice(amount, currency) {
+    var symbol = CURRENCY_SYMBOLS[currency] || currency;
+    var decimals = (currency === 'KWD' || currency === 'BHD' || currency === 'OMR') ? 3 : 2;
+    // For large values (EGP, PKR etc) use 0 decimals
+    if (amount > 1000) decimals = 0;
+    return symbol + ' ' + amount.toFixed(decimals);
+  }
+
+  // Apply conversion to all price elements on page
+  function applyConversion(currency, rates) {
+    if (currency === BASE_CURRENCY) return;
+    // Find all elements with data-sch-price (AED in cents)
+    document.querySelectorAll('[data-sch-price]').forEach(function(el) {
+      var aedCents = parseInt(el.getAttribute('data-sch-price'));
+      if (!isNaN(aedCents)) {
+        var aed = aedCents / 100;
+        var converted = convertPrice(aed, currency, rates);
+        el.textContent = formatPrice(converted, currency);
+      }
+    });
+    // Update currency indicator if present
+    var indicator = document.getElementById('sch-currency-indicator');
+    if (indicator) indicator.textContent = currency;
+  }
+
+  // Main init
+  function init() {
+    var stored = getStoredCurrency();
+    var urlCountry = getCountryFromUrl();
+    var country = urlCountry || null;
+    
+    // Determine currency
+    if (stored) {
+      detectedCurrency = stored;
+    } else if (country && COUNTRY_CURRENCY[country]) {
+      detectedCurrency = COUNTRY_CURRENCY[country];
+      storeCurrency(detectedCurrency);
+    } else {
+      // Try Shopify's detected country
+      var shopifyCountry = window.Shopify && window.Shopify.country;
+      if (shopifyCountry && COUNTRY_CURRENCY[shopifyCountry]) {
+        detectedCurrency = COUNTRY_CURRENCY[shopifyCountry];
+        storeCurrency(detectedCurrency);
+      }
+    }
+
+    if (detectedCurrency && detectedCurrency !== BASE_CURRENCY) {
+      fetchRates(function(rates) {
+        applyConversion(detectedCurrency, rates);
+        // Show currency badge
+        showCurrencyBadge(detectedCurrency);
+      });
+    }
+  }
+
+  function showCurrencyBadge(currency) {
+    // Update any currency display elements
+    document.querySelectorAll('.sch-currency-display').forEach(function(el) {
+      el.textContent = currency;
+      el.style.display = 'inline';
+    });
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Expose for manual use
+  window.SCH_Currency = { convert: convertPrice, format: formatPrice, getDetected: function() { return detectedCurrency; } };
+})();
+</script>

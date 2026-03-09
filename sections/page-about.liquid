@@ -2,10 +2,31 @@
 
   <!-- Hero Banner -->
   <div class="about-hero">
+    <!-- Animated cube grid background -->
+    <div class="about-hero__bg-grid" aria-hidden="true">
+      {%- for i in (1..12) -%}
+        <div class="hero-grid-cube" style="--delay:{{ i | times: 0.15 }}s;--x:{{ i | times: 8 | modulo: 100 }}%;--y:{{ i | times: 13 | modulo: 80 }}%;"></div>
+      {%- endfor -%}
+    </div>
     <div class="container about-hero__content">
-      <span class="about-eyebrow font-display">Our Story</span>
-      <h1 class="about-hero__title font-display">Built for Cubers,<br>By Cubers</h1>
-      <p class="about-hero__sub">SpeedCubeHub is the Middle East's first dedicated speedcubing store — bringing the world's best puzzles straight to the GCC community.</p>
+      <div class="about-hero__text-col">
+        <span class="about-eyebrow font-display">Our Story</span>
+        <h1 class="about-hero__title font-display">Built for Cubers,<br>By Cubers</h1>
+        <p class="about-hero__sub">SpeedCubeHub is the Middle East's first dedicated speedcubing store — bringing the world's best puzzles straight to the GCC community.</p>
+        <a href="/collections/all" class="btn btn-primary" style="margin-top:2rem;">Shop Now →</a>
+      </div>
+      <div class="about-hero__logo-col">
+        <div class="about-logo-display">
+          {%- if settings.logo != blank -%}
+            <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" class="about-main-logo">
+          {%- else -%}
+            <img src="{{ 'Logo removed BG.png' | asset_url }}" alt="SpeedCubeHub" class="about-main-logo">
+          {%- endif -%}
+          <div class="about-logo-ring about-logo-ring--1" aria-hidden="true"></div>
+          <div class="about-logo-ring about-logo-ring--2" aria-hidden="true"></div>
+          <div class="about-logo-ring about-logo-ring--3" aria-hidden="true"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -14,11 +35,11 @@
     <div class="container">
       <div class="about-stats__grid">
         <div class="about-stat reveal">
-          <div class="about-stat__number font-display">500+</div>
+          <div class="about-stat__number font-display">500<span style="color:#FFD000">+</span></div>
           <div class="about-stat__label">Products</div>
         </div>
         <div class="about-stat reveal" style="transition-delay:80ms">
-          <div class="about-stat__number font-display">10,000+</div>
+          <div class="about-stat__number font-display">10,000<span style="color:#FFD000">+</span></div>
           <div class="about-stat__label">Happy Cubers</div>
         </div>
         <div class="about-stat reveal" style="transition-delay:160ms">
@@ -26,7 +47,7 @@
           <div class="about-stat__label">GCC Countries</div>
         </div>
         <div class="about-stat reveal" style="transition-delay:240ms">
-          <div class="about-stat__number font-display">4.9★</div>
+          <div class="about-stat__number font-display">4.9<span style="color:#FFD000">★</span></div>
           <div class="about-stat__label">Average Rating</div>
         </div>
       </div>
@@ -45,18 +66,28 @@
           <a href="/collections/all" class="btn btn-primary">Shop All Cubes →</a>
         </div>
         <div class="about-mission__visual reveal" style="transition-delay:100ms">
-          <div class="about-cube-graphic">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-              <path d="M100 20L20 65V135L100 180L180 135V65L100 20Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.04)"/>
-              <path d="M100 20V180M20 65L180 65M20 135L180 135" stroke="rgba(255,208,0,0.2)" stroke-width="1"/>
-              <path d="M60 42L100 20L140 42M60 42L100 65L140 42M60 42V112M140 42V112M60 112L100 135L140 112M100 65V135" stroke="rgba(26,159,224,0.4)" stroke-width="1.5"/>
-              <circle cx="100" cy="20" r="4" fill="#FFD000"/>
-              <circle cx="20" cy="65" r="3" fill="#FFD000" opacity="0.6"/>
-              <circle cx="180" cy="65" r="3" fill="#FFD000" opacity="0.6"/>
-              <circle cx="100" cy="180" r="4" fill="#FFD000"/>
-              <circle cx="20" cy="135" r="3" fill="#FFD000" opacity="0.6"/>
-              <circle cx="180" cy="135" r="3" fill="#FFD000" opacity="0.6"/>
-            </svg>
+          <div class="about-mission-card">
+            <div class="about-mission-logo-wrap">
+              <div class="about-logo-glow-wrap">
+                {%- if settings.logo != blank -%}
+                  <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" class="about-mission-logo">
+                {%- else -%}
+                  <img src="{{ 'Logo removed BG.png' | asset_url }}" alt="SpeedCubeHub" class="about-mission-logo">
+                {%- endif -%}
+                <div class="about-logo-glow" aria-hidden="true"></div>
+                <div class="about-logo-particles" aria-hidden="true">
+                  {%- for i in (1..8) -%}
+                    <span class="about-logo-particle" style="--i:{{ i }}"></span>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+            <div class="about-mission-tagline font-display">The GCC's #1 Speedcubing Store</div>
+            <div class="about-mission-badges">
+              <span class="mission-badge">🇦🇪 UAE Warehouse</span>
+              <span class="mission-badge">✅ 100% Authentic</span>
+              <span class="mission-badge">⚡ Same-Day Dispatch</span>
+            </div>
           </div>
         </div>
       </div>
@@ -73,42 +104,42 @@
       <div class="about-features__grid">
         <div class="about-feature-card reveal">
           <div class="about-feature-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           </div>
           <h3 class="font-display" style="font-size:1.1rem;margin-bottom:0.5rem;">100% Authentic</h3>
           <p style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.6;">Every cube is sourced directly from authorized distributors. No fakes, no grey-market stock.</p>
         </div>
         <div class="about-feature-card reveal" style="transition-delay:60ms">
           <div class="about-feature-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A9FE0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A9FE0" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
           </div>
           <h3 class="font-display" style="font-size:1.1rem;margin-bottom:0.5rem;">Same-Day Dispatch</h3>
           <p style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.6;">Orders placed before 2 PM UAE time are dispatched the same day. UAE delivery in 1–2 days.</p>
         </div>
         <div class="about-feature-card reveal" style="transition-delay:120ms">
           <div class="about-feature-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
           <h3 class="font-display" style="font-size:1.1rem;margin-bottom:0.5rem;">Community First</h3>
           <p style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.6;">We sponsor local competitions and support the UAE cubing community. We're cubers, not just sellers.</p>
         </div>
         <div class="about-feature-card reveal" style="transition-delay:180ms">
           <div class="about-feature-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
           </div>
           <h3 class="font-display" style="font-size:1.1rem;margin-bottom:0.5rem;">Expert Advice</h3>
           <p style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.6;">Not sure which cube to buy? Our team are competitive solvers who can guide you to the perfect choice.</p>
         </div>
         <div class="about-feature-card reveal" style="transition-delay:240ms">
           <div class="about-feature-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
           </div>
           <h3 class="font-display" style="font-size:1.1rem;margin-bottom:0.5rem;">Secure & Easy</h3>
           <p style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.6;">Multiple payment options, SSL encryption, and a simple 30-day return policy. Shop worry-free.</p>
         </div>
         <div class="about-feature-card reveal" style="transition-delay:300ms">
           <div class="about-feature-card__icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD000" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
           </div>
           <h3 class="font-display" style="font-size:1.1rem;margin-bottom:0.5rem;">Arabic Support</h3>
           <p style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.6;">Full Arabic language store with Arabic customer support. نتحدث العربية!</p>
@@ -136,33 +167,139 @@
 <style>
   .about-page { padding-bottom: 2rem; }
 
+  /* ===== HERO ===== */
   .about-hero {
     position: relative;
-    background: linear-gradient(135deg, #0a1826 0%, #1a2c40 50%, #071726 100%);
+    background: linear-gradient(135deg, #060f1e 0%, #0d1f35 50%, #071726 100%);
     padding: 5rem 0 4rem;
     overflow: hidden;
+    min-height: 460px;
+    display: flex;
+    align-items: center;
   }
-  .about-hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events: none;
+  /* Animated background grid cubes */
+  .about-hero__bg-grid { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .hero-grid-cube {
+    position: absolute;
+    left: var(--x); top: var(--y);
+    width: 40px; height: 40px;
+    border: 1px solid rgba(255,208,0,0.08);
+    transform: rotate(45deg);
+    animation: floatCube 6s ease-in-out infinite;
+    animation-delay: var(--delay);
   }
-  .about-hero__content { position: relative; z-index: 2; max-width: 700px; }
+  @keyframes floatCube {
+    0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+    50% { transform: rotate(45deg) translateY(-12px); opacity: 0.7; }
+  }
+
+  .about-hero__content {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 3rem; align-items: center;
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    .about-hero__content { grid-template-columns: 1fr; gap: 2rem; }
+    .about-hero { padding: 3rem 0; min-height: unset; }
+  }
+
+  .about-hero__text-col { max-width: 600px; }
   .about-eyebrow { display: block; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: var(--color-primary); margin-bottom: 0.8rem; }
   .about-hero__title { font-size: clamp(2.2rem, 5vw, 3.5rem); text-transform: uppercase; margin-bottom: 1.2rem; line-height: 1.1; }
-  .about-hero__sub { font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: rgba(255,255,255,0.7); max-width: 560px; line-height: 1.7; }
+  .about-hero__sub { font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: rgba(255,255,255,0.7); line-height: 1.7; }
 
+  /* Logo display in hero */
+  .about-hero__logo-col { display: flex; align-items: center; justify-content: center; }
+  .about-logo-display {
+    position: relative;
+    width: 220px; height: 220px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  @media (max-width: 768px) {
+    .about-hero__logo-col { display: none; }
+  }
+  .about-main-logo {
+    width: 140px; height: auto;
+    position: relative; z-index: 2;
+    filter: drop-shadow(0 0 24px rgba(255,208,0,0.3));
+    animation: logoPulse 3s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(255,208,0,0.25)); }
+    50% { filter: drop-shadow(0 0 36px rgba(255,208,0,0.5)); }
+  }
+  .about-logo-ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(255,208,0,0.18);
+    animation: ringExpand 3s ease-out infinite;
+  }
+  .about-logo-ring--1 { width: 160px; height: 160px; animation-delay: 0s; }
+  .about-logo-ring--2 { width: 200px; height: 200px; animation-delay: 0.5s; border-color: rgba(255,208,0,0.1); }
+  .about-logo-ring--3 { width: 240px; height: 240px; animation-delay: 1s; border-color: rgba(255,208,0,0.05); }
+  @keyframes ringExpand {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.8; }
+  }
+
+  /* ===== STATS ===== */
   .about-stats { background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2.5rem 0; }
   .about-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   @media (max-width: 768px) { .about-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
   .about-stat { text-align: center; }
-  .about-stat__number { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--color-primary); line-height: 1; margin-bottom: 0.4rem; }
-  .about-stat__label { font-size: 0.85rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .about-stat__number { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #fff; line-height: 1; margin-bottom: 0.4rem; }
+  .about-stat__label { font-size: 0.82rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
+  /* ===== MISSION ===== */
   .about-mission__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   @media (max-width: 900px) { .about-mission__inner { grid-template-columns: 1fr; gap: 2rem; } }
-  .about-cube-graphic { width: 100%; max-width: 320px; margin: 0 auto; aspect-ratio: 1/1; background: var(--color-surface); border-radius: 24px; border: 1px solid rgba(255,208,0,0.1); display: flex; align-items: center; justify-content: center; padding: 2rem; }
 
+  .about-mission-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(255,208,0,0.15);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-mission-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center top, rgba(255,208,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-mission-logo-wrap { margin-bottom: 1.2rem; }
+  .about-logo-glow-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 1rem; }
+  .about-mission-logo { max-width: 200px; height: auto; margin: 0 auto; display: block; position: relative; z-index: 2; filter: drop-shadow(0 0 20px rgba(255,208,0,0.4)); animation: logoPulseM 3s ease-in-out infinite; }
+  @keyframes logoPulseM { 0%,100% { filter: drop-shadow(0 0 16px rgba(255,208,0,0.3)); transform: scale(1); } 50% { filter: drop-shadow(0 0 32px rgba(255,208,0,0.6)); transform: scale(1.03); } }
+  .about-logo-glow { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(255,208,0,0.15) 0%, transparent 70%); pointer-events: none; animation: glowPulse 3s ease-in-out infinite; }
+  @keyframes glowPulse { 0%,100% { opacity: 0.5; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } }
+  .about-logo-particles { position: absolute; inset: 0; pointer-events: none; }
+  .about-logo-particle {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #FFD000;
+    top: 50%; left: 50%;
+    animation: orbitParticle 4s linear infinite;
+    animation-delay: calc(var(--i) * 0.5s);
+    transform-origin: 0 0;
+    opacity: 0.7;
+  }
+  @keyframes orbitParticle {
+    0% { transform: rotate(calc(var(--i) * 45deg)) translateX(90px) scale(0.5); opacity: 0; }
+    20% { opacity: 0.8; transform: rotate(calc(var(--i) * 45deg + 72deg)) translateX(90px) scale(1); }
+    80% { opacity: 0.8; }
+    100% { transform: rotate(calc(var(--i) * 45deg + 360deg)) translateX(90px) scale(0.5); opacity: 0; }
+  }
+  .about-mission-tagline { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: #FFD000; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.4rem; }
+  .about-mission-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+  .mission-badge { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; padding: 5px 14px; font-size: 0.78rem; color: rgba(255,255,255,0.75); white-space: nowrap; }
+
+  /* ===== FEATURES ===== */
   .about-features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   @media (max-width: 900px) { .about-features__grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .about-features__grid { grid-template-columns: 1fr; } }
@@ -170,6 +307,7 @@
   .about-feature-card:hover { border-color: rgba(255,208,0,0.2); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.25); }
   .about-feature-card__icon { width: 52px; height: 52px; background: var(--color-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
 
+  /* ===== CTA ===== */
   .about-cta__box { background: linear-gradient(135deg, var(--color-surface) 0%, rgba(255,208,0,0.05) 100%); border: 1px solid rgba(255,208,0,0.15); border-radius: 20px; padding: 3rem 2rem; text-align: center; }
 </style>
 

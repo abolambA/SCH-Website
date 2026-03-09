@@ -7,7 +7,7 @@
   }
 </style>
 
-<header class="header sticky-header">
+<header class="header sticky-header" id="site-header">
   <div class="container header__inner">
 
     <!-- Logo -->
@@ -28,8 +28,7 @@
         </li>
         <li class="header__menu-item header__menu-item--has-mega">
           <a href="{{ routes.all_products_collection_url }}" class="header__menu-link">
-            Shop
-            <svg class="header__menu-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            Shop&nbsp;<svg class="header__menu-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </a>
           <div class="mega-menu" role="navigation">
             <div class="mega-menu-inner">
@@ -83,14 +82,11 @@
                   <li><a href="/collections/pyraminx">Pyraminx</a></li>
                   <li><a href="/collections/megaminx">Megaminx</a></li>
                   <li><a href="/collections/skewb">Skewb</a></li>
-                  <li><a href="/collections/square-1">Square-1</a></li>
-                  <li><a href="/collections/clock">Clock</a></li>
                   <li><a href="/collections/accessories">Accessories</a></li>
-                  <li><a href="/collections/lubricants">Lubricants</a></li>
                 </ul>
               </div>
               <div class="mega-footer">
-                <a href="{{ routes.all_products_collection_url }}" class="btn btn-purchase" style="display:inline-block;padding:10px 32px;">View All Products →</a>
+                <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" style="display:inline-block;padding:10px 32px;">View All Products →</a>
               </div>
             </div>
           </div>
@@ -102,241 +98,434 @@
 
     <!-- Right Icons -->
     <div class="header__icons">
-
-      <!-- Language switcher: preserves current page path -->
+      <!-- Language switcher -->
       <div class="header__language-switcher hide-on-mobile">
         {%- assign current_path = request.path -%}
         {%- if request.locale.iso_code == 'ar' -%}
           {%- assign en_path = current_path | remove_first: '/ar' -%}
           {%- if en_path == '' -%}{%- assign en_path = '/' -%}{%- endif -%}
           <a href="{{ en_path }}" class="header__icon-btn header__lang-btn" aria-label="Switch to English">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             <span class="font-display lang-label">EN</span>
           </a>
         {%- else -%}
           {%- assign ar_path = '/ar' | append: current_path -%}
           <a href="{{ ar_path }}" class="header__icon-btn header__lang-btn" aria-label="Switch to Arabic">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             <span class="font-display lang-label">عربي</span>
           </a>
         {%- endif -%}
       </div>
 
       <button class="header__icon-btn" aria-label="Search" id="search-overlay-trigger">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </button>
 
       {%- if customer -%}
         <a href="{{ routes.account_url }}" class="header__icon-btn hide-on-mobile" aria-label="Account">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </a>
       {%- else -%}
         <a href="{{ routes.account_login_url }}" class="header__icon-btn hide-on-mobile" aria-label="Sign In">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </a>
       {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon-btn header__cart-btn" data-cart-trigger aria-label="Cart">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         <span class="header-cart-badge" style="display:{% if cart.item_count > 0 %}flex{% else %}none{% endif %}">{{ cart.item_count }}</span>
       </a>
 
-      <button class="header__icon-btn show-on-mobile" id="mobile-menu-toggle" aria-label="Menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <!-- Hamburger - MOBILE ONLY -->
+      <button class="header__hamburger show-on-mobile" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <span class="font-display" style="font-size:1.4rem;font-weight:900;">{{ shop.name }}</span>
-      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
-    </div>
-    <div class="mobile-menu-links">
-      <a href="{{ routes.root_url }}" class="mobile-menu-link">Home</a>
-      <div class="mobile-accordion">
-        <button class="mobile-menu-link mobile-accordion-toggle" onclick="this.parentElement.classList.toggle('open')">
-          Shop
-          <svg class="mobile-accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="mobile-accordion-inner" style="padding:0 1.5rem 1rem;">
-          <p class="mobile-accordion-label">By Brand</p>
-          <a href="/collections/gan" class="mobile-sub-link">GAN</a>
-          <a href="/collections/moyu" class="mobile-sub-link">MoYu</a>
-          <a href="/collections/qiyi" class="mobile-sub-link">QiYi</a>
-          <a href="/collections/yj" class="mobile-sub-link">YJ / YongJun</a>
-          <p class="mobile-accordion-label" style="margin-top:0.8rem;">By Type</p>
-          <a href="/collections/3x3" class="mobile-sub-link">3×3 Cubes</a>
-          <a href="/collections/2x2" class="mobile-sub-link">2×2 Cubes</a>
-          <a href="/collections/4x4" class="mobile-sub-link">4×4 Cubes</a>
-          <a href="/collections/pyraminx" class="mobile-sub-link">Pyraminx</a>
-          <a href="/collections/megaminx" class="mobile-sub-link">Megaminx</a>
-          <a href="/collections/skewb" class="mobile-sub-link">Skewb</a>
-          <a href="/collections/accessories" class="mobile-sub-link">Accessories</a>
-          <a href="/collections/lubricants" class="mobile-sub-link">Lubricants</a>
-          <a href="/collections/new-arrivals" class="mobile-sub-link" style="color:var(--color-primary);font-weight:700;">🔥 New Arrivals</a>
-          <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" style="display:block;margin-top:0.8rem;text-align:center;padding:10px;">View All →</a>
-        </div>
-      </div>
-      <a href="/pages/about-us" class="mobile-menu-link">About</a>
-      <a href="/pages/contact" class="mobile-menu-link">Contact</a>
-      {%- if customer -%}
-        <a href="{{ routes.account_url }}" class="mobile-menu-link">Account</a>
-      {%- else -%}
-        <a href="{{ routes.account_login_url }}" class="mobile-menu-link">Sign In</a>
-      {%- endif -%}
-      <div style="padding:14px 24px;border-bottom:1px solid rgba(255,255,255,0.05);">
-        {%- if request.locale.iso_code == 'ar' -%}
-          {%- assign mob_en_path = request.path | remove_first: '/ar' -%}
-          {%- if mob_en_path == '' -%}{%- assign mob_en_path = '/' -%}{%- endif -%}
-          <a href="{{ mob_en_path }}" style="display:flex;align-items:center;gap:10px;color:var(--color-text);text-decoration:none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <span class="font-display" style="font-size:1.1rem;font-weight:700;">Switch to English</span>
-          </a>
-        {%- else -%}
-          {%- assign mob_ar_path = '/ar' | append: request.path -%}
-          <a href="{{ mob_ar_path }}" style="display:flex;align-items:center;gap:10px;color:var(--color-text);text-decoration:none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <span class="font-display" style="font-size:1.1rem;font-weight:700;">التبديل للعربية</span>
-          </a>
-        {%- endif -%}
-      </div>
-    </div>
-  </div>
-
   <!-- Search Overlay -->
-  <div class="search-overlay" id="search-overlay">
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-label="Search" aria-hidden="true">
     <div class="container search-overlay-inner">
       <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
         <input type="hidden" name="type" value="product">
-        <input class="search-input font-display" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search cubes, brands, accessories..." id="SearchInput" autocomplete="off">
+        <input class="search-input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search cubes, brands, accessories..." id="SearchInput" autocomplete="off">
         <button type="submit" class="search-submit" aria-label="Search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
       </form>
-      <button class="search-close" id="search-close" aria-label="Close">✕</button>
+      <button class="search-close" id="search-close" aria-label="Close search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
     </div>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const mobileToggle = document.getElementById('mobile-menu-toggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileClose = document.getElementById('mobile-menu-close');
-      if (mobileToggle && mobileMenu) {
-        mobileToggle.addEventListener('click', () => { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
-      }
-      if (mobileClose && mobileMenu) {
-        mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
-      }
-      document.addEventListener('click', e => {
-        if (mobileMenu && mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && mobileToggle && !mobileToggle.contains(e.target)) {
-          mobileMenu.classList.remove('open'); document.body.style.overflow = '';
-        }
-      });
-      const searchTrigger = document.getElementById('search-overlay-trigger');
-      const searchOverlay = document.getElementById('search-overlay');
-      const searchClose = document.getElementById('search-close');
-      const searchInput = document.getElementById('SearchInput');
-      if (searchTrigger && searchOverlay) {
-        searchTrigger.addEventListener('click', e => { e.preventDefault(); searchOverlay.classList.add('active'); setTimeout(() => searchInput && searchInput.focus(), 100); });
-      }
-      if (searchClose && searchOverlay) { searchClose.addEventListener('click', () => searchOverlay.classList.remove('active')); }
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && searchOverlay) searchOverlay.classList.remove('active'); });
-    });
-  </script>
 </header>
 
+<!-- Mobile Menu Overlay + Drawer — OUTSIDE header -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<div class="mobile-menu-drawer" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mmenu-header">
+    <a href="{{ routes.root_url }}" class="mmenu-logo">
+      {%- if settings.logo != blank -%}
+        <img src="{{ settings.logo | image_url: width: 120 }}" alt="{{ shop.name }}" style="height:28px;width:auto;">
+      {%- else -%}
+        <img src="{{ 'Logo removed BG.png' | asset_url }}" alt="SpeedCubeHub" style="height:28px;width:auto;">
+      {%- endif -%}
+      <span style="font-family:var(--font-display);font-weight:900;font-size:1.1rem;color:#fff;margin-left:8px;">{{ shop.name }}</span>
+    </a>
+    <button class="mmenu-close" id="mobile-menu-close" aria-label="Close menu" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  <nav class="mmenu-nav">
+    <a href="{{ routes.root_url }}" class="mmenu-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      Home
+    </a>
+
+    <div class="mmenu-accordion">
+      <button class="mmenu-link mmenu-accordion-trigger" id="mmenu-shop-trigger" type="button">
+        <span style="display:flex;align-items:center;gap:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          Shop
+        </span>
+        <svg class="mmenu-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div class="mmenu-accordion-inner" id="mmenu-shop-inner" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.16,1,0.3,1);">
+        <div class="mmenu-accordion-content">
+          <p class="mmenu-section-label">By Brand</p>
+          <a href="/collections/gan" class="mmenu-sub-link">GAN Cube</a>
+          <a href="/collections/moyu" class="mmenu-sub-link">MoYu</a>
+          <a href="/collections/qiyi" class="mmenu-sub-link">QiYi</a>
+          <a href="/collections/yj" class="mmenu-sub-link">YJ / YongJun</a>
+          <p class="mmenu-section-label" style="margin-top:1rem;">By Type</p>
+          <a href="/collections/3x3" class="mmenu-sub-link">3×3 Cubes</a>
+          <a href="/collections/2x2" class="mmenu-sub-link">2×2 Cubes</a>
+          <a href="/collections/4x4" class="mmenu-sub-link">4×4 Cubes</a>
+          <a href="/collections/pyraminx" class="mmenu-sub-link">Pyraminx</a>
+          <a href="/collections/megaminx" class="mmenu-sub-link">Megaminx</a>
+          <a href="/collections/skewb" class="mmenu-sub-link">Skewb</a>
+          <a href="/collections/accessories" class="mmenu-sub-link">Accessories</a>
+          <a href="/collections/new-arrivals" class="mmenu-sub-link" style="color:#FFD000;font-weight:700;">🔥 New Arrivals</a>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary" style="display:flex;margin-top:1rem;justify-content:center;padding:12px;">View All Products →</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="/pages/about-us" class="mmenu-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      About
+    </a>
+    <a href="/pages/contact" class="mmenu-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
+      Contact
+    </a>
+    {%- if customer -%}
+      <a href="{{ routes.account_url }}" class="mmenu-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        My Account
+      </a>
+    {%- else -%}
+      <a href="{{ routes.account_login_url }}" class="mmenu-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Sign In
+      </a>
+    {%- endif -%}
+  </nav>
+
+  <div class="mmenu-footer">
+    <div class="mmenu-lang-row">
+      {%- if request.locale.iso_code == 'ar' -%}
+        {%- assign mob_en_path = request.path | remove_first: '/ar' -%}
+        {%- if mob_en_path == '' -%}{%- assign mob_en_path = '/' -%}{%- endif -%}
+        <a href="{{ mob_en_path }}" class="mmenu-lang-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path></svg>
+          Switch to English
+        </a>
+      {%- else -%}
+        {%- assign mob_ar_path = '/ar' | append: request.path -%}
+        <a href="{{ mob_ar_path }}" class="mmenu-lang-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 014-10z"></path></svg>
+          التبديل للعربية
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+/* Mobile menu — runs immediately on parse, no defer needed */
+(function(){
+  function boot(){
+    var toggle  = document.getElementById('mobile-menu-toggle');
+    var drawer  = document.getElementById('mobileMenu');
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var closeBtn= document.getElementById('mobile-menu-close');
+    if(!toggle||!drawer||!overlay){ return false; }
+
+    function open(){
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-visible');
+      document.body.style.overflow='hidden';
+      toggle.setAttribute('aria-expanded','true');
+    }
+    function close(){
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-visible');
+      document.body.style.overflow='';
+      toggle.setAttribute('aria-expanded','false');
+    }
+
+    toggle.addEventListener('click', open);
+    if(closeBtn) closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+
+    /* Shop accordion */
+    var shopTrigger = document.getElementById('mmenu-shop-trigger');
+    var shopInner   = document.getElementById('mmenu-shop-inner');
+    if(shopTrigger && shopInner){
+      shopTrigger.addEventListener('click',function(){
+        var isOpen = shopInner.style.maxHeight && shopInner.style.maxHeight !== '0px';
+        if(isOpen){
+          shopInner.style.maxHeight='0';
+          var c=shopTrigger.querySelector('.mmenu-caret');
+          if(c) c.style.transform='';
+        } else {
+          shopInner.style.maxHeight=shopInner.scrollHeight+'px';
+          var c=shopTrigger.querySelector('.mmenu-caret');
+          if(c) c.style.transform='rotate(180deg)';
+        }
+      });
+    }
+
+    /* Search overlay */
+    var searchTrigger = document.getElementById('search-overlay-trigger');
+    var searchOverlay = document.getElementById('search-overlay');
+    var searchClose   = document.getElementById('search-close');
+    var searchInput   = document.getElementById('SearchInput');
+    if(searchTrigger && searchOverlay){
+      searchTrigger.addEventListener('click',function(e){
+        e.preventDefault();
+        searchOverlay.classList.add('active');
+        searchOverlay.setAttribute('aria-hidden','false');
+        setTimeout(function(){ if(searchInput) searchInput.focus(); },100);
+      });
+    }
+    if(searchClose){
+      searchClose.addEventListener('click',function(){
+        searchOverlay.classList.remove('active');
+        searchOverlay.setAttribute('aria-hidden','true');
+      });
+    }
+    return true;
+  }
+
+  if(!boot()) document.addEventListener('DOMContentLoaded', boot);
+})();
+</script>
+
 <style>
-  .sticky-header {
-    position: sticky; top: 0; z-index: 1000;
-    background: rgba(7,23,38,0.97);
-    border-bottom: 1px solid var(--color-border);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  }
-  .header__inner { display: flex; justify-content: space-between; align-items: center; height: 64px; gap: 1rem; }
-  .nav-logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-  .nav-logo-img { height: 34px; width: auto; display: block; }
-  .nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--color-text); white-space: nowrap; }
-  @media (max-width: 480px) { .nav-logo-text { display: none; } }
+/* ===== HEADER ===== */
+.sticky-header {
+  position:sticky; top:0; z-index:1000;
+  background:rgba(7,23,38,0.97);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+.header__inner {
+  display:flex;
+  align-items:center;
+  height:64px;
+  gap:1rem;
+}
 
-  .header__nav { height: 64px; }
-  .header__menu { display: flex; list-style: none; margin: 0; padding: 0; height: 64px; align-items: stretch; }
-  .header__menu-item { display: flex; align-items: stretch; position: relative; }
-  .header__menu-link {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
-    color: var(--color-text); text-transform: uppercase; letter-spacing: 0.08em;
-    text-decoration: none; padding: 0 1rem; white-space: nowrap;
-    transition: color 0.2s; cursor: pointer; border: none; background: none;
-  }
-  .header__menu-link:hover { color: var(--color-primary); }
-  .header__menu-caret { width: 12px; height: 12px; opacity: 0.55; transition: transform 0.2s; flex-shrink: 0; display: block; }
-  .header__menu-item--has-mega:hover .header__menu-caret { transform: rotate(180deg); }
+/* Logo */
+.nav-logo-wrap { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+.nav-logo-img  { height:34px; width:auto; display:block; }
+.nav-logo-text { font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:#fff; white-space:nowrap; line-height:1; }
+@media(max-width:380px){ .nav-logo-text { display:none; } }
 
-  .header__menu-item--has-mega { position: static; }
-  .mega-menu {
-    position: fixed; top: 64px; left: 0; right: 0; width: 100%;
-    background: #0D1E2E; border-bottom: 2px solid #FFD000;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    opacity: 0; transform: translateY(-6px); pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s; z-index: 999;
-  }
-  .header__menu-item--has-mega:hover .mega-menu { opacity: 1; transform: translateY(0); pointer-events: all; }
-  .mega-menu-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; padding: 28px 24px 20px; }
-  .mega-col-heading { font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .mega-menu ul { list-style: none; margin: 0; padding: 0; }
-  .mega-menu ul li a { display: block; padding: 5px 0; font-size: 0.84rem; color: #8899AA; text-decoration: none; transition: color 0.15s, padding-left 0.15s; }
-  .mega-menu ul li a:hover { color: #fff; padding-left: 4px; }
-  .mega-footer { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center; }
+/* ===== DESKTOP NAV ===== */
+.header__nav {
+  flex:1;
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  height:64px;
+  overflow:visible;
+}
+.header__menu {
+  list-style:none; margin:0; padding:0;
+  display:flex;
+  align-items:center;
+  height:100%;
+  gap:0;
+}
+.header__menu-item {
+  display:inline-flex;
+  align-items:center;
+  position:relative;
+  height:100%;
+}
+.header__menu-link {
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:0 1rem;
+  height:100%;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:0.92rem;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:color 0.2s;
+  background:none; border:none; cursor:pointer; line-height:1;
+}
+.header__menu-link:hover { color:#FFD000; }
+.header__menu-caret { flex-shrink:0; transition:transform 0.2s; opacity:0.6; }
+.header__menu-item--has-mega:hover .header__menu-caret { transform:rotate(180deg); }
 
-  .header__icons { display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
-  .header__icon-btn { background: none; border: none; color: var(--color-text); cursor: pointer; position: relative; transition: color 0.2s; display: flex; align-items: center; gap: 4px; padding: 0; text-decoration: none; }
-  .header__icon-btn:hover { color: var(--color-primary); }
-  .lang-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; line-height: 1; }
-  .header-cart-badge { position: absolute; top: -8px; right: -10px; background: var(--color-primary); color: #071726; font-family: var(--font-display); font-size: 0.68rem; font-weight: 900; min-width: 17px; height: 17px; border-radius: 9px; display: flex; align-items: center; justify-content: center; padding: 0 3px; border: 2px solid #071726; line-height: 1; }
+/* Mega menu */
+.header__menu-item--has-mega { position:static; }
+.mega-menu {
+  position:fixed; top:64px; left:0; right:0; width:100%;
+  background:#0D1E2E; border-bottom:2px solid #FFD000;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  opacity:0; transform:translateY(-8px); pointer-events:none;
+  transition:opacity 0.2s,transform 0.2s; z-index:999;
+}
+.header__menu-item--has-mega:hover .mega-menu { opacity:1; transform:translateY(0); pointer-events:all; }
+.mega-menu-inner {
+  max-width:1400px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(5,1fr);
+  gap:2rem; padding:28px 24px 20px;
+}
+.mega-col-heading { font-family:var(--font-display); font-weight:700; font-size:0.83rem; text-transform:uppercase; letter-spacing:0.12em; margin:0 0 12px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.mega-menu ul { list-style:none; margin:0; padding:0; }
+.mega-menu ul li a { display:block; padding:5px 0; font-size:0.84rem; color:#8899AA; text-decoration:none; transition:color 0.15s,padding-left 0.15s; }
+.mega-menu ul li a:hover { color:#fff; padding-left:4px; }
+.mega-footer { grid-column:1/-1; border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; text-align:center; }
 
-  .hide-on-mobile { display: flex; }
-  .show-on-mobile { display: none; }
-  @media (max-width: 1023px) {
-    .hide-on-mobile { display: none !important; }
-    .show-on-mobile { display: flex !important; }
-  }
+/* Right icons */
+.header__icons { display:flex; align-items:center; gap:0.6rem; flex-shrink:0; margin-left:auto; }
+.header__icon-btn { background:none; border:none; color:#fff; cursor:pointer; position:relative; transition:color 0.2s; display:inline-flex; align-items:center; gap:4px; padding:0; text-decoration:none; line-height:1; }
+.header__icon-btn:hover { color:#FFD000; }
+.lang-label { font-family:var(--font-display); font-size:0.8rem; font-weight:700; letter-spacing:0.5px; line-height:1; }
+.header-cart-badge { position:absolute; top:-8px; right:-10px; background:#FFD000; color:#071726; font-family:var(--font-display); font-size:0.68rem; font-weight:900; min-width:17px; height:17px; border-radius:9px; display:flex; align-items:center; justify-content:center; padding:0 3px; border:2px solid #071726; line-height:1; }
 
-  .mobile-menu { position: fixed; top: 0; left: 0; bottom: 0; width: 300px; background: #0a1828; transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); z-index: 1100; overflow-y: auto; display: flex; flex-direction: column; }
-  .mobile-menu.open { transform: translateX(0); }
-  .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .mobile-menu-close { background: none; border: none; color: var(--color-text); font-size: 1.2rem; cursor: pointer; }
-  .mobile-menu-links { flex: 1; }
-  .mobile-menu-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; color: var(--color-text); text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; background: none; width: 100%; cursor: pointer; }
-  .mobile-menu-link:hover { color: var(--color-primary); }
-  .mobile-accordion { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .mobile-accordion-toggle { width: 100%; text-align: left; border-bottom: none; }
-  .mobile-accordion-arrow { transition: transform 0.3s; flex-shrink: 0; }
-  .mobile-accordion.open .mobile-accordion-arrow { transform: rotate(180deg); }
-  .mobile-accordion-inner { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-  .mobile-accordion.open .mobile-accordion-inner { max-height: 700px; }
-  .mobile-accordion-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary); font-weight: 700; margin: 0.8rem 0 0.3rem; }
-  .mobile-sub-link { display: block; padding: 7px 0; color: var(--color-text-muted); font-size: 0.9rem; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.04); transition: color 0.2s; }
-  .mobile-sub-link:hover { color: var(--color-primary); }
+/* Hamburger */
+.header__hamburger {
+  background:none; border:none; padding:6px; cursor:pointer;
+  flex-direction:column; justify-content:center; align-items:center; gap:5px;
+  width:40px; height:40px;
+  display:none !important;
+}
+.show-on-mobile { display:none !important; }
+.hamburger-bar { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition:all 0.3s; }
 
-  .search-overlay { position: absolute; top: 100%; left: 0; right: 0; background: #0D1E2E; border-bottom: 2px solid var(--color-primary); box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 20px 0; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: all 0.25s ease; z-index: 100; }
-  .search-overlay.active { opacity: 1; transform: translateY(0); pointer-events: all; }
-  .search-overlay-inner { display: flex; align-items: center; gap: 16px; max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
-  .search-form { flex-grow: 1; display: flex; border-radius: 30px; overflow: hidden; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); }
-  .search-input { flex-grow: 1; background: transparent; border: none; padding: 14px 20px; font-size: 1rem; color: var(--color-text); outline: none; }
-  .search-input::placeholder { color: var(--color-text-muted); }
-  .search-submit { background: transparent; border: none; padding: 0 16px; cursor: pointer; color: var(--color-text); transition: color 0.2s; }
-  .search-submit:hover { color: var(--color-primary); }
-  .search-close { background: none; border: none; color: var(--color-text-muted); font-size: 1.4rem; cursor: pointer; }
-  .search-close:hover { color: #fff; }
+/* Responsive show/hide */
+.hide-on-mobile { display:flex; }
+@media(max-width:1023px){
+  .hide-on-mobile  { display:none !important; }
+  .show-on-mobile  { display:flex !important; }
+  .header__hamburger { display:flex !important; }
+}
 
-  [dir="rtl"] .header__inner { flex-direction: row-reverse; }
-  [dir="rtl"] .header__menu { flex-direction: row-reverse; }
-  [dir="rtl"] .mega-menu-inner { direction: rtl; }
-  [dir="rtl"] .mobile-menu { left: auto; right: 0; transform: translateX(100%); }
-  [dir="rtl"] .mobile-menu.open { transform: translateX(0); }
+/* ===== SEARCH OVERLAY ===== */
+.search-overlay {
+  position:absolute; top:100%; left:0; right:0;
+  background:#0D1E2E; border-bottom:2px solid #FFD000;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  padding:20px 0; opacity:0; transform:translateY(-8px);
+  pointer-events:none; transition:all 0.25s ease; z-index:100;
+}
+.search-overlay.active { opacity:1; transform:translateY(0); pointer-events:all; }
+.search-overlay-inner { display:flex; align-items:center; gap:16px; max-width:760px; margin:0 auto; padding:0 1.5rem; }
+.search-form { flex-grow:1; display:flex; border-radius:30px; overflow:hidden; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); }
+.search-input { flex-grow:1; background:transparent; border:none; padding:14px 20px; font-size:1rem; color:#fff; outline:none; }
+.search-input::placeholder { color:rgba(255,255,255,0.4); }
+.search-submit { background:transparent; border:none; padding:0 16px; cursor:pointer; color:#fff; }
+.search-submit:hover { color:#FFD000; }
+.search-close { background:none; border:none; color:rgba(255,255,255,0.5); cursor:pointer; padding:4px; }
+.search-close:hover { color:#fff; }
+
+/* ===== MOBILE MENU OVERLAY ===== */
+.mobile-menu-overlay {
+  position:fixed; inset:0; z-index:9998;
+  background:rgba(0,0,0,0.6);
+  opacity:0; pointer-events:none;
+  transition:opacity 0.35s ease;
+  backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px);
+}
+.mobile-menu-overlay.is-visible { opacity:1; pointer-events:all; }
+
+/* ===== MOBILE MENU DRAWER ===== */
+.mobile-menu-drawer {
+  position:fixed;
+  top:0; left:0; bottom:0;
+  width:min(320px,88vw);
+  background:#071726;
+  z-index:9999;
+  transform:translateX(-110%);
+  transition:transform 0.38s cubic-bezier(0.16,1,0.3,1);
+  display:flex; flex-direction:column;
+  overflow-y:auto;
+  border-right:1px solid rgba(255,208,0,0.12);
+  will-change:transform;
+  visibility:visible;
+}
+.mobile-menu-drawer.is-open {
+  transform:translateX(0) !important;
+}
+.mmenu-header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,208,0,0.04);
+  flex-shrink:0;
+}
+.mmenu-logo { display:flex; align-items:center; text-decoration:none; }
+.mmenu-close {
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
+  border-radius:50%; width:38px; height:38px; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:background 0.2s; flex-shrink:0;
+}
+.mmenu-close:hover { background:rgba(255,255,255,0.15); }
+.mmenu-nav { flex:1; padding:8px 0; }
+.mmenu-link {
+  display:flex; align-items:center; gap:12px;
+  padding:15px 20px;
+  font-family:var(--font-display); font-weight:700; font-size:1rem;
+  color:#fff; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  transition:color 0.15s,background 0.15s;
+  background:none; border-top:none; border-left:none; border-right:none;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  width:100%; cursor:pointer; text-align:left;
+}
+.mmenu-link:hover,.mmenu-link:focus { color:#FFD000; background:rgba(255,208,0,0.04); }
+.mmenu-link svg { opacity:0.6; flex-shrink:0; }
+.mmenu-accordion { border-bottom:1px solid rgba(255,255,255,0.05); }
+.mmenu-accordion-trigger { justify-content:space-between; border-bottom:none !important; width:100%; }
+.mmenu-caret { transition:transform 0.3s ease; flex-shrink:0; opacity:0.6; }
+.mmenu-accordion-content { padding:4px 20px 16px; }
+.mmenu-section-label { font-family:var(--font-display); font-size:0.65rem; text-transform:uppercase; letter-spacing:2px; color:#FFD000; font-weight:700; margin:0 0 6px; padding-top:4px; }
+.mmenu-sub-link { display:block; padding:9px 0; color:rgba(255,255,255,0.65); font-size:0.9rem; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.03); transition:color 0.15s; }
+.mmenu-sub-link:hover { color:#FFD000; }
+.mmenu-footer { padding:16px 20px; border-top:1px solid rgba(255,255,255,0.07); margin-top:auto; }
+.mmenu-lang-row { display:flex; justify-content:center; }
+.mmenu-lang-btn { display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.6); font-size:0.88rem; text-decoration:none; transition:color 0.2s; padding:8px 0; }
+.mmenu-lang-btn:hover { color:#FFD000; }
+
+[dir="rtl"] .mobile-menu-drawer { left:auto; right:0; transform:translateX(110%); border-right:none; border-left:1px solid rgba(255,208,0,0.12); }
+[dir="rtl"] .mobile-menu-drawer.is-open { transform:translateX(0) !important; }
 </style>
 
 {% schema %}

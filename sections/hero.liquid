@@ -1,257 +1,169 @@
-<section class="hero hero-slider" data-section="{{ section.id }}">
-  <div class="hero-bg-overlay"></div>
-  <div class="carousel-container">
-    <div class="carousel-track">
+{% comment %} Hero Banner Carousel — full-image banners, no text overlay {% endcomment %}
+
+<section class="hero-banner-section" id="hero-banner-{{ section.id }}" data-section="{{ section.id }}">
+  <div class="hb-track-wrapper">
+    <div class="hb-track" id="hbTrack-{{ section.id }}">
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
-          {%- assign prod = block.settings.product -%}
-          <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
-            <div class="container hero__content-wrapper">
-              <div class="hero__content">
-                <p class="hero__highlight font-display color-accent">{{ block.settings.tagline | default: 'Featured' }}</p>
-                <h1 class="hero__title">{%- if prod != blank -%}{{ prod.title }}{%- else -%}SpeedCubeHub{%- endif -%}</h1>
-                {%- if prod != blank -%}
-                  <p class="hero__vendor" style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:0.8rem;">{{ prod.vendor }}</p>
-                  <div class="hero__price-tag">
-                    {%- if prod.compare_at_price > prod.price -%}
-                      <span class="hero__compare-price">{{ prod.compare_at_price | money }}</span>
-                    {%- endif -%}
-                    <span class="hero__price font-display">{{ prod.price | money }}</span>
-                  </div>
+          {%- assign slide_link = block.settings.link | default: routes.all_products_collection_url -%}
+          <div class="hb-slide {% if forloop.first %}hb-slide--active{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <a href="{{ slide_link }}" class="hb-slide__link" aria-label="{{ block.settings.alt | default: 'View' }}">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1920 }}"
+                  srcset="{{ block.settings.image | image_url: width: 750 }} 750w, {{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1920 }} 1920w"
+                  sizes="100vw"
+                  alt="{{ block.settings.alt | default: shop.name | escape }}"
+                  class="hb-slide__img"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  width="1920" height="650">
+              {%- elsif block.settings.product != blank -%}
+                {%- assign bprod = block.settings.product -%}
+                {%- if bprod.featured_image -%}
+                  <img src="{{ bprod.featured_image | image_url: width: 1920 }}" alt="{{ bprod.title | escape }}" class="hb-slide__img hb-slide__img--contain" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" width="1920" height="650">
+                {%- else -%}
+                  <div class="hb-slide__placeholder"></div>
                 {%- endif -%}
-                <div class="hero__buttons">
-                  <a href="{{ prod.url | default: routes.all_products_collection_url }}" class="btn btn-primary">
-                    Shop Now
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-              <div class="hero__image-col">
-                <div class="hero__image-wrapper">
-                  {%- if prod != blank and prod.featured_image -%}
-                    <img src="{{ prod.featured_image | image_url: width: 500 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
-                  {%- else -%}
-                    <div class="hero-cube-placeholder">
-                      <svg viewBox="0 0 120 120" fill="none" width="160" height="160"><path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/><path d="M60 10V110M10 40L110 40M10 80L110 80" stroke="rgba(255,208,0,0.3)" stroke-width="1"/></svg>
-                    </div>
-                  {%- endif -%}
-                </div>
-              </div>
-            </div>
+              {%- else -%}
+                <div class="hb-slide__placeholder"></div>
+              {%- endif -%}
+            </a>
           </div>
         {%- endfor -%}
       {%- else -%}
-        {%- assign taglines = 'Top Rated,Best Seller,New Arrival' | split: ',' -%}
-        {%- for prod in collections['all'].products limit: 3 -%}
-          <div class="carousel-slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
-            <div class="container hero__content-wrapper">
-              <div class="hero__content">
-                <p class="hero__highlight font-display color-accent">{{ taglines[forloop.index0] }}</p>
-                <h1 class="hero__title">{{ prod.title | truncate: 40 }}</h1>
-                <p class="hero__vendor" style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:0.8rem;">{{ prod.vendor }}</p>
-                <div class="hero__price-tag">
-                  {%- if prod.compare_at_price > prod.price -%}
-                    <span class="hero__compare-price">{{ prod.compare_at_price | money }}</span>
-                  {%- endif -%}
-                  <span class="hero__price font-display">{{ prod.price | money }}</span>
-                </div>
-                <div class="hero__buttons">
-                  <a href="{{ prod.url }}" class="btn btn-primary">Shop Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                </div>
-              </div>
-              <div class="hero__image-col">
-                <div class="hero__image-wrapper">
-                  {%- if prod.featured_image -%}
-                    <img src="{{ prod.featured_image | image_url: width: 500 }}" alt="{{ prod.title | escape }}" class="hero-cube-img" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
-                  {%- else -%}
-                    <div class="hero-cube-placeholder"><svg viewBox="0 0 120 120" fill="none" width="160" height="160"><path d="M60 10L10 40V80L60 110L110 80V40L60 10Z" stroke="#FFD000" stroke-width="2" fill="rgba(255,208,0,0.06)"/></svg></div>
-                  {%- endif -%}
-                </div>
-              </div>
-            </div>
+        {%- for prod in collections['all'].products limit: 4 -%}
+          <div class="hb-slide {% if forloop.first %}hb-slide--active{% endif %}" data-index="{{ forloop.index0 }}">
+            <a href="{{ prod.url }}" class="hb-slide__link">
+              {%- if prod.featured_image -%}
+                <img src="{{ prod.featured_image | image_url: width: 1920 }}" alt="{{ prod.title | escape }}" class="hb-slide__img hb-slide__img--contain" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" width="1920" height="500">
+              {%- else -%}
+                <div class="hb-slide__placeholder"></div>
+              {%- endif -%}
+            </a>
           </div>
         {%- endfor -%}
       {%- endif -%}
     </div>
 
-    {%- assign dot_count = section.blocks.size | default: 3 -%}
-    {%- if dot_count > 1 -%}
-      <div class="hero-carousel-controls">
-        <button class="carousel-btn hero-prev" aria-label="Previous">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <div class="carousel-dots">
-          {%- for i in (1..dot_count) -%}
-            <button class="carousel-dot {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
-          {%- endfor -%}
-        </div>
-        <button class="carousel-btn hero-next" aria-label="Next">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
+    {%- assign slide_count = section.blocks.size | default: 4 -%}
+    {%- if slide_count > 1 -%}
+      <button class="hb-btn hb-btn--prev" id="hbPrev-{{ section.id }}" aria-label="Previous slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="hb-btn hb-btn--next" id="hbNext-{{ section.id }}" aria-label="Next slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <div class="hb-dots" id="hbDots-{{ section.id }}">
+        {%- for i in (1..slide_count) -%}
+          <button class="hb-dot {% if forloop.first %}hb-dot--active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
+        {%- endfor -%}
       </div>
     {%- endif -%}
   </div>
 </section>
 
 <style>
-  .hero-slider {
-    position: relative;
-    height: 460px;
-    overflow: hidden;
-    background: #071726;
-  }
-  .hero-bg-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(6,15,26,0.9) 0%, rgba(6,15,26,0.5) 60%, rgba(6,15,26,0.1) 100%);
-    z-index: 2; pointer-events: none;
-  }
-  .carousel-container {
-    width: 100%; height: 100%; position: relative; z-index: 3;
-    display: flex; flex-direction: column;
-  }
-  .carousel-track {
-    display: flex; flex: 1;
-    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .carousel-slide {
-    min-width: 100%; display: flex; align-items: center;
-  }
-  .hero__content-wrapper {
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; gap: 2rem;
-    padding-bottom: 3rem; /* room for controls */
-  }
-  .hero__content { flex: 1; max-width: 500px; }
-  .hero__highlight { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.6rem; font-weight: 700; }
-  .hero__title {
-    font-family: var(--font-display); font-weight: 900;
-    font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.05;
-    text-transform: uppercase; margin-bottom: 0.6rem;
-  }
-  .hero__price-tag { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.4rem; }
-  .hero__price { font-size: 1.5rem; font-weight: 900; color: var(--color-primary); }
-  .hero__compare-price { font-size: 0.95rem; color: var(--color-text-muted); text-decoration: line-through; }
-  .hero__buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-
-  /* Image — smaller than before */
-  .hero__image-col {
-    flex: 0 0 auto; width: 280px;
-    display: flex; justify-content: center; align-items: center;
-  }
-  .hero__image-wrapper {
-    width: 260px; height: 260px;
-    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.5));
-    transition: filter 0.3s;
-  }
-  .hero__image-wrapper:hover { filter: drop-shadow(0 20px 40px rgba(255,208,0,0.2)); }
-  .hero-cube-img { width: 100%; height: 100%; object-fit: contain; }
-  .hero-cube-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-
-  /* Controls — overlaid at bottom center */
-  .hero-carousel-controls {
-    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-    z-index: 10; display: flex; align-items: center; gap: 10px;
-  }
-  .carousel-btn {
-    width: 34px; height: 34px;
-    background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
-    border-radius: 50%; color: rgba(255,255,255,0.9);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s; backdrop-filter: blur(8px); padding: 0;
-  }
-  .carousel-btn:hover { background: #FFD000; border-color: #FFD000; color: #071726; }
-  .carousel-dots { display: flex; gap: 6px; align-items: center; }
-  .carousel-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,0.3); border: none; cursor: pointer;
-    transition: all 0.3s; padding: 0;
-  }
-  .carousel-dot.is-active { background: #FFD000; width: 20px; border-radius: 4px; }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .hero-slider { height: auto; min-height: 400px; }
-    .hero__content-wrapper { flex-direction: column-reverse; text-align: center; gap: 1rem; padding: 1.5rem 0 3.5rem; }
-    .hero__image-col { width: 100%; }
-    .hero__image-wrapper { width: 180px; height: 180px; }
-    .hero__buttons { justify-content: center; }
-  }
-  @media (max-width: 480px) {
-    .hero-slider { min-height: 360px; }
-    .hero__title { font-size: 1.6rem; }
-    .hero__image-wrapper { width: 150px; height: 150px; }
-  }
+.hero-banner-section { position:relative; width:100%; background:#071726; overflow:hidden; line-height:0; }
+.hb-track-wrapper { position:relative; width:100%; overflow:hidden; }
+.hb-track { display:flex; transition:transform 0.6s cubic-bezier(0.25,1,0.5,1); will-change:transform; }
+.hb-slide { min-width:100%; position:relative; flex-shrink:0; }
+.hb-slide__link { display:block; width:100%; line-height:0; }
+.hb-slide__img { width:100%; height:auto; max-height:650px; object-fit:cover; display:block; }
+.hb-slide__img--contain { object-fit:contain; background:linear-gradient(135deg,#071726 0%,#0d2035 100%); min-height:300px; }
+.hb-slide__placeholder { width:100%; height:400px; background:linear-gradient(135deg,#071726 0%,#0d2035 100%); }
+/* Nav buttons */
+.hb-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.3); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); padding:0; }
+.hb-btn:hover { background:#FFD000; border-color:#FFD000; color:#071726; }
+.hb-btn--prev { left:16px; }
+.hb-btn--next { right:16px; }
+/* Dots — fixed size, no overflow */
+.hb-dots { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); display:flex; gap:6px; align-items:center; z-index:10; padding:5px 10px; background:rgba(0,0,0,0.3); border-radius:20px; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+.hb-dot { width:8px; height:8px; min-width:8px; max-width:8px; min-height:8px; max-height:8px; border-radius:50%; background:rgba(255,255,255,0.45); border:none; cursor:pointer; padding:0; flex-shrink:0; transition:all 0.3s; box-sizing:border-box; font-size:0; line-height:0; display:inline-block; vertical-align:middle; }
+.hb-dot--active { background:#FFD000 !important; width:22px !important; min-width:22px !important; max-width:22px !important; border-radius:4px !important; }
+/* Responsive */
+@media(max-width:768px) {
+  .hb-slide__img { max-height:260px; min-height:160px; }
+  .hb-slide__img--contain { min-height:160px; }
+  .hb-btn { width:36px; height:36px; }
+  .hb-btn--prev { left:8px; }
+  .hb-btn--next { right:8px; }
+  .hb-dots { bottom:8px; padding:4px 8px; gap:5px; }
+  .hb-dot { width:6px !important; height:6px !important; min-width:6px !important; max-width:6px !important; min-height:6px !important; max-height:6px !important; }
+  .hb-dot--active { width:16px !important; min-width:16px !important; max-width:16px !important; }
+}
+@media(max-width:480px) {
+  .hb-slide__img { max-height:200px; min-height:130px; }
+  .hb-btn { display:none !important; }
+  .hb-dots { bottom:6px; }
+}
 </style>
 
 <script>
-  (function() {
-    function initHeroSlider() {
-      var section = document.querySelector('.hero-slider');
-      if (!section) return;
-      var track = section.querySelector('.carousel-track');
-      var slides = section.querySelectorAll('.carousel-slide');
-      var prevBtn = section.querySelector('.hero-prev');
-      var nextBtn = section.querySelector('.hero-next');
-      var dots = section.querySelectorAll('.carousel-dot');
-      if (!track || slides.length === 0) return;
-      var cur = 0, timer;
-
-      function go(n) {
-        if (n < 0) n = slides.length - 1;
-        if (n >= slides.length) n = 0;
-        cur = n;
-        track.style.transform = 'translateX(' + (cur * -100) + '%)';
-        slides.forEach(function(s, i) { s.classList.toggle('is-active', i === cur); });
-        dots.forEach(function(d, i) { d.classList.toggle('is-active', i === cur); });
-      }
-      function start() { timer = setInterval(function() { go(cur + 1); }, 5500); }
-      function reset() { clearInterval(timer); start(); }
-
-      if (nextBtn) nextBtn.addEventListener('click', function() { go(cur + 1); reset(); });
-      if (prevBtn) prevBtn.addEventListener('click', function() { go(cur - 1); reset(); });
-      dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); reset(); }); });
-
-      var tx = 0;
-      track.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; clearInterval(timer); }, {passive:true});
-      track.addEventListener('touchend', function(e) {
-        var diff = e.changedTouches[0].screenX - tx;
-        if (Math.abs(diff) > 50) go(cur + (diff < 0 ? 1 : -1));
-        start();
-      }, {passive:true});
-
-      start();
+(function(){
+  function initHeroBanner(sid){
+    var wrap=document.getElementById('hero-banner-'+sid);
+    if(!wrap)return;
+    var track=document.getElementById('hbTrack-'+sid);
+    if(!track)return;
+    var slides=Array.from(track.querySelectorAll('.hb-slide'));
+    var prevBtn=document.getElementById('hbPrev-'+sid);
+    var nextBtn=document.getElementById('hbNext-'+sid);
+    var dotsC=document.getElementById('hbDots-'+sid);
+    var dots=dotsC?Array.from(dotsC.querySelectorAll('.hb-dot')):[];
+    if(slides.length<=1)return;
+    var cur=0,autoTimer;
+    function goTo(n){
+      if(n<0)n=slides.length-1;
+      if(n>=slides.length)n=0;
+      cur=n;
+      track.style.transform='translateX('+(cur*-100)+'%)';
+      slides.forEach(function(s,i){s.classList.toggle('hb-slide--active',i===cur);});
+      dots.forEach(function(d,i){d.classList.toggle('hb-dot--active',i===cur);});
     }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initHeroSlider);
-    } else {
-      initHeroSlider();
-    }
-  })();
+    function startAuto(){autoTimer=setInterval(function(){goTo(cur+1);},5000);}
+    function stopAuto(){clearInterval(autoTimer);}
+    function resetAuto(){stopAuto();startAuto();}
+    if(prevBtn)prevBtn.addEventListener('click',function(){goTo(cur-1);resetAuto();});
+    if(nextBtn)nextBtn.addEventListener('click',function(){goTo(cur+1);resetAuto();});
+    dots.forEach(function(d,i){d.addEventListener('click',function(){goTo(i);resetAuto();});});
+    var tStart=0;
+    track.addEventListener('touchstart',function(e){tStart=e.changedTouches[0].screenX;stopAuto();},{passive:true});
+    track.addEventListener('touchend',function(e){
+      var diff=e.changedTouches[0].screenX-tStart;
+      if(Math.abs(diff)>40)goTo(cur+(diff<0?1:-1));
+      startAuto();
+    },{passive:true});
+    startAuto();
+  }
+  var sid='{{ section.id }}';
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){initHeroBanner(sid);});}
+  else{initHeroBanner(sid);}
+})();
 </script>
 
 {% schema %}
 {
-  "name": "Hero Slider",
-  "max_blocks": 6,
+  "name": "Hero Banner Slider",
+  "max_blocks": 8,
   "settings": [],
   "blocks": [
     {
-      "type": "slide",
-      "name": "Product Slide",
+      "type": "banner",
+      "name": "Banner Slide",
       "settings": [
-        { "type": "product", "id": "product", "label": "Select Product" },
-        { "type": "text", "id": "tagline", "label": "Tagline", "default": "The New Meta" }
+        { "type": "image_picker", "id": "image", "label": "Banner Image", "info": "Recommended: 1920x650px. Full-width, no text overlay." },
+        { "type": "url", "id": "link", "label": "Banner Link (where it goes when clicked)" },
+        { "type": "text", "id": "alt", "label": "Alt text", "default": "Shop now" },
+        { "type": "product", "id": "product", "label": "Or: use product image as banner (fallback if no image above)" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Hero Slider",
+      "name": "Hero Banner Slider",
       "blocks": [
-        { "type": "slide", "settings": { "tagline": "The New Meta" } },
-        { "type": "slide", "settings": { "tagline": "Budget King" } },
-        { "type": "slide", "settings": { "tagline": "Top Choice" } }
+        { "type": "banner", "settings": { "link": "/collections/all", "alt": "Shop New Arrivals" } },
+        { "type": "banner", "settings": { "link": "/collections/gan", "alt": "GAN Cubes" } },
+        { "type": "banner", "settings": { "link": "/collections/moyu", "alt": "MoYu Cubes" } }
       ]
     }
   ]

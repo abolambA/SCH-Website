@@ -869,3 +869,103 @@ svg {
     transform: rotate(360deg);
   }
 }
+
+/* ===== MOBILE SPACING & PRODUCT PAGE FIXES ===== */
+@media (max-width: 768px) {
+  /* Container padding on mobile */
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Product page: info column padding */
+  .product-page {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .product-info {
+    padding: 0 16px;
+  }
+
+  /* Section padding reduction on mobile */
+  .section, [class*='section'] {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  /* Announcement bar text size */
+  .announcement-bar {
+    font-size: 0.78rem;
+  }
+
+  /* Trust bar: 2 columns on mobile */
+  .trust-bar__inner {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0 !important;
+  }
+  .trust-bar__item {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .trust-bar__item:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,0.07) !important;
+  }
+
+  /* Brand cards: ensure proper sizing */
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
+  }
+  .brand-card {
+    min-height: 110px;
+    padding: 1rem 0.6rem;
+  }
+  .brand-card__img-wrap {
+    height: 60px;
+  }
+
+  /* Featured products grid */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Footer newsletter: stack on mobile */
+  .footer-newsletter__form {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .footer-newsletter__form input {
+    width: 100%;
+    border-radius: 8px !important;
+  }
+  .footer-newsletter__form button {
+    width: 100%;
+    border-radius: 8px !important;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Product title size */
+  .product__title {
+    font-size: 1.4rem !important;
+  }
+  /* Ensure all text stays within bounds */
+  h1, h2, h3 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  /* Product actions stack vertically */
+  .product__actions {
+    flex-direction: column;
+  }
+  .product__quantity {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Cart totals */
+  .cart-summary {
+    margin: 0 16px;
+  }
+}
