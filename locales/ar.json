@@ -650,7 +650,8 @@
         "payment_gateway_needs_paid_plan_error": "طريقة الدفع هذه غير متاحة في المتجر حاليًا",
         "payment_gateway_unsupported_for_subscriptions": "طريقة الدفع هذه غير متاحة لطلبات الاشتراك.",
         "payment_gateway_unsupported_for_country": "طريقة الدفع هذه غير متاحة لبلد الشحن الخاص بك.",
-        "gift_card_invalid": "بطاقة الهدايا \"••••%{last_four_characters}\" لم تعد صالحة"
+        "gift_card_invalid": "بطاقة الهدايا \"••••%{last_four_characters}\" لم تعد صالحة",
+        "split_by_delivery_method_unsupported_method_type": "تمت محاولة تقسيم البيانات حسب طريقة التسليم باستخدام نوع طريقة تسليم غير مدعوم."
       },
       "redeemable_errors": {
         "gift_card": {
@@ -1183,7 +1184,8 @@
         "return_to_cart": "العودة إلى سلة التسوق"
       },
       "split_delivery": {
-        "delivery_method": "طريقة التوصيل المجزأ"
+        "delivery_method": "طريقة التوصيل المجزأ",
+        "items_for_shipping": "بنود للشحن"
       },
       "b2b_errors": {
         "log_out_link_text": "تسجيل الخروج",
