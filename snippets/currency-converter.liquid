@@ -1,1 +1,96 @@
-// test
+{% comment %}
+  Currency Converter Snippet - SpeedCubeHub
+  - Store base currency: USD
+  - GCC countries: shows local currency with +5% markup
+  - Others: shows USD (no conversion needed)
+{% endcomment %}
+
+<script>
+(function() {
+  // Exchange rates - 1 USD = x local currency
+  const USD_RATES = {
+    'AED': 3.67,
+    'SAR': 3.75,
+    'KWD': 0.308,
+    'QAR': 3.64,
+    'BHD': 0.377,
+    'OMR': 0.385,
+  };
+  
+  const GCC_COUNTRIES = {
+    'AE': 'AED', 'SA': 'SAR', 'KW': 'KWD',
+    'QA': 'QAR', 'BH': 'BHD', 'OM': 'OMR',
+  };
+  
+  const CURRENCY_SYMBOLS = {
+    'AED': 'AED', 'SAR': 'SAR', 'KWD': 'KD',
+    'QAR': 'QAR', 'BHD': 'BD', 'OMR': 'OMR',
+  };
+  
+  const DECIMALS = { 'KWD': 3, 'BHD': 3, 'OMR': 3, 'default': 2 };
+  
+  // +5% markup for GCC to secure profit margin
+  const GCC_MARKUP = 1.05;
+  
+  function detectCountry() {
+    const stored = localStorage.getItem('sch_currency_country');
+    if (stored) return stored;
+    const c = window.Shopify && (window.Shopify.country || (window.Shopify.locale && window.Shopify.locale.country));
+    if (c) { localStorage.setItem('sch_currency_country', c); return c; }
+    return null;
+  }
+  
+  function formatPrice(amount, currency) {
+    const dec = DECIMALS[currency] || DECIMALS['default'];
+    const sym = CURRENCY_SYMBOLS[currency] || currency;
+    const rounded = Math.round(amount * Math.pow(10, dec)) / Math.pow(10, dec);
+    const parts = rounded.toFixed(dec).split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.') + ' ' + sym;
+  }
+  
+  function convertAll() {
+    const country = detectCountry();
+    if (!country) return;
+    const currency = GCC_COUNTRIES[country];
+    if (!currency) return;
+    
+    window.SCH_currency = { from: 'USD', to: currency, country: country, isGCC: true };
+    
+    const rate = USD_RATES[currency] * GCC_MARKUP;
+    
+    const selectors = [
+      '.price', '.price__regular', '.price__sale',
+      '[data-product-price]', '.product-card__price',
+      '.product__price', '.product-form__price',
+      '.cart-item__price', '.money',
+      '.cart-summary-box__total-price',
+      '.cart-page-item__line-price', '.cart-page-item__unit-price'
+    ].join(',');
+    
+    document.querySelectorAll(selectors).forEach(el => {
+      if (el.dataset.schConverted) return;
+      el.dataset.schConverted = '1';
+      const text = el.textContent.trim();
+      const match = text.match(/\$([\d,]+\.?\d*)/);
+      if (match) {
+        const usd = parseFloat(match[1].replace(/,/g, ''));
+        if (!isNaN(usd) && usd > 0) {
+          el.setAttribute('data-usd', text);
+          el.textContent = formatPrice(usd * rate, currency);
+        }
+      }
+    });
+  }
+  
+  function init() {
+    convertAll();
+    const obs = new MutationObserver(convertAll);
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
