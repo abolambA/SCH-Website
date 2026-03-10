@@ -1,7 +1,5 @@
-<div class="product-card tilt-enabled reveal {% if product.available == false %}soldout{% endif %}">
-  {% if product.available == false %}
-    <div class="soldout-overlay">Sold Out</div>
-  {% endif %}
+{%- unless product.available == false -%}
+<div class="product-card tilt-enabled reveal">
   <div class="product-card__inner">
     <a href="{{ product.url | default: '#' }}" class="product-card__link">
       <div class="product-card__image-wrapper">
@@ -39,6 +37,8 @@
     </a>
   </div>
 </div>
+
+{%- endunless -%}
 
 <style>
   .product-card {
