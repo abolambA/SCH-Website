@@ -1006,3 +1006,118 @@ svg {
     margin: 0 16px;
   }
 }
+
+/* ===== SHOP BUTTON ALIGNMENT FIX ===== */
+/* Ensure SHOP button is perfectly centered like other nav links */
+.header__menu-link--shop-btn {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 64px !important;
+  line-height: 64px !important;
+  padding: 0 1rem !important;
+  margin: 0 !important;
+  border: none !important;
+  background: none !important;
+  outline: none !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem !important;
+  color: #fff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  cursor: pointer !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+  gap: 4px !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  top: 0 !important;
+  transform: none !important;
+}
+.header__menu-link--shop-btn:hover {
+  color: #FFD000 !important;
+}
+.header__menu-item--has-mega {
+  display: flex !important;
+  align-items: stretch !important;
+  height: 64px !important;
+}
+
+/* ===== HIDE SOLD-OUT PRODUCTS ===== */
+/* Hide products that have no available variants */
+.product-card[data-available="false"],
+.product-card.is-soldout-hide {
+  display: none !important;
+}
+
+/* ===== RTL TEXT FIXES ===== */
+/* When Arabic language is active, only flip text direction, not layout */
+[dir="rtl"] body {
+  direction: rtl;
+}
+
+/* Keep key layout containers LTR */
+[dir="rtl"] .header__inner,
+[dir="rtl"] .header__menu,
+[dir="rtl"] .header__icons,
+[dir="rtl"] .header__nav,
+[dir="rtl"] .nav-logo-wrap,
+[dir="rtl"] .hero__content-wrapper,
+[dir="rtl"] .hero__inner,
+[dir="rtl"] .footer-grid,
+[dir="rtl"] .product-grid,
+[dir="rtl"] .products-grid,
+[dir="rtl"] .collection-grid,
+[dir="rtl"] .cart-drawer,
+[dir="rtl"] .mega-menu-inner,
+[dir="rtl"] .mobile-menu-drawer,
+[dir="rtl"] .mmenu-nav,
+[dir="rtl"] .mmenu-header,
+[dir="rtl"] .cart-page__layout,
+[dir="rtl"] .cart-page__items,
+[dir="rtl"] .cart-summary-box,
+[dir="rtl"] .about-features__grid,
+[dir="rtl"] .about-mission__inner,
+[dir="rtl"] .about-stats__grid,
+[dir="rtl"] .product-layout,
+[dir="rtl"] .trust-bar__inner {
+  direction: ltr !important;
+}
+
+/* Text alignment for RTL content */
+[dir="rtl"] .product-card__title,
+[dir="rtl"] .product-card__vendor,
+[dir="rtl"] .product-card__price,
+[dir="rtl"] .about-page h1,
+[dir="rtl"] .about-page h2,
+[dir="rtl"] .about-page h3,
+[dir="rtl"] .about-page p,
+[dir="rtl"] .rte,
+[dir="rtl"] .page-content,
+[dir="rtl"] .mmenu-link,
+[dir="rtl"] .newsletter-inner,
+[dir="rtl"] .mega-menu-inner,
+[dir="rtl"] .footer-grid,
+[dir="rtl"] .product-card,
+[dir="rtl"] .announcement-bar,
+[dir="rtl"] .hero__text,
+[dir="rtl"] .hero-title,
+[dir="rtl"] .hero-sub,
+[dir="rtl"] .section-heading,
+[dir="rtl"] .trust-bar__item,
+[dir="rtl"] .product-info,
+[dir="rtl"] .product__title,
+[dir="rtl"] .product-description,
+[dir="rtl"] .category-tile__name,
+[dir="rtl"] .footer-col,
+[dir="rtl"] .cart-page-item__title,
+[dir="rtl"] .cart-summary-box__title {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* ===== FREE SHIPPING THRESHOLD FIX ===== */
+/* Store uses USD, threshold should be $40 */
