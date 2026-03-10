@@ -378,10 +378,43 @@ textarea:focus {
   background-color: var(--color-surface);
 }
 
-/* RTL Support - Text Direction Only (layout stays LTR) */
-/* Only change text direction and alignment, NOT layout direction */
-[dir="rtl"] body {
-  /* Keep layout LTR, only text direction changes for Arabic */
+/* RTL Support - Layout stays LTR, only text direction/alignment changes */
+/* Force layout containers to stay LTR even when dir=rtl is set on html */
+[dir="rtl"] .header__inner,
+[dir="rtl"] .header__menu,
+[dir="rtl"] .header__icons,
+[dir="rtl"] .header__nav,
+[dir="rtl"] .nav-logo-wrap {
+  direction: ltr;
+}
+
+[dir="rtl"] .hero__content-wrapper,
+[dir="rtl"] .hero__inner {
+  direction: ltr;
+}
+
+[dir="rtl"] .footer-grid {
+  direction: ltr;
+}
+
+[dir="rtl"] .product-grid,
+[dir="rtl"] .products-grid,
+[dir="rtl"] .collection-grid {
+  direction: ltr;
+}
+
+[dir="rtl"] .cart-drawer {
+  direction: ltr;
+}
+
+[dir="rtl"] .mega-menu-inner {
+  direction: ltr;
+}
+
+[dir="rtl"] .mobile-menu-drawer,
+[dir="rtl"] .mmenu-nav,
+[dir="rtl"] .mmenu-header {
+  direction: ltr;
 }
 
 [dir="rtl"] .mega-menu-inner {
