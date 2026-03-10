@@ -45,30 +45,6 @@
         "id": "color_accent",
         "label": "Accent Color (Blue)",
         "default": "#1A9FE0"
-      },
-      {
-        "type": "color",
-        "id": "color_text",
-        "label": "Primary Text",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "color_text_muted",
-        "label": "Muted Text",
-        "default": "#8899AA"
-      },
-      {
-        "type": "color",
-        "id": "color_border",
-        "label": "Border Color",
-        "default": "rgba(255,255,255,0.07)"
-      },
-      {
-        "type": "color",
-        "id": "color_glow",
-        "label": "Glow Color",
-        "default": "rgba(255,208,0,0.18)"
       }
     ]
   },
@@ -78,52 +54,42 @@
       {
         "type": "font_picker",
         "id": "font_display",
-        "label": "Display Font (Rajdhani)",
+        "label": "Display Font",
         "default": "rajdhani_n7"
       },
       {
         "type": "font_picker",
         "id": "font_body",
-        "label": "Body Font (DM Sans)",
-        "default": "dm_sans_n4"
+        "label": "Body Font",
+        "default": "dm_sans_n3"
       }
     ]
   },
   {
-    "name": "Store Info",
+    "name": "Logo",
     "settings": [
-      {
-        "type": "text",
-        "id": "store_tagline",
-        "label": "Store Tagline",
-        "default": "Solve Faster. Shop SCH."
-      },
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "Store Logo"
+        "label": "Logo Image"
       }
     ]
   },
   {
-    "name": "Cart & Checkout",
+    "name": "ShamCash Payment",
     "settings": [
       {
-        "type": "number",
-        "id": "free_shipping_threshold",
-        "label": "Free Shipping Threshold (USD)",
-        "default": 100
-      }
-    ]
-  },
-  {
-    "name": "Product Page Settings",
-    "settings": [
+        "type": "image_picker",
+        "id": "shamcash_qr_image",
+        "label": "ShamCash QR Code Image",
+        "info": "Upload the ShamCash QR code that customers will scan to send payment. This will be displayed on the cart page when customer selects ShamCash payment."
+      },
       {
-        "type": "checkbox",
-        "id": "enable_countdown_timer",
-        "label": "Enable Countdown Timer",
-        "default": true
+        "type": "text",
+        "id": "shamcash_account_name",
+        "label": "ShamCash Account Name",
+        "default": "SpeedCubeHub",
+        "info": "The account name shown to customers for ShamCash payments"
       }
     ]
   }
