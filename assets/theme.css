@@ -378,39 +378,43 @@ textarea:focus {
   background-color: var(--color-surface);
 }
 
-/* RTL Support */
-[dir="rtl"] .header__menu {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .header__icons {
-  flex-direction: row-reverse;
+/* RTL Support - Text Direction Only (layout stays LTR) */
+/* Only change text direction and alignment, NOT layout direction */
+[dir="rtl"] body {
+  /* Keep layout LTR, only text direction changes for Arabic */
 }
 
 [dir="rtl"] .mega-menu-inner {
-  direction: rtl;
   text-align: right;
 }
 
 [dir="rtl"] .footer-grid {
-  direction: rtl;
-}
-
-[dir="rtl"] .hero__content-wrapper {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .cart-drawer {
-  right: unset;
-  left: 0;
-  transform: translateX(-100%);
-}
-
-[dir="rtl"] .cart-drawer.open {
-  transform: translateX(0);
+  text-align: right;
 }
 
 [dir="rtl"] .product-card {
+  text-align: right;
+}
+
+[dir="rtl"] .product-card__title,
+[dir="rtl"] .product-card__vendor,
+[dir="rtl"] .product-card__price,
+[dir="rtl"] .about-page h1,
+[dir="rtl"] .about-page h2,
+[dir="rtl"] .about-page h3,
+[dir="rtl"] .about-page p,
+[dir="rtl"] .rte,
+[dir="rtl"] .page-content {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .mmenu-link {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .newsletter-inner {
   text-align: right;
 }
 
