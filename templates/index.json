@@ -19,10 +19,46 @@
             "link": "",
             "label": "Shop now"
           }
+        },
+        "slide_MCdUnF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Cubuzzle_Web_Banner_1st_1920_x_650_px_1728x_b1774e06-2246-46f9-9ca2-7989fe75d290.webp",
+            "link": "",
+            "label": "Shop now"
+          }
+        },
+        "slide_KLU3xw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/4_1728x_b96809ca-7042-4543-bae1-ae3386b72045.webp",
+            "link": "",
+            "label": "Shop now"
+          }
+        },
+        "slide_b67zNQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Cubuzzle_Web_Banner_1st_1920_x_650_px_25_1728x_2e013373-3568-439e-9500-ae1bdd0597d2.webp",
+            "link": "",
+            "label": "Shop now"
+          }
+        },
+        "slide_k8NN3y": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3_1728x_fe679938-ff5d-4d24-b80f-cd2485adda63.webp",
+            "link": "",
+            "label": "Shop now"
+          }
         }
       },
       "block_order": [
-        "slide_pQhd7k"
+        "slide_pQhd7k",
+        "slide_MCdUnF",
+        "slide_KLU3xw",
+        "slide_b67zNQ",
+        "slide_k8NN3y"
       ],
       "settings": {}
     },
