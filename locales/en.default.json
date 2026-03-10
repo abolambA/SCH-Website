@@ -1,0 +1,127 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Enter the store password"
+    }
+  },
+  "header": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About",
+    "contact": "Contact",
+    "search_placeholder": "Search cubes, brands, accessories...",
+    "cart": "Cart",
+    "account": "Account",
+    "signin": "Sign In",
+    "menu": "Menu"
+  },
+  "nav": {
+    "brands": "Brands",
+    "shop_by_type": "Shop By Type",
+    "all_products": "All Products",
+    "new_arrivals": "New Arrivals",
+    "accessories": "Accessories",
+    "smart_cubes": "Smart Cubes",
+    "big_cubes": "Big Cubes"
+  },
+  "home": {
+    "hero_eyebrow": "Speed. Precision. Performance.",
+    "hero_heading_line1": "Professional",
+    "hero_heading_line2": "Speedcubes",
+    "hero_subtext": "Chosen by pros, approved by world champions",
+    "hero_cta_primary": "Shop Now",
+    "hero_cta_secondary": "View Brands",
+    "promo_heading": "Shop By Budget",
+    "featured_eyebrow": "Top Rated",
+    "featured_heading": "Best Sellers",
+    "featured_cta": "View All Products",
+    "category_heading": "Shop By Category",
+    "brands_heading": "Authorized Dealers",
+    "community_heading": "Join the SCH Community",
+    "community_subtext": "Join 10,000+ cubers from the Middle East",
+    "newsletter_heading": "Subscribe to our Newsletter",
+    "newsletter_placeholder": "Enter your email",
+    "newsletter_btn": "Subscribe"
+  },
+  "trust": {
+    "shipping": "Fast Shipping",
+    "curated": "Pro-Curated Selection",
+    "support": "Expert Support",
+    "secure": "Secure Checkout"
+  },
+  "collection": {
+    "products_count": "Products",
+    "sort_by": "Sort By",
+    "sort_featured": "Featured",
+    "sort_best_selling": "Best Selling",
+    "sort_newest": "Newest",
+    "sort_price_asc": "Price: Low to High",
+    "sort_price_desc": "Price: High to Low",
+    "filter": "Filter",
+    "no_products": "No products found",
+    "back_to_shop": "Back to Shop"
+  },
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "sold_out": "Sold Out",
+    "unavailable": "Unavailable",
+    "description": "Description",
+    "specs": "Specs",
+    "shipping": "Shipping",
+    "quantity": "Quantity",
+    "related_products": "You May Also Like",
+    "choose_option": "Choose an option"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "checkout": "Checkout",
+    "total": "Total",
+    "remove": "Remove",
+    "quantity": "Qty"
+  },
+  "footer": {
+    "quick_links": "Quick Links",
+    "about": "About",
+    "contact": "Contact",
+    "shipping_policy": "Shipping Policy",
+    "returns_policy": "Returns Policy",
+    "privacy_policy": "Privacy Policy",
+    "newsletter_heading": "Stay in the loop",
+    "newsletter_placeholder": "Enter your email",
+    "newsletter_btn": "Subscribe",
+    "copyright": "All rights reserved",
+    "made_with": "Made with ❤️ in Syria"
+  },
+  "about": {
+    "heading": "Built by Cubers, for Cubers",
+    "subheading": "Syria's leading speedcube store",
+    "story_heading": "Our Story",
+    "mission_heading": "Our Mission"
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send Message",
+    "success": "Message sent successfully!",
+    "error": "Something went wrong. Please try again."
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close",
+    "open": "Open",
+    "loading": "Loading"
+  }
+}
