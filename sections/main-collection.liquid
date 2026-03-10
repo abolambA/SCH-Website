@@ -77,9 +77,11 @@
           <div class="grid grid--4-col">
             {%- if collection.products.size > 0 -%}
               {%- for product in collection.products -%}
+                {%- if product.available -%}
                 <div class="grid__item reveal">
                   {% render 'product-card', product: product %}
                 </div>
+                {%- endif -%}
               {%- endfor -%}
             {%- else -%}
               <div class="empty-collection-state" style="grid-column: 1/-1; text-align:center; padding: 5rem 2rem;">
