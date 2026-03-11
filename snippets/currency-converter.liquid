@@ -3,6 +3,7 @@
   - Store base currency: USD
   - GCC countries: shows local currency with +5% markup
   - Others: shows USD (no conversion needed)
+  - All prices use psychological .99 pricing
 {% endcomment %}
 
 <script>
@@ -40,11 +41,26 @@
     return null;
   }
   
+  // Apply psychological .99 pricing: round to nearest integer then subtract 0.01
+  // For currencies with 3 decimal places (KWD, BHD, OMR), subtract 0.001 instead
+  function applyDotNineNine(amount, dec) {
+    if (amount <= 0) return amount;
+    if (dec === 3) {
+      // e.g. 4.123 KWD -> round to 4 -> 3.999 KWD
+      const rounded = Math.round(amount);
+      return Math.max(0, rounded - 0.001);
+    } else {
+      // e.g. 52.48 AED -> round to 52 -> 51.99 AED
+      const rounded = Math.round(amount);
+      return Math.max(0, rounded - 0.01);
+    }
+  }
+  
   function formatPrice(amount, currency) {
     const dec = DECIMALS[currency] || DECIMALS['default'];
     const sym = CURRENCY_SYMBOLS[currency] || currency;
-    const rounded = Math.round(amount * Math.pow(10, dec)) / Math.pow(10, dec);
-    const parts = rounded.toFixed(dec).split('.');
+    const psychoAmount = applyDotNineNine(amount, dec);
+    const parts = psychoAmount.toFixed(dec).split('.');
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     return parts.join('.') + ' ' + sym;
   }
