@@ -1,7 +1,7 @@
 {% comment %}
   Currency Converter Snippet - SpeedCubeHub
   - Store base currency: USD
-  - GCC countries: shows local currency with +5% markup
+  - GCC countries: shows local currency (no markup)
   - Others: shows USD (no conversion needed)
 {% endcomment %}
 
@@ -29,8 +29,8 @@
   
   const DECIMALS = { 'KWD': 3, 'BHD': 3, 'OMR': 3, 'default': 2 };
   
-  // +5% markup for GCC to secure profit margin
-  const GCC_MARKUP = 1.05;
+  // No markup - display exact prices from store
+  const GCC_MARKUP = 1.0;
   
   function detectCountry() {
     const stored = localStorage.getItem('sch_currency_country');
