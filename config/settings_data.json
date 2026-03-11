@@ -15,14 +15,32 @@
     "color_primary": "#FFD000",
     "color_secondary": "#FF6B1A",
     "color_accent": "#1A9FE0",
+    "font_display": "rajdhani_n7",
+    "font_body": "dm_sans_n4",
+    "logo": "shopify://shop_images/WhatsApp_Image_2026-02-24_at_00.30.41.jpg",
     "color_text": "#FFFFFF",
     "color_text_muted": "#8899AA",
     "color_border": "#ffffff",
     "color_glow": "#ffd000",
-    "font_display": "rajdhani_n7",
-    "font_body": "dm_sans_n4",
     "store_tagline": "Solve Faster. Shop SCH.",
     "free_shipping_threshold": 100,
-    "enable_countdown_timer": true
+    "enable_countdown_timer": true,
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {}
+      },
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "brand_desc": ""
+        }
+      }
+    },
+    "content_for_index": []
   }
 }
